@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Entities.Abstract;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class UserHourTrainer
+    public class UserHourTrainer : IEntity  //Randevular Tablosu -- Appointments Table
     {
         [Key]
         public int AppointmentId { get; set; }

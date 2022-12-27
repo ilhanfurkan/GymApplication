@@ -1,4 +1,5 @@
 ﻿using DataAccess.Abstract;
+using Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace DataAccess.Concrete
         public void Delete(T entity)
         {
             _objects.Remove(entity);
+            context.SaveChanges();
         }
 
         public T Get(Expression<Func<T, bool>> filter)
@@ -32,14 +34,17 @@ namespace DataAccess.Concrete
         public void Insert(T entity)
         {
             _objects.Add(entity);
+            context.SaveChanges();
         }
 
         public List<T> Listing()
         {
             return _objects.ToList();
+
+            //return filter == null ? _objects.ToList() : _objects.Where(filter).ToList();
         }
 
-        public List<T> ListningBy(Expression<Func<T, bool>> filter)
+        public List<T> ListingBy(Expression<Func<T, bool>> filter)
         {
             return _objects.Where(filter).ToList();
         }
@@ -47,6 +52,7 @@ namespace DataAccess.Concrete
         public void Update(T entity)
         {
             _objects.Update(entity);
+            context.SaveChanges();
         }
     }
 }

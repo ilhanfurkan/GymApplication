@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Entities.Abstract;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class CategoryTrainer
+    public class CategoryTrainer : IEntity // Paketler Tablosu -- Packets Table
     {
         [Key]
         public int PacketId { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,11 @@ namespace Business.Abstract
 {
     public interface ICategoryTrainerService
     {
+        void CategoryTrainerAdd(CategoryTrainer categoryTrainer);
+        void CategoryTrainerRemove(CategoryTrainer categoryTrainer);
+        void CategoryTrainerUpdate(CategoryTrainer categoryTrainer);
+        List<CategoryTrainer> CategoryTrainerList();
+        CategoryTrainer CategoryTrainerGetById(int id);
+        CategoryTrainer CategoryTrainerGetByName(string packetName);
     }
 }
