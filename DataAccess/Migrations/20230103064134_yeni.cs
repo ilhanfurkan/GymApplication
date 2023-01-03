@@ -1,10 +1,14 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace DataAccess.Migrations
 {
-    public partial class addmigrationinit : Migration
+    /// <inheritdoc />
+    public partial class yeni : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -87,7 +91,7 @@ namespace DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PacketName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PacketDetail = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    PacketPrice = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PacketPrice = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Right = table.Column<int>(type: "int", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
@@ -242,6 +246,7 @@ namespace DataAccess.Migrations
                 column: "UserId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

@@ -7,26 +7,34 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221121153245_add-migration init")]
-    partial class addmigrationinit
+    [Migration("20230103064134_yeni")]
+    partial class yeni
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Entities.CategoryTrainer", b =>
                 {
                     b.Property<int>("PacketId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PacketId"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -46,7 +54,8 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("PacketPrice")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("Right")
                         .HasColumnType("int");
@@ -67,8 +76,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -84,8 +94,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("HourId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HourId"));
 
                     b.Property<string>("Hours")
                         .IsRequired()
@@ -104,8 +115,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("SeanceId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeanceId"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -138,8 +150,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -200,8 +213,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("TrainerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrainerId"));
 
                     b.Property<DateTime>("TrainerDateOfBirth")
                         .HasColumnType("datetime2");
@@ -253,8 +267,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("RegistrationId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RegistrationId"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -290,8 +305,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("AppointmentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
