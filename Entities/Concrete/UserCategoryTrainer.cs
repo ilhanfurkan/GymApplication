@@ -17,6 +17,7 @@ namespace Entities
         public double PaymentType { get; set; }
         public double Price { get; set; }
         public bool Active { get; set; }
+        public bool Deleted { get; set; }
 
         //User ve CategoryTrainer Tablolarının Id'sini bulunduracak
         public int UserId { get; set; }

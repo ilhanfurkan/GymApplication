@@ -17,6 +17,8 @@ namespace Entities.Concrete
         public int RemainingRight { get; set; }
         public DateTime Date { get; set; }
         public bool Active { get; set; }
+        public bool Deleted { get; set; }
+
 
         //Hour ve Trainer tablosunun Id'sini bulunduracak.
         public int HourId { get; set; }

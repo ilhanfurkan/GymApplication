@@ -16,6 +16,7 @@ namespace Entities
         public DateTime Date { get; set; }
         public int Hours  { get; set; }
         public bool Active { get; set; }
+        public bool Deleted { get; set; }
 
         //HourTrainer ve User'ın Idsini Tutacak.
         public int SeanceId { get; set; }

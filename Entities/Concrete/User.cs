@@ -32,6 +32,7 @@ namespace Entities.Concrete
         public string Mail { get; set; }
         public bool Deleted { get; set; }
 
+
         // UserHourTrainer ve UserCategoryTrainer da Id'si olacak.
 
         public virtual ICollection<UserHourTrainer> UserHourTrainers{ get; set; }
