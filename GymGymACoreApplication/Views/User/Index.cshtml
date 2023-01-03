@@ -12,13 +12,13 @@
             <th>User Password</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Gender</th>
             <th>Date Of Birth</th>
             <th>National ID</th>
             <th>Height</th>
             <th>Weight</th>
             <th>Phone Number</th>
             <th>Mail</th>
+            <th>Gender</th>
             <th>Deleted</th>
         </tr>
     </thead>
@@ -30,23 +30,56 @@
                     <td>@item.UserPassword</td>
                     <td>@item.FirstName</td>
                     <td>@item.LastName</td>
-                    <td>@item.Gender</td>
                     <td>@item.DateOfBirth</td>
                     <td>@item.NationalId</td>
                     <td>@item.Height</td>
                     <td>@item.Weight</td>
                     <td>@item.PhoneNo</td>
                     <td>@item.Mail</td>
+                    <td>@item.Gender</td>
                     <td>@item.Deleted</td>
                     <td>
                         <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.UserId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
                     </td>
-                    <td><a href="/User/update/@item.UserId" type="button" class="btn btn-primary p-2">Update</a></td>
+                    <td><a href="/User/Update/@item.UserId" type="button" class="btn btn-primary p-2">Update</a></td>
                 </tr>
         }
 
     </tbody>
 </table>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/User/add" class="btn btn-info">Add New User</a>
+    <a href="/User/Add" class="btn btn-info">Add New User</a>
 </div>
+
+
+@*modal*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Uyarı</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Silmek istediğinizden emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                <a id="delete-btn" href="" class="btn btn-success">Evet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var userId = button.attr('data-bs-whatever');
+
+            var a = document.querySelector("#delete-btn");
+            a.href = "/User/Delete/" + userId
+        });
+    });
+</script>

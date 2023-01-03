@@ -75,7 +75,7 @@ namespace GymGymACoreApplication.Controllers
         public IActionResult Delete(int id)
         {
             Trainer trainer = tm.TrainerGetById(id);
-            trainer.Deleted = false;
+            trainer.Deleted = true;
             tm.TrainerUpdate(trainer);
             return RedirectToAction("Index");
         }

@@ -1,0 +1,75 @@
+﻿@using Entities.Concrete;
+@model User
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h3 style="text-align:center;">Add TRAİNER</h3>
+
+    @using (Html.BeginForm("Add", "User", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(user=>user.UserId,new { @class = "form-control",@name="UserId",@value="@Model.UserId"})
+        @Html.Label("User Login ")
+        @Html.TextBoxFor(user=>user.UserLogin,new { @class = "form-control" })
+        @Html.ValidationMessageFor(user=>user.UserLogin,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("User Password")
+        @Html.TextBoxFor(user=>user.UserPassword ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(user=>user.UserPassword,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("First Name")
+        @Html.TextBoxFor(user=>user.FirstName ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(user=>user.FirstName,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Last Name")
+        @Html.TextBoxFor(user=>user.LastName ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(user=>user.LastName,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Date Of Birth")
+        @Html.TextBoxFor(user=>user.DateOfBirth ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(user=>user.DateOfBirth,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Natıonal ID")
+        @Html.TextBoxFor(user=>user.NationalId ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(user=>user.NationalId,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Height")
+        @Html.TextBoxFor(user=>user.Height ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(user=>user.Height,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Weight")
+        @Html.TextBoxFor(user=>user.Weight ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(user=>user.Weight,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Phone No")
+        @Html.TextBoxFor(user=>user.PhoneNo ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(user=>user.PhoneNo,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Mail")
+        @Html.TextBoxFor(user=>user.Mail ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(user=>user.Mail,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Gender")
+            <select class="form-control" name="Gender">
+                <option>True</option>
+                <option>False</option>
+            </select>
+            <br />
+
+        @Html.Label("Case")
+            <select class="form-control" name="Deleted">
+                <option>False</option>
+                <option>True</option>
+            </select>
+            <br />
+
+            <input class="form-control btn btn-primary" type="submit" value="Add Trainer" />
+    }
+</div>
+
+
+
+

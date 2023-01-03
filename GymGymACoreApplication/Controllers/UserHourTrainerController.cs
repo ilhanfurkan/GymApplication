@@ -2,29 +2,26 @@
 using Business.Validations;
 using DataAccess.Concrete.EntityFramework;
 using Entities;
-using Entities.Concrete;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace GymGymACoreApplication.Controllers
 {
-    public class UserController : Controller
+    public class UserHourTrainerController : Controller
     {
-        UserManager um = new UserManager(new EfUserRepository());
-
+        UserHourTrainerManager uhtm = new UserHourTrainerManager(new EfUserHourTrainerRepository());
         public IActionResult Index()
         {
-            var users = um.UserList();
-            return View(users);
+            var userHour = uhtm.UserHourTrainerList();
+            return View(userHour);
         }
         public IActionResult Delete(int id)
         {
-            User user = um.UserGetById(id);
-            user.Deleted = true;
-            um.UserRemove(user);
+            UserHourTrainer userHourTrainer = uhtm.UserHourTrainerGetById(id);
+            userHourTrainer.Deleted = true;
+            uhtm.UserHourTrainerRemove(userHourTrainer);
             return RedirectToAction("Index");
         }
-
 
         [HttpGet]
         public IActionResult Add()
@@ -33,13 +30,13 @@ namespace GymGymACoreApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(User user)
+        public IActionResult Add(UserHourTrainer userHourTrainer)
         {
-            UserValidator userValidator = new UserValidator();
-            var result = userValidator.Validate(user);
+            UserHourTrainerValidator userHourTrainerValidator = new UserHourTrainerValidator();
+            var result = userHourTrainerValidator.Validate(userHourTrainer);
             if (result.IsValid)
             {
-                um.UserAdd(user);
+                uhtm.UserHourTrainerAdd(userHourTrainer);
                 return RedirectToAction("Index");
 
             }
@@ -57,18 +54,18 @@ namespace GymGymACoreApplication.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            User user = um.UserGetById(id);
-            return View(user);
+            UserHourTrainer userHourTrainer = uhtm.UserHourTrainerGetById(id);
+            return View(userHourTrainer);
 
         }
         [HttpPost]
-        public IActionResult Update(User user)
+        public IActionResult Update(UserHourTrainer userHourTrainer)
         {
-            UserValidator userValidator = new UserValidator();
-            var result = userValidator.Validate(user);
+            UserHourTrainerValidator userHourTrainerValidator = new UserHourTrainerValidator();
+            var result = userHourTrainerValidator.Validate(userHourTrainer);
             if (result.IsValid)
             {
-                um.UserUpdate(user);
+                uhtm.UserHourTrainerUpdate(userHourTrainer);
                 return RedirectToAction("Index");
 
             }
@@ -78,9 +75,10 @@ namespace GymGymACoreApplication.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View(user);
+                return View(userHourTrainer);
             }
         }
+
 
     }
 }

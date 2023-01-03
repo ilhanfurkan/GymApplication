@@ -1,0 +1,43 @@
+﻿@using Entities;
+@model List<UserHourTrainer>;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Hour</th>
+            <th>Seance Id</th>
+            <th>UserId</th>
+            <th>Case</th>
+          
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Date</td>
+                <td>@item.Hours</td>
+                <td>@item.SeanceId</td>
+                <td>@item.UserId</td>
+                <td>@item.Deleted</td>
+
+                <td>
+                    <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.AppointmentId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
+                </td>
+                <td><a href="/UserHourTrainer/Update/@item.AppointmentId" type="button" class="btn btn-primary p-2">Update</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/UserHourTrainer/Add" class="btn btn-info">Add New User</a>
+</div>
+
