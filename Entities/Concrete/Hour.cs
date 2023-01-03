@@ -15,6 +15,7 @@ namespace Entities.Concrete
         [StringLength(15)]
         public string Hours { get; set; }
         public double Time { get; set; }
+        public bool Deleted { get; set; }
 
         //HourTrainer da Id'si Olacak.
         public virtual ICollection<HourTrainer> HourTrainers { get; set; }

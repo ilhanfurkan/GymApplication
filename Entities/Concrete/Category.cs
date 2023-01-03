@@ -14,6 +14,7 @@ namespace Entities.Concrete
         public int CategoryId { get; set; }
         [StringLength(50)]
         public string CategoryName { get; set; }
+        public bool Deleted { get; set; }
 
         //CategoryTrainer da Id'si olacak.
         public virtual ICollection<CategoryTrainer> CategoryTrainers { get; set; }

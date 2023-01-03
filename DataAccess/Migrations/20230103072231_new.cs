@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class yeni : Migration
+    public partial class @new : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,8 @@ namespace DataAccess.Migrations
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    CategoryName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Deleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,7 +32,8 @@ namespace DataAccess.Migrations
                     HourId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Hours = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Time = table.Column<double>(type: "float", nullable: false)
+                    Time = table.Column<double>(type: "float", nullable: false),
+                    Deleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,7 +54,8 @@ namespace DataAccess.Migrations
                     TrainerPhoneNo = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     TrainerMail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     TrainerGender = table.Column<bool>(type: "bit", nullable: false),
-                    TrainerDateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    TrainerDateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Deleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -94,6 +97,7 @@ namespace DataAccess.Migrations
                     PacketPrice = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Right = table.Column<int>(type: "int", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
+                    Deleted = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     TrainerId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -124,6 +128,7 @@ namespace DataAccess.Migrations
                     RemainingRight = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
+                    Deleted = table.Column<bool>(type: "bit", nullable: false),
                     HourId = table.Column<int>(type: "int", nullable: false),
                     TrainerId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -154,6 +159,7 @@ namespace DataAccess.Migrations
                     PaymentType = table.Column<double>(type: "float", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
+                    Deleted = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     PacketId = table.Column<int>(type: "int", nullable: false),
                     CategoryTrainerPacketId = table.Column<int>(type: "int", nullable: false)
@@ -184,6 +190,7 @@ namespace DataAccess.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Hours = table.Column<int>(type: "int", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
+                    Deleted = table.Column<bool>(type: "bit", nullable: false),
                     SeanceId = table.Column<int>(type: "int", nullable: false),
                     HourTrainerSeanceId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)

@@ -1,0 +1,51 @@
+﻿@using Entities;
+@model List<Trainer>;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Trainer Login</th>
+            <th>Trainer Password</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>National ID</th>
+            <th>Phone No</th>
+            <th>Mail</th>
+            <th>Gender</th>
+            <th>Date Of Birth</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TrainerLogin</td>
+                <td>@item.TrainerPassword</td>
+                <td>@item.TrainerFirstName</td>
+                <td>@item.TrainerLastName</td>
+                <td>@item.TrainerNationalId</td>
+                <td>@item.TrainerPhoneNo</td>
+                <td>@item.TrainerMail</td>
+                <td>@item.TrainerGender</td>
+                <td>@item.TrainerDateOfBirth</td>
+              
+                <td>
+                    <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.TrainerId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
+                </td>
+                <td><a href="/User/update/@item.TrainerId" type="button" class="btn btn-primary p-2">Update</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/User/add" class="btn btn-info">Add New User</a>
+</div>
+

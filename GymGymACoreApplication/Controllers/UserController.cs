@@ -14,5 +14,6 @@ namespace GymGymACoreApplication.Controllers
             var users = um.UserList();
             return View(users);
         }
+        
     }
 }

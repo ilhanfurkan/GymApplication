@@ -22,6 +22,7 @@ namespace Entities
         public string PacketPrice { get; set; }
         public int Right { get; set; }
         public bool Active { get; set; }
+        public bool Deleted { get; set; }
 
         //Category ve Trainer tablolarının Id'sini Tutacak
         public int CategoryId { get; set; }
