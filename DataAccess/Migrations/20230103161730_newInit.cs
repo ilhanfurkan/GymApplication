@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class @new : Migration
+    public partial class newInit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -87,7 +87,7 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryTrainers",
+                name: "Packets",
                 columns: table => new
                 {
                     PacketId = table.Column<int>(type: "int", nullable: false)
@@ -96,22 +96,21 @@ namespace DataAccess.Migrations
                     PacketDetail = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     PacketPrice = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Right = table.Column<int>(type: "int", nullable: false),
-                    Active = table.Column<bool>(type: "bit", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     TrainerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryTrainers", x => x.PacketId);
+                    table.PrimaryKey("PK_Packets", x => x.PacketId);
                     table.ForeignKey(
-                        name: "FK_CategoryTrainers_Categories_CategoryId",
+                        name: "FK_Packets_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CategoryTrainers_Trainers_TrainerId",
+                        name: "FK_Packets_Trainers_TrainerId",
                         column: x => x.TrainerId,
                         principalTable: "Trainers",
                         principalColumn: "TrainerId",
@@ -119,7 +118,7 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HourTrainers",
+                name: "Seances",
                 columns: table => new
                 {
                     SeanceId = table.Column<int>(type: "int", nullable: false)
@@ -127,22 +126,21 @@ namespace DataAccess.Migrations
                     Quota = table.Column<int>(type: "int", nullable: false),
                     RemainingRight = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Active = table.Column<bool>(type: "bit", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     HourId = table.Column<int>(type: "int", nullable: false),
                     TrainerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HourTrainers", x => x.SeanceId);
+                    table.PrimaryKey("PK_Seances", x => x.SeanceId);
                     table.ForeignKey(
-                        name: "FK_HourTrainers_Hours_HourId",
+                        name: "FK_Seances_Hours_HourId",
                         column: x => x.HourId,
                         principalTable: "Hours",
                         principalColumn: "HourId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HourTrainers_Trainers_TrainerId",
+                        name: "FK_Seances_Trainers_TrainerId",
                         column: x => x.TrainerId,
                         principalTable: "Trainers",
                         principalColumn: "TrainerId",
@@ -150,7 +148,7 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserCategoryTrainers",
+                name: "Registrations",
                 columns: table => new
                 {
                     RegistrationId = table.Column<int>(type: "int", nullable: false)
@@ -158,23 +156,21 @@ namespace DataAccess.Migrations
                     DateOfRegistration = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PaymentType = table.Column<double>(type: "float", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    Active = table.Column<bool>(type: "bit", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    PacketId = table.Column<int>(type: "int", nullable: false),
-                    CategoryTrainerPacketId = table.Column<int>(type: "int", nullable: false)
+                    PacketId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserCategoryTrainers", x => x.RegistrationId);
+                    table.PrimaryKey("PK_Registrations", x => x.RegistrationId);
                     table.ForeignKey(
-                        name: "FK_UserCategoryTrainers_CategoryTrainers_CategoryTrainerPacketId",
-                        column: x => x.CategoryTrainerPacketId,
-                        principalTable: "CategoryTrainers",
+                        name: "FK_Registrations_Packets_PacketId",
+                        column: x => x.PacketId,
+                        principalTable: "Packets",
                         principalColumn: "PacketId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserCategoryTrainers_Users_UserId",
+                        name: "FK_Registrations_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -182,30 +178,28 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserHourTrainers",
+                name: "Appointments",
                 columns: table => new
                 {
                     AppointmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Hours = table.Column<int>(type: "int", nullable: false),
-                    Active = table.Column<bool>(type: "bit", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     SeanceId = table.Column<int>(type: "int", nullable: false),
-                    HourTrainerSeanceId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserHourTrainers", x => x.AppointmentId);
+                    table.PrimaryKey("PK_Appointments", x => x.AppointmentId);
                     table.ForeignKey(
-                        name: "FK_UserHourTrainers_HourTrainers_HourTrainerSeanceId",
-                        column: x => x.HourTrainerSeanceId,
-                        principalTable: "HourTrainers",
+                        name: "FK_Appointments_Seances_SeanceId",
+                        column: x => x.SeanceId,
+                        principalTable: "Seances",
                         principalColumn: "SeanceId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserHourTrainers_Users_UserId",
+                        name: "FK_Appointments_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -213,69 +207,69 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryTrainers_CategoryId",
-                table: "CategoryTrainers",
+                name: "IX_Appointments_SeanceId",
+                table: "Appointments",
+                column: "SeanceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_UserId",
+                table: "Appointments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Packets_CategoryId",
+                table: "Packets",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryTrainers_TrainerId",
-                table: "CategoryTrainers",
+                name: "IX_Packets_TrainerId",
+                table: "Packets",
                 column: "TrainerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HourTrainers_HourId",
-                table: "HourTrainers",
+                name: "IX_Registrations_PacketId",
+                table: "Registrations",
+                column: "PacketId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Registrations_UserId",
+                table: "Registrations",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seances_HourId",
+                table: "Seances",
                 column: "HourId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HourTrainers_TrainerId",
-                table: "HourTrainers",
+                name: "IX_Seances_TrainerId",
+                table: "Seances",
                 column: "TrainerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserCategoryTrainers_CategoryTrainerPacketId",
-                table: "UserCategoryTrainers",
-                column: "CategoryTrainerPacketId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserCategoryTrainers_UserId",
-                table: "UserCategoryTrainers",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserHourTrainers_HourTrainerSeanceId",
-                table: "UserHourTrainers",
-                column: "HourTrainerSeanceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserHourTrainers_UserId",
-                table: "UserHourTrainers",
-                column: "UserId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "UserCategoryTrainers");
+                name: "Appointments");
 
             migrationBuilder.DropTable(
-                name: "UserHourTrainers");
+                name: "Registrations");
 
             migrationBuilder.DropTable(
-                name: "CategoryTrainers");
+                name: "Seances");
 
             migrationBuilder.DropTable(
-                name: "HourTrainers");
+                name: "Packets");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Hours");
 
             migrationBuilder.DropTable(
-                name: "Hours");
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Trainers");

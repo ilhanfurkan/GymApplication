@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230103072231_new")]
-    partial class @new
+    [Migration("20230103161730_newInit")]
+    partial class newInit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,9 +35,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PacketId"));
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -72,7 +69,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("TrainerId");
 
-                    b.ToTable("CategoryTrainers");
+                    b.ToTable("Packets");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Category", b =>
@@ -128,9 +125,6 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeanceId"));
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -155,7 +149,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("TrainerId");
 
-                    b.ToTable("HourTrainers");
+                    b.ToTable("Seances");
                 });
 
             modelBuilder.Entity("Entities.Concrete.User", b =>
@@ -286,12 +280,6 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RegistrationId"));
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("CategoryTrainerPacketId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateOfRegistration")
                         .HasColumnType("datetime2");
 
@@ -312,11 +300,11 @@ namespace DataAccess.Migrations
 
                     b.HasKey("RegistrationId");
 
-                    b.HasIndex("CategoryTrainerPacketId");
+                    b.HasIndex("PacketId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserCategoryTrainers");
+                    b.ToTable("Registrations");
                 });
 
             modelBuilder.Entity("Entities.UserHourTrainer", b =>
@@ -327,17 +315,11 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"));
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
-
-                    b.Property<int>("HourTrainerSeanceId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Hours")
                         .HasColumnType("int");
@@ -350,23 +332,23 @@ namespace DataAccess.Migrations
 
                     b.HasKey("AppointmentId");
 
-                    b.HasIndex("HourTrainerSeanceId");
+                    b.HasIndex("SeanceId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserHourTrainers");
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("Entities.CategoryTrainer", b =>
                 {
                     b.HasOne("Entities.Concrete.Category", "Category")
-                        .WithMany("CategoryTrainers")
+                        .WithMany("Packets")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Entities.Trainer", "Trainer")
-                        .WithMany("CategoryTrainers")
+                        .WithMany("Packets")
                         .HasForeignKey("TrainerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -379,13 +361,13 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concrete.HourTrainer", b =>
                 {
                     b.HasOne("Entities.Concrete.Hour", "hour")
-                        .WithMany("HourTrainers")
+                        .WithMany("Seances")
                         .HasForeignKey("HourId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Entities.Trainer", "trainer")
-                        .WithMany("HourTrainers")
+                        .WithMany("Seances")
                         .HasForeignKey("TrainerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -397,74 +379,74 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.UserCategoryTrainer", b =>
                 {
-                    b.HasOne("Entities.CategoryTrainer", "CategoryTrainer")
-                        .WithMany("UserCategoryTrainers")
-                        .HasForeignKey("CategoryTrainerPacketId")
+                    b.HasOne("Entities.CategoryTrainer", "Packet")
+                        .WithMany("Registrations")
+                        .HasForeignKey("PacketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Entities.Concrete.User", "User")
-                        .WithMany("UserCategoryTrainers")
+                        .WithMany("Registrations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CategoryTrainer");
+                    b.Navigation("Packet");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.UserHourTrainer", b =>
                 {
-                    b.HasOne("Entities.Concrete.HourTrainer", "HourTrainer")
-                        .WithMany("UserHourTrainers")
-                        .HasForeignKey("HourTrainerSeanceId")
+                    b.HasOne("Entities.Concrete.HourTrainer", "Seance")
+                        .WithMany("Appointments")
+                        .HasForeignKey("SeanceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Concrete.User", "user")
-                        .WithMany("UserHourTrainers")
+                    b.HasOne("Entities.Concrete.User", "User")
+                        .WithMany("Appointments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("HourTrainer");
+                    b.Navigation("Seance");
 
-                    b.Navigation("user");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.CategoryTrainer", b =>
                 {
-                    b.Navigation("UserCategoryTrainers");
+                    b.Navigation("Registrations");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Category", b =>
                 {
-                    b.Navigation("CategoryTrainers");
+                    b.Navigation("Packets");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Hour", b =>
                 {
-                    b.Navigation("HourTrainers");
+                    b.Navigation("Seances");
                 });
 
             modelBuilder.Entity("Entities.Concrete.HourTrainer", b =>
                 {
-                    b.Navigation("UserHourTrainers");
+                    b.Navigation("Appointments");
                 });
 
             modelBuilder.Entity("Entities.Concrete.User", b =>
                 {
-                    b.Navigation("UserCategoryTrainers");
+                    b.Navigation("Appointments");
 
-                    b.Navigation("UserHourTrainers");
+                    b.Navigation("Registrations");
                 });
 
             modelBuilder.Entity("Entities.Trainer", b =>
                 {
-                    b.Navigation("CategoryTrainers");
+                    b.Navigation("Packets");
 
-                    b.Navigation("HourTrainers");
+                    b.Navigation("Seances");
                 });
 #pragma warning restore 612, 618
         }
