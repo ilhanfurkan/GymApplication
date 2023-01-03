@@ -1,8 +1,65 @@
-﻿
+﻿@using Entities.Concrete;
+@model List<Category>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<h1 style="text-align:center;">Categorys</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Case</th>
 
-<h1>Index</h1>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryName</td>
+                <td>@item.Deleted</td>
+                <td>
+                    <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.CategoryId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
+                </td>
+                <td><a href="/Category/Update/@item.CategoryId" type="button" class="btn btn-primary p-2">Update</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/Category/Add" class="btn btn-info">New Category Add</a>
+</div>
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Warning</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var CategoryId = button.attr('data-bs-whatever');
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Category/Deleted/" + CategoryId;
+        });
+    });
+</script>
 

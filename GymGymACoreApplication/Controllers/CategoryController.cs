@@ -11,7 +11,8 @@ namespace GymGymACoreApplication.Controllers
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index()
         {
-            return View();
+            var category = cm.CategoryList();
+            return View(category);
         }
 
         [HttpGet]
@@ -42,13 +43,13 @@ namespace GymGymACoreApplication.Controllers
 
         }
 
-        //public IActionResult delete(int id)
-        //{
-        //    Category category = cm.CategoryGetById(id);
-        //    category.dele = true;
-        //    fm.firmaGuncelle(firma);
-        //    return RedirectToAction("Index");
-        //}
+        public IActionResult delete(int id)
+        {
+            Category category = cm.CategoryGetById(id);
+            category.Deleted = true;
+            cm.CategoryUpdate(category);
+            return RedirectToAction("Index");
+        }
         public IActionResult update(int id)
         {
             Category category =cm.CategoryGetById(id);
@@ -72,7 +73,7 @@ namespace GymGymACoreApplication.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View();
+                return View(category);
             }
 
         }

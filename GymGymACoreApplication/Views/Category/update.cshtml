@@ -1,0 +1,33 @@
+﻿@using Entities.Concrete;
+@model Category;
+@{
+    ViewData["Title"] = "update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="p-2">
+    <h3>Category Update</h3>
+    @using (Html.BeginForm("update", "Category", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(category=>category.CategoryId,new { @class = "form-control",@type="hidden"})
+        @Html.Label("Category Name")
+        @Html.TextBoxFor(guzergah=>guzergah.CategoryName ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(guzergah=>guzergah.CategoryName  ,"",new { @class ="text-danger" })
+            <br />
+       
+        @Html.Label("Durum")
+               <select class="form-control" name="deleted">
+            @if (Model.Deleted)
+            {
+                <option selected>True</option>
+                <option>False</option>
+            }
+            else
+            {
+                <option>True</option>
+                <option selected>False</option>
+            }
+        </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Category Update" />
+    }
+</div>

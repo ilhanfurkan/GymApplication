@@ -1,8 +1,24 @@
-﻿
+﻿@using Entities.Concrete;
+@model Category;
 @{
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Add</h1>
-
+<div class="p-2">
+    <h3>Category Add</h3>
+    @using (Html.BeginForm("add", "Category", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Category Name")
+        @Html.TextBoxFor(category=>category.CategoryName,new { @class = "form-control" })
+        @Html.ValidationMessageFor(category=>category.CategoryName,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Case")
+        <select class="form-control" name="Deleted">
+            <option>False</option>
+            <option>True</option>
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Add" />
+    }
+</div>
