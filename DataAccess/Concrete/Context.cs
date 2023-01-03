@@ -13,23 +13,23 @@ namespace DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=402-02 ; database=GymGym-A ;Encrypt=False; User ID=sa;Password=1234");
+            //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=402-02 ; database=GymGym-A ;Encrypt=False; User ID=sa;Password=1234");
 
 
-            //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server=DESKTOP-BF2NAS2;Initial Catalog=GymGym-A;" +
-            //   "Persist Security Info=False;Trusted_Connection=True;" +
-            //   "MultipleActiveResultSets=False;Encrypt=False;" +
-            //   "TrustServerCertificate=False;Connection Timeout=30;");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server=Murki;Initial Catalog=GymGym-A;" +
+               "Persist Security Info=False;Trusted_Connection=True;" +
+               "MultipleActiveResultSets=False;Encrypt=False;" +
+               "TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         public DbSet<Category> Categories { get; set; }
-        public DbSet<CategoryTrainer> CategoryTrainers { get; set; }
+        public DbSet<CategoryTrainer> Packets { get; set; }
         public DbSet<Hour> Hours { get; set; }
-        public DbSet<HourTrainer> HourTrainers { get; set; }
+        public DbSet<HourTrainer> Seances { get; set; }  // Seanslar demek
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserCategoryTrainer> UserCategoryTrainers { get; set; }
-        public DbSet<UserHourTrainer> UserHourTrainers { get; set; }
+        public DbSet<UserCategoryTrainer> Registrations { get; set; } // Kayıtlar demek
+        public DbSet<UserHourTrainer> Appointments { get; set; }  // Randevular demek
 
     }
 }
