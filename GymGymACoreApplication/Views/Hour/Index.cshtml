@@ -1,0 +1,70 @@
+﻿@using Entities.Concrete;
+@model List<Hour>;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1 style="text-align:center;">Category Trainers</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Hours</th>
+            <th>Time</th>
+            <th>Deleted</th>
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Hours</td>
+                <td>@item.Time</td>
+                <td>@item.Deleted</td>
+                <td>
+                    <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.HourId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
+                </td>
+                <td><a href="/Hour/Update/@item.HourId" type="button" class="btn btn-primary p-2">Update</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/Hour/Add" class="btn btn-info">New Hour Add</a>
+</div>
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Warning</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var HourId = button.attr('data-bs-whatever');
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Hour/Delete/" + HourId;
+        });
+    });
+</script>

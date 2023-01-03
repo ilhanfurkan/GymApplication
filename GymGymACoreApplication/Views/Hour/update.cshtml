@@ -1,0 +1,37 @@
+﻿@using Entities.Concrete;
+@model Hour;
+@{
+    ViewData["Title"] = "update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="p-2">
+    <h3>Hours Update</h3>
+    @using (Html.BeginForm("update", "Hour", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(hour=>hour.HourId,new { @class = "form-control",@type="hidden"})
+        @Html.Label("Hours")
+        @Html.TextBoxFor(hour=>hour.Hours ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(hour=>hour.Hours  ,"",new { @class ="text-danger" })
+        <br />
+          @Html.Label("Time")
+        @Html.TextBoxFor(hour=>hour.Time ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(hour=>hour.Time  ,"",new { @class ="text-danger" })
+        <br />
+
+        @Html.Label("Durum")
+        <select class="form-control" name="deleted">
+            @if (Model.Deleted)
+            {
+                <option selected>True</option>
+                <option>False</option>
+            }
+            else
+            {
+                <option>True</option>
+                <option selected>False</option>
+            }
+        </select>
+        <br />
+        <input class="form-control btn btn-primary" type="submit" value="Hour Update" />
+    }
+</div>
