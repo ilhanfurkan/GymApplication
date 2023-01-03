@@ -12,17 +12,16 @@ namespace Entities
     public class UserHourTrainer : IEntity  //Randevular Tablosu -- Appointments Table
     {
         [Key]
-        public int AppointmentId { get; set; }
-        public DateTime Date { get; set; }
-        public int Hours  { get; set; }
-        public bool Active { get; set; }
+        public int AppointmentId { get; set; }     //Appointment = Randevu
+        public DateTime Date { get; set; }    //Randevu Tarihi
+        public int Hours  { get; set; }     //Randevu Saati
         public bool Deleted { get; set; }
 
         //HourTrainer ve User'ın Idsini Tutacak.
         public int SeanceId { get; set; }
-        public virtual HourTrainer HourTrainer { get; set; }
+        public virtual HourTrainer Seance { get; set; }
         public int UserId { get; set; }
-        public virtual User user { get; set; }
+        public virtual User User { get; set; }
 
     }
 }

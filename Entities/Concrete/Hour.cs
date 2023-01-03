@@ -13,11 +13,11 @@ namespace Entities.Concrete
         [Key]
         public int HourId { get; set; }
         [StringLength(15)]
-        public string Hours { get; set; }
-        public double Time { get; set; }
+        public string Hours { get; set; }    //Saatler hangi saati kaç dakikalık almış gibi
+        public double Time { get; set; }    //Süre anlamında kaç dakikalık bir antrenman
         public bool Deleted { get; set; }
 
         //HourTrainer da Id'si Olacak.
-        public virtual ICollection<HourTrainer> HourTrainers { get; set; }
+        public virtual ICollection<HourTrainer> Seances { get; set; }
     }
 }

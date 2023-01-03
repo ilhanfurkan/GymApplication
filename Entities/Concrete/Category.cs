@@ -17,6 +17,6 @@ namespace Entities.Concrete
         public bool Deleted { get; set; }
 
         //CategoryTrainer da Id'si olacak.
-        public virtual ICollection<CategoryTrainer> CategoryTrainers { get; set; }
+        public virtual ICollection<CategoryTrainer> Packets { get; set; }
     }
 }

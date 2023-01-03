@@ -34,8 +34,8 @@ namespace Entities
 
         //HourTariner ve CategoryTrainer da Id'si Olacak
 
-        public virtual ICollection<HourTrainer> HourTrainers { get; set; }
+        public virtual ICollection<HourTrainer> Seances { get; set; }
 
-        public virtual ICollection<CategoryTrainer> CategoryTrainers { get; set; }
+        public virtual ICollection<CategoryTrainer> Packets { get; set; }
     }
 }

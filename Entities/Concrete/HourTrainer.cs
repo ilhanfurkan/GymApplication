@@ -13,10 +13,9 @@ namespace Entities.Concrete
     {
         [Key]
         public int SeanceId { get; set; }
-        public int Quota { get; set; }
-        public int RemainingRight { get; set; }
+        public int Quota { get; set; }            // Kota = Quota
+        public int RemainingRight { get; set; }   //Kalan Hak = Remaining Right
         public DateTime Date { get; set; }
-        public bool Active { get; set; }
         public bool Deleted { get; set; }
 
 
@@ -28,6 +27,6 @@ namespace Entities.Concrete
         public virtual Trainer trainer { get; set; }
 
         //UserHourTrainer'da Id'si Olacak.
-        public virtual ICollection<UserHourTrainer> UserHourTrainers { get; set; }
+        public virtual ICollection<UserHourTrainer> Appointments { get; set; }
     }
 }

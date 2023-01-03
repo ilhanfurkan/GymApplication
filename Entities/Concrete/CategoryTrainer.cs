@@ -20,8 +20,7 @@ namespace Entities
         public string PacketDetail { get; set; }
         [StringLength(10)]
         public string PacketPrice { get; set; }
-        public int Right { get; set; }
-        public bool Active { get; set; }
+        public int Right { get; set; }     // Hak = Right
         public bool Deleted { get; set; }
 
         //Category ve Trainer tablolarının Id'sini Tutacak
@@ -32,7 +31,7 @@ namespace Entities
         public virtual Trainer Trainer { get; set; }
         //UserCategoryTrainer tablosunda Id'si Olacakk.
 
-        public virtual ICollection<UserCategoryTrainer> UserCategoryTrainers { get; set; }
+        public virtual ICollection<UserCategoryTrainer> Registrations { get; set; }
 
     }
 }

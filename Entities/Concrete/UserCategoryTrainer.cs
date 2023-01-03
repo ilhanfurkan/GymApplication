@@ -13,10 +13,9 @@ namespace Entities
     {
         [Key]
         public int RegistrationId { get; set; }
-        public DateTime DateOfRegistration { get; set; }
+        public DateTime DateOfRegistration { get; set; } 
         public double PaymentType { get; set; }
         public double Price { get; set; }
-        public bool Active { get; set; }
         public bool Deleted { get; set; }
 
         //User ve CategoryTrainer Tablolarının Id'sini bulunduracak
@@ -24,6 +23,6 @@ namespace Entities
         public virtual User User { get; set; }
 
         public int PacketId { get; set; }
-        public virtual CategoryTrainer CategoryTrainer { get; set; }
+        public virtual CategoryTrainer Packet { get; set; }
     }
 }
