@@ -34,7 +34,7 @@ namespace Entities.Concrete
 
         // UserHourTrainer ve UserCategoryTrainer da Id'si olacak.
 
-        public ICollection<UserHourTrainer> UserHourTrainers{ get; set; }
-        public ICollection<UserCategoryTrainer> UserCategoryTrainers { get; set; }
+        public virtual ICollection<UserHourTrainer> UserHourTrainers{ get; set; }
+        public virtual ICollection<UserCategoryTrainer> UserCategoryTrainers { get; set; }
     }
 }

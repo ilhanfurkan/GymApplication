@@ -13,7 +13,10 @@ namespace DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=Murki;database=GymGym-A;trusted_connection=true;");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server=Murki;Initial Catalog=GymGym-A;" +
+               "Persist Security Info=False;Trusted_Connection=True;" +
+               "MultipleActiveResultSets=False;Encrypt=False;" +
+               "TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         public DbSet<Category> Categories { get; set; }

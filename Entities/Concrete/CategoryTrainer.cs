@@ -25,13 +25,13 @@ namespace Entities
 
         //Category ve Trainer tablolarının Id'sini Tutacak
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public int TrainerId { get; set; }
-        public Trainer Trainer { get; set; }
+        public virtual Trainer Trainer { get; set; }
         //UserCategoryTrainer tablosunda Id'si Olacakk.
 
-        public ICollection<UserCategoryTrainer> UserCategoryTrainers { get; set; }
+        public virtual ICollection<UserCategoryTrainer> UserCategoryTrainers { get; set; }
 
     }
 }

@@ -16,6 +16,6 @@ namespace Entities.Concrete
         public string CategoryName { get; set; }
 
         //CategoryTrainer da Id'si olacak.
-        public ICollection<CategoryTrainer> CategoryTrainers { get; set; }
+        public virtual ICollection<CategoryTrainer> CategoryTrainers { get; set; }
     }
 }

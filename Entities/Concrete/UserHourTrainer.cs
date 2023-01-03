@@ -19,10 +19,10 @@ namespace Entities
 
         //HourTrainer ve User'ın Idsini Tutacak.
         public int SeanceId { get; set; }
-        public HourTrainer HourTrainer { get; set; }
+        public virtual HourTrainer HourTrainer { get; set; }
 
         public int UserId { get; set; }
-        public User user { get; set; }
+        public virtual User user { get; set; }
 
     }
 }

@@ -17,6 +17,6 @@ namespace Entities.Concrete
         public double Time { get; set; }
 
         //HourTrainer da Id'si Olacak.
-        public ICollection<HourTrainer> HourTrainers { get; set; }
+        public virtual ICollection<HourTrainer> HourTrainers { get; set; }
     }
 }

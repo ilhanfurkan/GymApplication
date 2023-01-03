@@ -20,9 +20,9 @@ namespace Entities
 
         //User ve CategoryTrainer Tablolarının Id'sini bulunduracak
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public int PacketId { get; set; }
-        public CategoryTrainer CategoryTrainer { get; set; }
+        public virtual CategoryTrainer CategoryTrainer { get; set; }
     }
 }

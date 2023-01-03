@@ -40,8 +40,6 @@ namespace DataAccess.Concrete
         public List<T> Listing()
         {
             return _objects.ToList();
-
-            //return filter == null ? _objects.ToList() : _objects.Where(filter).ToList();
         }
 
         public List<T> ListingBy(Expression<Func<T, bool>> filter)

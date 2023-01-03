@@ -20,12 +20,12 @@ namespace Entities.Concrete
 
         //Hour ve Trainer tablosunun Id'sini bulunduracak.
         public int HourId { get; set; }
-        public Hour hour { get; set; }
+        public virtual Hour hour { get; set; }
 
         public int TrainerId { get; set; }
-        public Trainer trainer { get; set; }
+        public virtual Trainer trainer { get; set; }
 
         //UserHourTrainer'da Id'si Olacak.
-        public ICollection<UserHourTrainer> UserHourTrainers { get; set; }
+        public virtual ICollection<UserHourTrainer> UserHourTrainers { get; set; }
     }
 }
