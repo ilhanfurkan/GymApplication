@@ -1,5 +1,7 @@
 ﻿using Business.Concrete;
+using Business.Validations;
 using DataAccess.Concrete.EntityFramework;
+using Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -12,79 +14,72 @@ namespace GymGymACoreApplication.Controllers
         TrainerManager tm = new TrainerManager(new EfTrainerRepository());
 
         // GET: TrainerController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             var trainer = tm.TrainerList();
             return View(trainer);
         }
-
-        // GET: TrainerController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public IActionResult Add() 
         {
             return View();
         }
-
-        // GET: TrainerController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: TrainerController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Add(Trainer trainer) 
         {
-            try
+            TrainerValidator trainerValidator = new TrainerValidator();
+            var result = trainerValidator.Validate(trainer);
+            if (result.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                tm.TrainerAdd(trainer);
+                return RedirectToAction("Index");
+
             }
-            catch
+            else
             {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
                 return View();
             }
-        }
 
-        // GET: TrainerController/Edit/5
-        public ActionResult Edit(int id)
+        }
+        [HttpGet]
+        public IActionResult Update(int id)
         {
-            return View();
-        }
+            Trainer trainer = tm.TrainerGetById(id); 
+            return View(trainer);
 
-        // POST: TrainerController/Edit/5
+        }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Update(Trainer trainer)
         {
-            try
+            TrainerValidator trainerValidator = new TrainerValidator();
+            var result = trainerValidator.Validate(trainer);
+            if (result.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                tm.TrainerUpdate(trainer);
+                return RedirectToAction("Index");
+
             }
-            catch
+            else
             {
-                return View();
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(trainer);
             }
+        }
+        public IActionResult Delete(int id)
+        {
+            Trainer trainer = tm.TrainerGetById(id);
+            trainer.Deleted = false;
+            tm.TrainerUpdate(trainer);
+            return RedirectToAction("Index");
         }
 
-        // GET: TrainerController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
-        // POST: TrainerController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

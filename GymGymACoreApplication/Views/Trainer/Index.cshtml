@@ -19,6 +19,7 @@
             <th>Mail</th>
             <th>Gender</th>
             <th>Date Of Birth</th>
+            <th>Case</th>
             
         </tr>
     </thead>
@@ -35,17 +36,49 @@
                 <td>@item.TrainerMail</td>
                 <td>@item.TrainerGender</td>
                 <td>@item.TrainerDateOfBirth</td>
+                <td>@item.Deleted</td>
               
                 <td>
                     <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.TrainerId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
                 </td>
-                <td><a href="/User/update/@item.TrainerId" type="button" class="btn btn-primary p-2">Update</a></td>
+                <td><a href="/Trainer/Update/@item.TrainerId" type="button" class="btn btn-primary p-2">Update</a></td>
             </tr>
         }
 
     </tbody>
 </table>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/User/add" class="btn btn-info">Add New User</a>
+    <a href="/Trainer/Add" class="btn btn-info">Add New User</a>
 </div>
 
+@*modal*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Uyarı</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Silmek istediğinizden emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                <a id="delete-btn" href="/Trainer/Index/" class="btn btn-success">Evet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var trainerId = button.attr('data-bs-whatever');
+
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Trainer/Delete/" + trainerId
+        });
+    });
+</script>

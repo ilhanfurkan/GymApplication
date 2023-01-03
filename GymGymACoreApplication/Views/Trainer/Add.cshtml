@@ -1,0 +1,60 @@
+﻿@using Entities;
+@model Trainer
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h3 style="text-align:center;">ADD TRAİNER</h3>
+
+    @using (Html.BeginForm("Add", "Trainer", FormMethod.Post, new { @class = "form-group" }))
+    {
+
+        @Html.Label("Trainer Login ")
+        @Html.TextBoxFor(trainer=>trainer.TrainerLogin,new { @class = "form-control" })
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerLogin,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Trainer Password")
+        @Html.TextBoxFor(trainer=>trainer.TrainerPassword ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerPassword  ,"",new { @class ="text-danger" })
+        <br />
+           @Html.Label("First Name")
+        @Html.TextBoxFor(trainer=>trainer.TrainerFirstName ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerFirstName  ,"",new { @class ="text-danger" })
+        <br />
+           @Html.Label("Last Name")
+        @Html.TextBoxFor(trainer=>trainer.TrainerLastName ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerLastName  ,"",new { @class ="text-danger" })
+        <br />
+           @Html.Label("Natıonal ID")
+        @Html.TextBoxFor(trainer=>trainer.TrainerNationalId ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerNationalId  ,"",new { @class ="text-danger" })
+        <br />
+           @Html.Label("Phone No")
+        @Html.TextBoxFor(trainer=>trainer.TrainerPhoneNo ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerPhoneNo  ,"",new { @class ="text-danger" })
+        <br />
+           @Html.Label("Mail")
+        @Html.TextBoxFor(trainer=>trainer.TrainerMail ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerMail  ,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Gender")
+          <select class="form-control" name="Gender">
+            <option>True</option>
+            <option>False</option>
+        </select>
+        <br />
+
+        @Html.Label("Case")
+        <select class="form-control" name="Deleted">
+            <option>False</option>
+            <option>True</option>
+        </select>
+        <br />
+
+        <input class="form-control btn btn-primary" type="submit" value="Add" />
+    }
+</div>
+
