@@ -1,0 +1,70 @@
+﻿@using Entities
+@model List<UserCategoryTrainer>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Date Of Registration</th>
+            <th>Payment</th>
+            <th>Price</th>
+            <th>Deleted</th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DateOfRegistration</td>
+                <td>@item.PaymentType</td>
+                <td>@item.Price</td>
+                <td>@item.Deleted</td>
+             
+                <td>
+                    <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.RegistrationId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
+                </td>
+                <td><a href="/UserCategoryTrainer/Update/@item.RegistrationId" type="button" class="btn btn-primary p-2">Update</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/UserCategoryTrainer/Add" class="btn btn-info">Add New User</a>
+</div>
+
+@*modal*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Uyarı</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Silmek istediğinizden emin misiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                <a id="delete-btn" href="" class="btn btn-success">Evet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var userId = button.attr('data-bs-whatever');
+
+            var a = document.querySelector("#delete-btn");
+            a.href = "/UserCategoryTrainer/Delete/" + userId
+        });
+    });
+</script>
