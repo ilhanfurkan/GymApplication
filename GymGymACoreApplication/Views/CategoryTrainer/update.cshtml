@@ -25,21 +25,6 @@
         @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.Right,new { @class = "form-control" })
         @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.Right  ,"",new { @class ="text-danger" })
         <br />
-
-        @Html.Label("Active")
-        <select class="form-control" name="Deleted">
-            @if (Model.Deleted)
-            {
-                <option selected>True</option>
-                <option>False</option>
-            }
-            else
-            {
-                <option>True</option>
-                <option selected>False</option>
-            }
-        </select>
-        <br />
         @Html.Label("Case")
         <select class="form-control" name="Deleted">
             @if (Model.Deleted)
