@@ -1,0 +1,43 @@
+﻿@using Entities;
+@model CategoryTrainer;
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <h3>Category Add</h3>
+    @using (Html.BeginForm("add", "CategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Packet Name")
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.PacketName,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.PacketName,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("packet Detail")
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.PacketDetail,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.PacketDetail,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Packet Price")
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.PacketPrice,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.PacketPrice,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Right")
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.Right,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.Right
+            ,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Active")
+        <select class="form-control" name="Actived">
+                <option>False</option>
+                <option>True</option>
+            </select>
+        <br />
+        @Html.Label("Case")
+            <select class="form-control" name="Deleted">
+                <option>False</option>
+                <option>True</option>
+            </select>
+            <br />
+            <input class="form-control btn btn-primary" type="submit" value="Add" />
+    }
+</div>

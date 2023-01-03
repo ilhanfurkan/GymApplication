@@ -1,0 +1,59 @@
+﻿@using Entities;
+@model CategoryTrainer;
+@{
+    ViewData["Title"] = "update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="p-2">
+    <h3>Category Update</h3>
+    @using (Html.BeginForm("update", "CategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.PacketId,new { @class = "form-control",@type="hidden"})
+        @Html.Label("Packet Name")
+        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.PacketName,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.PacketName  ,"",new { @class ="text-danger" })
+        <br />
+         @Html.Label("Packet Detail")
+        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.PacketDetail,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.PacketDetail  ,"",new { @class ="text-danger" })
+        <br />
+         @Html.Label("Packet Price")
+        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.PacketPrice,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.PacketPrice  ,"",new { @class ="text-danger" })
+        <br />
+         @Html.Label("Right")
+        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.Right,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.Right  ,"",new { @class ="text-danger" })
+        <br />
+
+        @Html.Label("Active")
+        <select class="form-control" name="deleted">
+            @if (Model.Deleted)
+            {
+                <option selected>True</option>
+                <option>False</option>
+            }
+            else
+            {
+                <option>True</option>
+                <option selected>False</option>
+            }
+        </select>
+        <br />
+        @Html.Label("Case")
+        <select class="form-control" name="deleted">
+            @if (Model.Deleted)
+            {
+                        <option selected>True</option>
+                        <option>False</option>
+            }
+            else
+            {
+                        <option>True</option>
+                        <option selected>False</option>
+            }
+            </select>
+        <input class="form-control btn btn-primary" type="submit" value="Category Update" />
+    }
+</div>
+
