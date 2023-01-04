@@ -22,7 +22,7 @@ namespace GymGymACoreApplication.Controllers
         {
             UserCategoryTrainer userCategoryTrainer = uctm.UserCategoryTrainerGetById(id);
             userCategoryTrainer.Deleted = true;
-            uctm.UserCategoryTrainerRemove(userCategoryTrainer);
+            uctm.UserCategoryTrainerUpdate(userCategoryTrainer);
             return RedirectToAction("Index");
         }
 

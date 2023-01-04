@@ -21,7 +21,7 @@ namespace GymGymACoreApplication.Controllers
         {
             User user = um.UserGetById(id);
             user.Deleted = true;
-            um.UserRemove(user);
+            um.UserUpdate(user);
             return RedirectToAction("Index");
         }
 

@@ -19,7 +19,7 @@ namespace GymGymACoreApplication.Controllers
         {
             UserHourTrainer userHourTrainer = uhtm.UserHourTrainerGetById(id);
             userHourTrainer.Deleted = true;
-            uhtm.UserHourTrainerRemove(userHourTrainer);
+            uhtm.UserHourTrainerUpdate(userHourTrainer);
             return RedirectToAction("Index");
         }
 
