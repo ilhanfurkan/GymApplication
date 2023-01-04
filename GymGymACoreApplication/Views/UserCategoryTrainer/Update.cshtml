@@ -24,9 +24,17 @@
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.Price,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Case")
-        <select class="form-control" name="Deleted">
-            <option>False</option>
-            <option>True</option>
+            <select class="form-control" name="deleted">
+            @if (Model.Deleted)
+            {
+                    <option selected>True</option>
+                    <option>False</option>
+            }
+            else
+            {
+                    <option>True</option>
+                    <option selected>False</option>
+            }
         </select>
         <br />
         @Html.Label("User ID")
