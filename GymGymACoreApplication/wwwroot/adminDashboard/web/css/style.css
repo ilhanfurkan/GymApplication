@@ -4,6 +4,8 @@
     --secondary: #191C24;
     --light: #6C7293;
     --dark: #000000;
+    --yunus:green;
+   
 }
 
 .back-to-top {
@@ -130,9 +132,9 @@
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: var(--yunus)!important;
     background: var(--dark);
-    border-color: var(--primary);
+    border-color: var(--yunus)!important;
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
@@ -147,7 +149,7 @@
 
 .sidebar .navbar .navbar-nav .nav-link:hover i,
 .sidebar .navbar .navbar-nav .nav-link.active i {
-    background: var(--secondary);
+    color: var(--yunus);
 }
 
 .sidebar .navbar .dropdown-toggle::after {
@@ -286,4 +288,7 @@
 .testimonial-carousel .owl-dot.active {
     background: var(--dark);
     border-color: var(--primary);
+}
+.gym{
+    color:#78ff9c;
 }
