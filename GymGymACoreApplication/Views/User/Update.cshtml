@@ -52,17 +52,33 @@
         @Html.ValidationMessageFor(user=>user.Mail,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Gender")
-        <select class="form-control" name="Gender">
-            <option>True</option>
-            <option>False</option>
+        <select class="form-control" name="gender">
+            @if (Model.Gender)
+            {
+                <option selected>True</option>
+                <option>False</option>
+            }
+            else
+            {
+                <option>True</option>
+                <option selected>False</option>
+            }
         </select>
         <br />
 
         @Html.Label("Case")
-        <select class="form-control" name="Deleted">
-            <option>False</option>
-            <option>True</option>
-        </select>
+           <select class="form-control" name="deleted">
+            @if (Model.Deleted)
+            {
+                    <option selected>True</option>
+                    <option>False</option>
+            }
+            else
+            {
+                        <option>True</option>
+                        <option selected>False</option>
+            }
+            </select>
         <br />
 
         <input class="form-control btn btn-primary" type="submit" value="Update Trainer" />
