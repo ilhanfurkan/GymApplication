@@ -7,11 +7,12 @@
 }
 
 <div class="p-2">
+    <h3></h3>
     <h3 style="text-align:center;">Update TRAİNER</h3>
 
     @using (Html.BeginForm("Update", "Trainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(trainer=>trainer.TrainerId,new { @class = "form-control",@name="TrainerId",@value="@Model.TrainerId"})
+        @Html.TextBoxFor(trainer=>trainer.TrainerId,new { @class = "form-control",@name="TrainerId",@value="@Model.TrainerId",@type="hidden"})
         @Html.Label("Trainer Login ")
         @Html.TextBoxFor(trainer=>trainer.TrainerLogin,new { @class = "form-control" })
         @Html.ValidationMessageFor(trainer=>trainer.TrainerLogin,"",new { @class ="text-danger" })
@@ -41,7 +42,7 @@
         @Html.ValidationMessageFor(trainer=>trainer.TrainerMail,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Gender")
-          <select class="form-control" name="gender">
+          <select class="form-control" name="TrainerGender">
             @if (Model.TrainerGender)
             {
                 <option selected>True</option>
