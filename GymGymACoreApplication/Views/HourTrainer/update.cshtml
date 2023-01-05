@@ -1,0 +1,50 @@
+﻿@using Entities.Concrete;
+@model HourTrainer;
+@{
+	ViewData["Title"] = "Update";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+	<h3>Seance Update</h3>
+	@using (Html.BeginForm("update", "HourTrainer", FormMethod.Post, new { @class = "form-group" }))
+	{
+		@Html.Label("Quato")
+		@Html.TextBoxFor(hourTrainer=>hourTrainer.Quota,new { @class = "form-control" })
+		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.Quota,"",new { @class ="text-danger" })
+		<br />
+		@Html.Label("Remining Right")
+		@Html.TextBoxFor(hourTrainer=>hourTrainer.RemainingRight,new { @class = "form-control" })
+		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.RemainingRight,"",new { @class ="text-danger" })
+		<br />
+		@Html.Label("Date")
+		@Html.TextBoxFor(hourTrainer=>hourTrainer.Date,new { @class = "form-control" })
+		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.Date,"",new { @class ="text-danger" })
+		
+		<br />
+		@Html.Label("Hour Id")
+		@Html.TextBoxFor(hourTrainer=>hourTrainer.HourId,new { @class = "form-control" })
+		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.HourId,"",new { @class ="text-danger" })
+		<br />
+		@Html.Label("Trainer Id")
+		@Html.TextBoxFor(hourTrainer=>hourTrainer.TrainerId,new { @class = "form-control" })
+		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.TrainerId,"",new { @class ="text-danger" })
+		<br />
+		
+		@Html.Label("Case")
+		<select class="form-control" name="Deleted">
+			@if (Model.Deleted)
+			{
+				<option selected>True</option>
+				<option>False</option>
+			}
+			else
+			{
+				<option>True</option>
+				<option selected>False</option>
+			}
+		</select>
+			<br />
+		<input class="form-control btn btn-primary" type="submit" value="Seance Update" />
+	}
+</div>

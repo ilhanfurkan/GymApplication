@@ -1,4 +1,6 @@
-﻿using Entities.Concrete;
+﻿using Entities;
+using Entities.Concrete;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +9,22 @@ using System.Threading.Tasks;
 
 namespace Business.Validations
 {
-    public class HourTrainerValidator
+    public class HourTrainerValidator : AbstractValidator<HourTrainer>
     {
-        public object Validate(HourTrainer hourTrainer)
-        {
-            throw new NotImplementedException();
+        public HourTrainerValidator() { 
+        RuleFor(hourTrainer => hourTrainer.Quota).NotEmpty().WithMessage("Boş geçilemez");
+        
+
+        RuleFor(hourTrainer => hourTrainer.RemainingRight).NotEmpty().WithMessage("Boş geçilemez");
+        
+
+        RuleFor(hourTrainer => hourTrainer.Date).NotEmpty().WithMessage("Boş geçilemez");
+       
+
+        RuleFor(HourTrainer => HourTrainer.HourId).NotEmpty().WithMessage("Boş geçilemez");
+
+        RuleFor(HourTrainer => HourTrainer.TrainerId).NotEmpty().WithMessage("Boş geçilemez");
         }
+
     }
 }
