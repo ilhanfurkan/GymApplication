@@ -12,7 +12,7 @@
 
     @using (Html.BeginForm("Add", "UserHourTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(user=>user.SeanceId,new { @class = "form-control",@name="SeanceId",@value="@Model.SeanceId",@type="hidden"})
+       
         @Html.Label("Date ")
         @Html.TextBoxFor(userHourTrainer=>userHourTrainer.Date,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.Date,"",new { @class ="text-danger" })
@@ -21,8 +21,15 @@
         @Html.TextBoxFor(userHourTrainer=>userHourTrainer.Hours ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.Hours  ,"",new { @class ="text-danger" })
         <br />
+        @Html.Label("Case")
+            <select class="form-control" name="Deleted">
+                <option>False</option>
+                <option>True</option>
+            </select>
+            <br />
+
         @Html.Label("Seance ID")
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.SeanceId ,new { @class = "form-control" })
+        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.SeanceId,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.SeanceId  ,"",new { @class ="text-danger" })
         <br />
         @Html.Label("User ID")
@@ -30,13 +37,7 @@
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.UserId  ,"",new { @class ="text-danger" })
         <br />
 
-        @Html.Label("Case")
-        <select class="form-control" name="Deleted">
-            <option>False</option>
-            <option>True</option>
-        </select>
-        <br />
-
+        
         <input class="form-control btn btn-primary" type="submit" value="Add" />
     }
 </div>
