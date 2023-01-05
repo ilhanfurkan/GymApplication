@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="p-2">
-    <h3>Hours Update</h3>
+    <h3 style="text-align:center;">Update Hour</h3>
     @using (Html.BeginForm("update", "Hour", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.TextBoxFor(hour=>hour.HourId,new { @class = "form-control",@type="hidden"})
@@ -32,6 +32,6 @@
             }
         </select>
         <br />
-        <input class="form-control btn btn-primary" type="submit" value="Hour Update" />
+        <input class="button-change form-control btn btn-primary" type="submit" value="Hour Update" />
     }
 </div>

@@ -6,12 +6,12 @@
 }
 
 <div class="p-2">
-    <h3>Category Add</h3>
+    <h3 style="text-align:center;">Add Hour</h3>
     @using (Html.BeginForm("add", "Hour", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Hours")
-        @Html.TextBoxFor(hour=>hour.Hours,new { @class = "form-control" })
-        @Html.ValidationMessageFor(hour=>hour.Hours,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(hour=>hour.Hours,new { @class = "form-control " })
+        @Html.ValidationMessageFor(hour=>hour.Hours,"",new { @class =" text-danger" })
         <br />
           @Html.Label("Time")
         @Html.TextBoxFor(hour=>hour.Time,new { @class = "form-control" })
@@ -23,7 +23,7 @@
             <option>True</option>
         </select>
         <br />
-        <input class="form-control btn btn-primary" type="submit" value="Add" />
+        <input class="button-change form-control btn btn-primary" type="submit" value="Add" />
     }
 </div>
 

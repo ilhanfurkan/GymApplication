@@ -4,7 +4,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+<h3></h3>
+<h3 style="text-align:center;">All Registrations</h3>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -29,14 +30,14 @@
                 <td>
                     <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.RegistrationId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
                 </td>
-                <td><a href="/UserCategoryTrainer/Update/@item.RegistrationId" type="button" class="btn btn-primary p-2">Update</a></td>
+                <td><a href="/UserCategoryTrainer/Update/@item.RegistrationId" type="button" class="btn btn-success p-2">Update</a></td>
             </tr>
         }
 
     </tbody>
 </table>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/UserCategoryTrainer/Add" class="btn btn-info">Add New User</a>
+    <a href="/UserCategoryTrainer/Add" class="btn btn-info">Add New Registration</a>
 </div>
 
 @*modal*@

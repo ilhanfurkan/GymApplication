@@ -6,7 +6,7 @@
 }
 
 <div class="p-2">
-	<h3>Seance Update</h3>
+	<h3 style="text-align:center;">Update Seance</h3>
 	@using (Html.BeginForm("update", "HourTrainer", FormMethod.Post, new { @class = "form-group" }))
 	{
 		@Html.TextBoxFor(hourTrainer=>hourTrainer.SeanceId ,new { @class = "form-control",@name="AppointmentId",@value="@Model.AppointmentId",@type="hidden"})
@@ -46,6 +46,6 @@
 			}
 		</select>
 			<br />
-		<input class="form-control btn btn-primary" type="submit" value="Seance Update" />
+		<input class="button-change form-control btn btn-primary" type="submit" value="Seance Update" />
 	}
 </div>

@@ -4,7 +4,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h1 style="text-align:center;">Category Trainers</h1>
+<h3></h3>
+<h3 style="text-align:center;">All Packets</h3>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -32,14 +33,14 @@
                 <td>
                     <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.PacketId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
                 </td>
-                <td><a href="/CategoryTrainer/Update/@item.PacketId" type="button" class="btn btn-primary p-2">Update</a></td>
+                <td><a href="/CategoryTrainer/Update/@item.PacketId" type="button" class="btn btn-success p-2">Update</a></td>
             </tr>
         }
 
     </tbody>
 </table>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/CategoryTrainer/Add" class="colorAdd btn btn-info">New CategoryTrainer Add</a>
+    <a href="/CategoryTrainer/Add" class="colorAdd btn btn-info">Add New Packet</a>
 </div>
 <!-- Modal -->
 @*#decisionPopup Model*@

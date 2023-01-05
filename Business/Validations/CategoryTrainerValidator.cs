@@ -26,7 +26,12 @@ namespace Business.Validations
             RuleFor(categoryTrainer => categoryTrainer.PacketPrice).MinimumLength(2).WithMessage("minimum of 2 characters must be entered.");
 
             RuleFor(categoryTrainer => categoryTrainer.Right).NotEmpty().WithMessage("Boş geçilemez");
-            
+
+            // CategoryId And TrainerId
+            RuleFor(categoryTrainer => categoryTrainer.CategoryId).NotEmpty().WithMessage("Cannot be Empty");
+            RuleFor(categoryTrainer => categoryTrainer.TrainerId).NotEmpty().WithMessage("Cannot be Empty");
+
+
 
 
 

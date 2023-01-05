@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <h3></h3>
- <h3 style="text-align:center;">All Trainer</h3>
+ <h3 style="text-align:center;">All Trainers</h3>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -43,7 +43,7 @@
                 <td>
                     <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.TrainerId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
                 </td>
-                <td><a href="/Trainer/Update/@item.TrainerId" type="button" class="btn btn-primary p-2">Update</a></td>
+                <td><a href="/Trainer/Update/@item.TrainerId" type="button" class="btn btn-success p-2">Update</a></td>
             </tr>
         }
 

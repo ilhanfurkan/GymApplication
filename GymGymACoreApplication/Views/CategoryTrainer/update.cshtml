@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="p-2">
-    <h3>Category Update</h3>
+    <h3 style="text-align:center;">Update Packet</h3>
     @using (Html.BeginForm("update", "CategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.TextBoxFor(categoryTrainer=>categoryTrainer.PacketId,new { @class = "form-control",@type="hidden"})
@@ -38,7 +38,7 @@
                         <option selected>False</option>
             }
             </select>
-        <input class="form-control btn btn-primary" type="submit" value="Category Update" />
+        <input class="button-change form-control btn btn-primary" type="submit" value="Category Update" />
     }
 </div>
 
