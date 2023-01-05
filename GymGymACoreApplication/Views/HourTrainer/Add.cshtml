@@ -21,11 +21,7 @@
         @Html.TextBoxFor(hourTrainer=>hourTrainer.Date,new { @class = "form-control" })
         @Html.ValidationMessageFor(hourTrainer=>hourTrainer.Date,"",new { @class ="text-danger" })
         <br />
-         @Html.Label("Case")
-        <select class="form-control" name="Delete">
-            <option>False</option>
-            <option>True</option>
-        </select>
+        
         <br />
            @Html.Label("Hour Id")
         @Html.TextBoxFor(hourTrainer=>hourTrainer.HourId,new { @class = "form-control" })
@@ -35,6 +31,11 @@
         @Html.TextBoxFor(hourTrainer=>hourTrainer.TrainerId,new { @class = "form-control" })
         @Html.ValidationMessageFor(hourTrainer=>hourTrainer.TrainerId,"",new { @class ="text-danger" })
         <br />
+        @Html.Label("Case")
+            <select class="form-control" name="Delete">
+            <option>False</option>
+                <option>True</option>
+            </select>
 
         <input class="button-change form-control btn btn-primary" type="submit" value="Add" />
     }

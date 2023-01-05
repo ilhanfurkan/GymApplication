@@ -22,12 +22,7 @@
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.Price ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.Price,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Case")
-        <select class="form-control" name="Deleted">
-            <option>False</option>
-            <option>True</option>
-        </select>
-        <br />
+      
         @Html.Label("User ID")
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.UserId ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.UserId,"",new { @class ="text-danger" })
@@ -36,7 +31,12 @@
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.PacketId ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.PacketId,"",new { @class ="text-danger" })
         <br />
-
+        @Html.Label("Case")
+            <select class="form-control" name="Deleted">
+                <option>False</option>
+            <option>True</option>
+            </select>
+            <br />
 
 
         <input class="button-change form-control btn btn-primary" type="submit" value="Update Trainer" />
