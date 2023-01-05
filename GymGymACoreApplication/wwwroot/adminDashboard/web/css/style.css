@@ -1,11 +1,11 @@
 /********** Template CSS **********/
 :root {
-    --primary: #EB1616;
+    --primary: #78ff93;
     --secondary: #191C24;
-    --light: #6C7293;
-    --dark: #000000;
-    --yunus:green;
-   
+    --light: #bababa;
+    --dark: #bababa;
+    --yunus: #78ff93;
+    --furkan: #000000;
 }
 
 .back-to-top {
@@ -16,6 +16,12 @@
     z-index: 99;
 }
 
+.button-change{
+    background-color:#191c24 !important;
+    color:#000000;
+    border:none;
+}
+
 
 /*** Spinner ***/
 #spinner {
@@ -23,13 +29,15 @@
     visibility: hidden;
     transition: opacity .5s ease-out, visibility 0s linear .5s;
     z-index: 99999;
+    background-color: #bababa !important;
 }
 
-#spinner.show {
-    transition: opacity .5s ease-out, visibility 0s linear 0s;
-    visibility: visible;
-    opacity: 1;
-}
+    #spinner.show {
+        transition: opacity .5s ease-out, visibility 0s linear 0s;
+        visibility: visible;
+        opacity: 1;
+        
+    }
 
 
 /*** Button ***/
@@ -143,7 +151,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--dark);
+    background: var(--furkan);
     border-radius: 40px;
 }
 
@@ -197,8 +205,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--dark);
+    background: #000000;
+    color: var(--light)!important;
     border-radius: 40px;
+}
+
+.content .navbar .sidebar-toggler:hover{
+    color: var(--yunus)!important;
 }
 
 .content .navbar .dropdown-item {
