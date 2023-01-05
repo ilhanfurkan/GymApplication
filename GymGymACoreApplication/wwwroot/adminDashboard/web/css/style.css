@@ -1,11 +1,11 @@
 /********** Template CSS **********/
 :root {
-    --primary: #78ff93; /*yeşil*/
-    --secondary: #191C24; /*siyah*/
-    --light: #bababa;  /*gri*/
-    --dark: #bababa;  /*gri*/
-    --yunus: #78ff93;  /*açıkyeşil*/
-    --furkan: #000000;  /*siyah*/
+    --primary: limegreen;
+    --secondary: #191C24;
+    --light: #bababa;
+    --dark: #bababa;
+    --yunus: limegreen;
+    --furkan: #000000;
 }
 
 .back-to-top {
@@ -17,7 +17,7 @@
 }
 
 .button-change{
-    background-color:#191c24 !important;  
+    background-color:#191c24 !important;
     color:#000000;
     border:none;
 }
@@ -303,5 +303,5 @@
     border-color: var(--primary);
 }
 .gym{
-    color:#78ff9c;
+    color:limegreen;
 }

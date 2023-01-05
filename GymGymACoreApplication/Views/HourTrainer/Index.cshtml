@@ -1,0 +1,74 @@
+﻿@using Entities.Concrete;
+@model List<HourTrainer>;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1 style="text-align:center;">Seances</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Quota</th>
+            <th>Remaining Right</th>
+            <th>Date</th>
+            <th>Hour Id</th>
+            <th>Trainer Id</th>
+            <th>Deleted</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Quota</td>
+                <td>@item.RemainingRight</td>
+                <td>@item.Date</td>
+                <td>@item.HourId</td>
+                <td>@item.TrainerId</td>
+                <td>@item.Deleted</td>
+                <td>
+                    <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.SeanceId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
+                </td>
+                <td><a href="/HourTrainer/update/@item.SeanceId" type="button" class="btn btn-primary p-2">Update</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/HourTrainer/Add/" class="btn btn-info">New Seance Add</a>
+</div>
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Warning</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var SeanceId = button.attr('data-bs-whatever');
+            var a = document.querySelector("#delete-btn");
+            a.href = "/HourTrainer/Delete/" + SeanceId;
+        });
+    });
+</script>

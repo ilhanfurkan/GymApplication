@@ -24,7 +24,7 @@ namespace Business.Concrete
 
         public HourTrainer HourTrainerGetById(int id)
         {
-            return hourTrainerDal.Get(x => x.TrainerId == id);
+            return hourTrainerDal.Get(x => x.SeanceId == id);
         }
 
         public List<HourTrainer> HourTrainerList()
