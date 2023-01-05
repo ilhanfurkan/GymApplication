@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,27 @@ using System.Threading.Tasks;
 
 namespace Business.Validations
 {
-    public class HourTrainerValidator
+    public class HourTrainerValidator: AbstractValidator<HourTrainer>
     {
-        public object Validate(HourTrainer hourTrainer)
+        public HourTrainerValidator ()
         {
-            throw new NotImplementedException();
+            //HourTrainer Quota
+            RuleFor(HourTrainer => HourTrainer.Quota).NotEmpty().WithMessage("Cannot be Empty");
+            RuleFor(HourTrainer => HourTrainer.Quota).GreaterThan(2).WithMessage("Maximum 2 karakter girilebilir.");
+            RuleFor(HourTrainer => HourTrainer.Quota).LessThan(1).WithMessage("Minimum 1 karakter girilmedilir.");
+
+            //HourTrainer RemainingRight
+            RuleFor(HourTrainer => HourTrainer.RemainingRight).NotEmpty().WithMessage("Cannot be Empty");
+            RuleFor(HourTrainer => HourTrainer.RemainingRight).GreaterThan(2).WithMessage("Maximum 2 karakter girilebilir.");
+            RuleFor(HourTrainer => HourTrainer.RemainingRight).LessThan(1).WithMessage("Minimum 1 karakter girilmedilir.");
+
+            //HourTrainer Date
+            RuleFor(HourTrainer => HourTrainer.Date).NotEmpty().WithMessage("Cannot be Empty");
+
+            // HourId And TrainerId
+            RuleFor(HourTrainer => HourTrainer.HourId).NotEmpty().WithMessage("Cannot be Empty");
+            RuleFor(HourTrainer => HourTrainer.TrainerId).NotEmpty().WithMessage("Cannot be Empty");
+
         }
     }
 }

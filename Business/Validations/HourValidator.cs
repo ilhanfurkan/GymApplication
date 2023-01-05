@@ -17,10 +17,6 @@ namespace Business.Validations
 
             RuleFor(hour => hour.Time).NotEmpty().WithMessage("Boş geçilemez");
 
-            
-
-
-
 
 
         }
