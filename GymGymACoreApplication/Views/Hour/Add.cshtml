@@ -10,8 +10,8 @@
     @using (Html.BeginForm("add", "Hour", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Hours")
-        @Html.TextBoxFor(hour=>hour.Hours,new { @class = "form-control" })
-        @Html.ValidationMessageFor(hour=>hour.Hours,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(hour=>hour.Hours,new { @class = "form-control " })
+        @Html.ValidationMessageFor(hour=>hour.Hours,"",new { @class =" text-danger" })
         <br />
           @Html.Label("Time")
         @Html.TextBoxFor(hour=>hour.Time,new { @class = "form-control" })
