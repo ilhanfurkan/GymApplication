@@ -6,7 +6,7 @@
 }
 
 <div class="p-2">
-    <h3>Category Add</h3>
+    <h3 style="text-align:center;">Add Hour</h3>
     @using (Html.BeginForm("add", "Hour", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Hours")
@@ -23,7 +23,7 @@
             <option>True</option>
         </select>
         <br />
-        <input class="form-control btn btn-primary" type="submit" value="Add" />
+        <input class="button-change form-control btn btn-primary" type="submit" value="Add" />
     }
 </div>
 

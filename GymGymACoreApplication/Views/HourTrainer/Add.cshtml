@@ -6,7 +6,7 @@
 }
 
 <div class="p-2">
-    <h3>Seance Add</h3>
+    <h3 style="text-align:center;">Add Seance</h3>
     @using (Html.BeginForm("add", "HourTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Quato")
@@ -35,7 +35,7 @@
         @Html.TextBoxFor(hourTrainer=>hourTrainer.TrainerId,new { @class = "form-control" })
         @Html.ValidationMessageFor(hourTrainer=>hourTrainer.TrainerId,"",new { @class ="text-danger" })
         <br />
-       
-        <input class="form-control btn btn-primary" type="submit" value="Add" />
+
+        <input class="button-change form-control btn btn-primary" type="submit" value="Add" />
     }
 </div>
