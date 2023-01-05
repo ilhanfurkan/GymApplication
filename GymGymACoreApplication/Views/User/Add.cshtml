@@ -5,14 +5,14 @@
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+<link src="stylesheet" href="~adminDashboard/css/style.css/"/>
 <div class="p-2">
-    <h3 style="text-align:center;">Add TRAİNER</h3>
+    <h3 style="text-align:center; color:#191c24;">Add User</h3>
 
     @using (Html.BeginForm("Add", "User", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(user=>user.UserId,new { @class = "form-control",@name="UserId",@value="@Model.UserId"})
-        @Html.Label("User Login ")
+        @Html.TextBoxFor(user=>user.UserId,new { @class = "form-control",@name="UserId",@value="@Model.UserId",@type="hidden"})
+        @Html.Label("User Login")
         @Html.TextBoxFor(user=>user.UserLogin,new { @class = "form-control" })
         @Html.ValidationMessageFor(user=>user.UserLogin,"",new { @class ="text-danger" })
             <br />
@@ -66,7 +66,7 @@
             </select>
             <br />
 
-            <input class="form-control btn btn-primary" type="submit" value="Add Trainer" />
+            <input class="button-change form-control btn btn-primary" type="submit" value="Add User" />
     }
 </div>
 

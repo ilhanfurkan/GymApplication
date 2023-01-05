@@ -6,11 +6,11 @@
 }
 
 <div class="p-2">
-    <h3 style="text-align:center;">Update TRAİNER</h3>
+    <h3 style="text-align:center;">Update User</h3>
 
     @using (Html.BeginForm("Update", "User", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(user=>user.UserId,new { @class = "form-control",@name="UserId",@value="@Model.UserId"})
+        @Html.TextBoxFor(user=>user.UserId,new { @class = "form-control",@name="UserId",@value="@Model.UserId",@type="hidden"})
         @Html.Label("User Login ")
         @Html.TextBoxFor(user=>user.UserLogin,new { @class = "form-control" })
         @Html.ValidationMessageFor(user=>user.UserLogin,"",new { @class ="text-danger" })
