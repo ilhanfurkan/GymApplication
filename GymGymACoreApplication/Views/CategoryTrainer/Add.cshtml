@@ -23,8 +23,15 @@
         <br />
         @Html.Label("Right")
         @Html.TextBoxFor(categoryTrainer=>categoryTrainer.Right,new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.Right
-            ,"",new { @class ="text-danger" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.Right,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Category Id")
+        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.CategoryId,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.CategoryId  ,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Trainer Id")
+        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.TrainerId,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.TrainerId  ,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Case")
             <select class="form-control" name="Deleted">

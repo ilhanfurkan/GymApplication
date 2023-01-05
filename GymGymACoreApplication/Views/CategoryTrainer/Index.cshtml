@@ -13,7 +13,9 @@
             <th>Packet Detail</th>
             <th>Packet Price</th>
             <th>Right</th>
-            <th>Deleted</th>
+            <th>CategoryId</th>
+            <th>TrainerId</th>
+            <th>Case</th>
             <th></th>
             <th></th>
             
@@ -29,6 +31,8 @@
                 <td>@item.PacketDetail</td>
                 <td>@item.PacketPrice</td>
                 <td>@item.Right</td>
+                <td>@item.CategoryId</td>
+                <td>@item.TrainerId</td>
                 <td>@item.Deleted</td>
                 <td>
                     <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.PacketId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
