@@ -44,7 +44,6 @@ namespace GymGymACoreApplication.Controllers
 			}
 
 		}
-
 		public IActionResult delete(int id)
 		{
 			HourTrainer hourTrainer = htm.HourTrainerGetById(id);
