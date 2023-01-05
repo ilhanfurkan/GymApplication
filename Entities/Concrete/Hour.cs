@@ -13,7 +13,7 @@ namespace Entities.Concrete
         [Key]
         public int HourId { get; set; }
         [StringLength(15)]
-        public string Hours { get; set; }    //Saatler hangi saati kaç dakikalık almış gibi
+        public string Hours { get; set; }    //Saatler hangi saati almış gibi
         public double Time { get; set; }    //Süre anlamında kaç dakikalık bir antrenman
         public bool Deleted { get; set; }
 
