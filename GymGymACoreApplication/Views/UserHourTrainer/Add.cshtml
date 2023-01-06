@@ -8,7 +8,7 @@
 
 
 <div class="p-2">
-    <h3 style="text-align:center;">ADD TRAİNER</h3>
+    <h3 style="text-align:center;">Add Appointment</h3>
 
     @using (Html.BeginForm("Add", "UserHourTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
@@ -21,13 +21,6 @@
         @Html.TextBoxFor(userHourTrainer=>userHourTrainer.Hours ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.Hours  ,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Case")
-            <select class="form-control" name="Deleted">
-                <option>False</option>
-                <option>True</option>
-            </select>
-            <br />
-
         @Html.Label("Seance ID")
         @Html.TextBoxFor(userHourTrainer=>userHourTrainer.SeanceId,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.SeanceId  ,"",new { @class ="text-danger" })
@@ -35,6 +28,12 @@
         @Html.Label("User ID")
         @Html.TextBoxFor(userHourTrainer=>userHourTrainer.UserId ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.UserId  ,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Case")
+        <select class="form-control" name="Deleted">
+            <option>False</option>
+            <option>True</option>
+        </select>
         <br />
 
         
