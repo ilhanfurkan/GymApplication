@@ -1,5 +1,4 @@
 ﻿using Entities.Abstract;
-using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +7,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities
+namespace Entities.Concrete
 {
     public class CategoryTrainer : IEntity // Paketler Tablosu -- Packets Table
     {
@@ -21,6 +20,7 @@ namespace Entities
         [StringLength(10)]
         public string PacketPrice { get; set; }
         public int Right { get; set; }     // Hak = Right
+        public bool ActivePassive { get; set; }
         public bool Deleted { get; set; }
 
         //Category ve Trainer tablolarının Id'sini Tutacak

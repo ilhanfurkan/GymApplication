@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities
+namespace Entities.Concrete
 {
     public class UserHourTrainer : IEntity  //Randevular Tablosu -- Appointments Table
     {
@@ -15,6 +15,7 @@ namespace Entities
         public int AppointmentId { get; set; }     //Appointment = Randevu
         public DateTime Date { get; set; }    //Randevu Tarihi
         public int Hours  { get; set; }     //Randevu Saati
+        public bool ActivePassive { get; set; }
         public bool Deleted { get; set; }
 
         //HourTrainer ve User'ın Idsini Tutacak.

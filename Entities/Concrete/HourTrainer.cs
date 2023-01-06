@@ -14,8 +14,8 @@ namespace Entities.Concrete
         [Key]
         public int SeanceId { get; set; }
         public int Quota { get; set; }            // Kota = Quota
-        public int RemainingRight { get; set; }   //Kalan Hak = Remaining Right
         public DateTime Date { get; set; }
+        public bool ActivePassive { get; set; }
         public bool Deleted { get; set; }
 
 

@@ -11,16 +11,16 @@ namespace Entities.Concrete
     public class Admin : IEntity
     {
         [Key]
-        public int adminId { get; set; }
+        public int AdminId { get; set; }
         [StringLength(20)]
-        public string adminName { get; set; }
+        public string AdminName { get; set; }
         [StringLength(20)]
-        public string adminPassword { get; set; }
+        public string AdminPassword { get; set; }
         [StringLength(50)]
-        public string mail { get; set; }
+        public string Mail { get; set; }
         [StringLength(20)]
-        public string adminType { get; set; }
-        public bool Delete { get; set; }
+        public string AdminType { get; set; }
+        public bool Deleted { get; set; }
         
     }
 }

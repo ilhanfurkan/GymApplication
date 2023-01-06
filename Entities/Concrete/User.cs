@@ -20,6 +20,7 @@ namespace Entities.Concrete
         public string FirstName { get; set; }
         [StringLength(50)]
         public string LastName { get; set; }
+        public int RemainingRight { get; set; }   //Kalan Hak = Remaining Right
         public bool Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         [StringLength(11)]
