@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
-using Entities;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;

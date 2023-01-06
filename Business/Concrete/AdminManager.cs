@@ -25,12 +25,12 @@ namespace Business.Concrete
 
         public Admin AdminGetById(int id)
         {
-            return adminDal.Get(x => x.adminId == id);
+            return adminDal.Get(x => x.AdminId == id);
         }
 
         public Admin AdminGetByName(string adminName)
         {
-            return adminDal.Get(x => x.adminName == adminName);
+            return adminDal.Get(x => x.AdminName == adminName);
         }
 
         public List<Admin> AdminList()

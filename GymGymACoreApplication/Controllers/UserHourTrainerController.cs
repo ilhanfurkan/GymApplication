@@ -1,7 +1,7 @@
 ﻿using Business.Concrete;
 using Business.Validations;
 using DataAccess.Concrete.EntityFramework;
-using Entities;
+using Entities.Concrete;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 

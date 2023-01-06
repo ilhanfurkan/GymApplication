@@ -13,10 +13,7 @@
 		@Html.Label("Quato")
 		@Html.TextBoxFor(hourTrainer=>hourTrainer.Quota,new { @class = "form-control" })
 		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.Quota,"",new { @class ="text-danger" })
-		<br />
-		@Html.Label("Remining Right")
-		@Html.TextBoxFor(hourTrainer=>hourTrainer.RemainingRight,new { @class = "form-control" })
-		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.RemainingRight,"",new { @class ="text-danger" })
+
 		<br />
 		@Html.Label("Date")
 		@Html.TextBoxFor(hourTrainer=>hourTrainer.Date,new { @class = "form-control" })
