@@ -6,7 +6,8 @@
 }
 
 <h3></h3>
-<h3 style="text-align:center;">All Appointments </h3>
+<h3 class="ms-3 mt-5">All Appointments </h3>
+<div style="overflow: auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
 <table class="table table-hover">
     <thead>
         <tr>
@@ -32,15 +33,48 @@
                 <td>@item.Deleted</td>
 
                 <td>
-                    <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.AppointmentId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
+                        <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.AppointmentId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
                 </td>
-                <td><a href="/UserHourTrainer/Update/@item.AppointmentId" type="button" class="btn btn-success p-2">Update</a></td>
+                    <td><a href="/UserHourTrainer/Update/@item.AppointmentId" type="button" class="btn btn-inverse-success btn-fw">Update</a></td>
             </tr>
         }
 
     </tbody>
 </table>
-<div class="text-center d-flex justify-content-start p-2">
-    <a href="/UserHourTrainer/Add" class="btn btn-info">Add New Appointment</a>
 </div>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/UserHourTrainer/Add" class="btn btn-inverse-primary btn-fw">Add New Appointment</a>
+</div>
+
+@*modal*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Warning</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-danger">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var AppointmentId = button.attr('data-bs-whatever');
+
+            var a = document.querySelector("#delete-btn");
+            a.href = "/UserHourTrainer/Delete/" + AppointmentId
+        });
+    });
+</script>
 

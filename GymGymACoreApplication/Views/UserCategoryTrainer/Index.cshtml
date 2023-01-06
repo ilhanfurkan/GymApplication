@@ -5,7 +5,8 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <h3></h3>
-<h3 style="text-align:center;">All Registrations</h3>
+<h3 class="ms-3 mt-5">All Registrations</h3>
+ <div style="overflow: auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
 <table class="table table-hover">
     <thead>
         <tr>
@@ -13,6 +14,8 @@
             <th>Payment</th>
             <th>Price</th>
             <th>Deleted</th>
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
           
@@ -26,18 +29,21 @@
                 <td>@item.PaymentType</td>
                 <td>@item.Price</td>
                 <td>@item.Deleted</td>
+                <td></td>
+                <td></td>
              
                 <td>
-                    <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.RegistrationId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
+                        <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.RegistrationId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
                 </td>
-                <td><a href="/UserCategoryTrainer/Update/@item.RegistrationId" type="button" class="btn btn-success p-2">Update</a></td>
+                    <td><a href="/UserCategoryTrainer/Update/@item.RegistrationId" type="button" class="btn btn-inverse-success btn-fw">Update</a></td>
             </tr>
         }
 
     </tbody>
 </table>
+</div>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/UserCategoryTrainer/Add" class="btn btn-info">Add New Registration</a>
+    <a href="/UserCategoryTrainer/Add" class="btn btn-inverse-primary btn-fw">Add New Registration</a>
 </div>
 
 @*modal*@
@@ -45,15 +51,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title" id="silLabel">Uyarı</h1>
+                <h1 class="modal-title" id="silLabel">Warning</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Silmek istediğinizden emin misiniz?
+                Are you sure you want to delete?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
-                <a id="delete-btn" href="" class="btn btn-success">Evet</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-danger">Yes</a>
             </div>
         </div>
     </div>

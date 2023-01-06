@@ -12,7 +12,7 @@
 
     @using (Html.BeginForm("Update", "UserHourTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.AppointmentId,new { @class = "form-control",@name="AppointmentId",@value="@Model.AppointmentId"})
+        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.AppointmentId,new { @class = "form-control",@name="AppointmentId",@value="@Model.AppointmentId",@type="hidden"})
         @Html.Label("Date ")
         @Html.TextBoxFor(userHourTrainer=>userHourTrainer.Date,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.Date,"",new { @class ="text-danger" })

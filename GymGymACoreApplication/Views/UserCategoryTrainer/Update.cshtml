@@ -10,7 +10,7 @@
 
     @using (Html.BeginForm("Update", "userCategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.RegistrationId,new { @class = "form-control",@name="userCategoryTrainerId",@value="@Model.userCategoryTrainerId"})
+        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.RegistrationId,new { @class = "form-control",@name="userCategoryTrainerId",@value="@Model.userCategoryTrainerId",@type="hidden"})
         @Html.Label("Date Of Registration ")
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,new { @class = "form-control" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,"",new { @class ="text-danger" })

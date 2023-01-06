@@ -5,7 +5,8 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <h3></h3>
-<h3 style="text-align:center;">All Packets</h3>
+<h3 class="ms-3 mt-5">All Packets</h3>
+<div style="overflow: auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
 <table class="table table-hover">
     <thead>
         <tr>
@@ -35,16 +36,17 @@
                 <td>@item.TrainerId</td>
                 <td>@item.Deleted</td>
                 <td>
-                    <button type="button" class="btn btn-danger  text-center" data-bs-whatever="@item.PacketId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
+                        <button type="button" class="btn btn-inverse-danger btn-fw  text-center" data-bs-whatever="@item.PacketId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
                 </td>
-                <td><a href="/CategoryTrainer/Update/@item.PacketId" type="button" class="btn btn-success p-2">Update</a></td>
+                    <td><a href="/CategoryTrainer/Update/@item.PacketId" type="button" class="btn btn-inverse-success btn-fw">Update</a></td>
             </tr>
         }
 
     </tbody>
 </table>
+</div>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/CategoryTrainer/Add" class="colorAdd btn btn-info">Add New Packet</a>
+    <a href="/CategoryTrainer/Add" class="btn btn-inverse-primary btn-fw">Add New Packet</a>
 </div>
 <!-- Modal -->
 @*#decisionPopup Model*@
@@ -60,7 +62,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <a id="delete-btn" href="" class="btn btn-success">Yes</a>
+                <a id="delete-btn" href="" class="btn btn-danger">Yes</a>
             </div>
         </div>
     </div>
