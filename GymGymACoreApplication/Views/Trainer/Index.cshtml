@@ -79,10 +79,9 @@
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            var trainerId = button.attr('data-bs-whatever');
-
+            var TrainerId = button.attr('data-bs-whatever');
             var a = document.querySelector("#delete-btn");
-            a.href = "/Trainer/Delete/" + trainerId
+            a.href = "/Trainer/Delete/" + TrainerId
         });
     });
 </script>

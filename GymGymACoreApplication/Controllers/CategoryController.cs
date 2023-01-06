@@ -43,7 +43,7 @@ namespace GymGymACoreApplication.Controllers
 
         }
 
-        public IActionResult delete(int id)
+        public IActionResult Delete(int id)
         {
             Category category = cm.CategoryGetById(id);
             category.Deleted = true;
