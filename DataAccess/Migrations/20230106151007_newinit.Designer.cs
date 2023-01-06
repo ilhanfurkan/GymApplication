@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230103161730_newInit")]
-    partial class newInit
+    [Migration("20230106151007_newinit")]
+    partial class newinit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,13 +28,73 @@ namespace DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Entities.CategoryTrainer", b =>
+            modelBuilder.Entity("Entities.Concrete.Admin", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"));
+
+                    b.Property<string>("AdminName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AdminPassword")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("AdminType")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("AdminId");
+
+                    b.ToTable("Admins");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.CategoryTrainer", b =>
                 {
                     b.Property<int>("PacketId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PacketId"));
+
+                    b.Property<bool>("ActivePassive")
+                        .HasColumnType("bit");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -72,27 +132,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Packets");
                 });
 
-            modelBuilder.Entity("Entities.Concrete.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("Entities.Concrete.Hour", b =>
                 {
                     b.Property<int>("HourId")
@@ -125,6 +164,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeanceId"));
 
+                    b.Property<bool>("ActivePassive")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -135,9 +177,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Quota")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RemainingRight")
                         .HasColumnType("int");
 
                     b.Property<int>("TrainerId")
@@ -152,70 +191,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Seances");
                 });
 
-            modelBuilder.Entity("Entities.Concrete.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-                    b.Property<double>("Height")
-                        .HasColumnType("float");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Mail")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("NationalId")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.Property<string>("PhoneNo")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.Property<string>("UserLogin")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("UserPassword")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<double>("Weight")
-                        .HasColumnType("float");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Entities.Trainer", b =>
+            modelBuilder.Entity("Entities.Concrete.Trainer", b =>
                 {
                     b.Property<int>("TrainerId")
                         .ValueGeneratedOnAdd()
@@ -272,7 +248,73 @@ namespace DataAccess.Migrations
                     b.ToTable("Trainers");
                 });
 
-            modelBuilder.Entity("Entities.UserCategoryTrainer", b =>
+            modelBuilder.Entity("Entities.Concrete.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("Height")
+                        .HasColumnType("float");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("NationalId")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("PhoneNo")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<int>("RemainingRight")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserLogin")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UserPassword")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("Weight")
+                        .HasColumnType("float");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.UserCategoryTrainer", b =>
                 {
                     b.Property<int>("RegistrationId")
                         .ValueGeneratedOnAdd()
@@ -307,13 +349,16 @@ namespace DataAccess.Migrations
                     b.ToTable("Registrations");
                 });
 
-            modelBuilder.Entity("Entities.UserHourTrainer", b =>
+            modelBuilder.Entity("Entities.Concrete.UserHourTrainer", b =>
                 {
                     b.Property<int>("AppointmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"));
+
+                    b.Property<bool>("ActivePassive")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -339,7 +384,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Appointments");
                 });
 
-            modelBuilder.Entity("Entities.CategoryTrainer", b =>
+            modelBuilder.Entity("Entities.Concrete.CategoryTrainer", b =>
                 {
                     b.HasOne("Entities.Concrete.Category", "Category")
                         .WithMany("Packets")
@@ -347,7 +392,7 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Trainer", "Trainer")
+                    b.HasOne("Entities.Concrete.Trainer", "Trainer")
                         .WithMany("Packets")
                         .HasForeignKey("TrainerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -366,7 +411,7 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Trainer", "trainer")
+                    b.HasOne("Entities.Concrete.Trainer", "trainer")
                         .WithMany("Seances")
                         .HasForeignKey("TrainerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -377,9 +422,9 @@ namespace DataAccess.Migrations
                     b.Navigation("trainer");
                 });
 
-            modelBuilder.Entity("Entities.UserCategoryTrainer", b =>
+            modelBuilder.Entity("Entities.Concrete.UserCategoryTrainer", b =>
                 {
-                    b.HasOne("Entities.CategoryTrainer", "Packet")
+                    b.HasOne("Entities.Concrete.CategoryTrainer", "Packet")
                         .WithMany("Registrations")
                         .HasForeignKey("PacketId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -396,7 +441,7 @@ namespace DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entities.UserHourTrainer", b =>
+            modelBuilder.Entity("Entities.Concrete.UserHourTrainer", b =>
                 {
                     b.HasOne("Entities.Concrete.HourTrainer", "Seance")
                         .WithMany("Appointments")
@@ -415,14 +460,14 @@ namespace DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entities.CategoryTrainer", b =>
-                {
-                    b.Navigation("Registrations");
-                });
-
             modelBuilder.Entity("Entities.Concrete.Category", b =>
                 {
                     b.Navigation("Packets");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.CategoryTrainer", b =>
+                {
+                    b.Navigation("Registrations");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Hour", b =>
@@ -435,18 +480,18 @@ namespace DataAccess.Migrations
                     b.Navigation("Appointments");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.Trainer", b =>
+                {
+                    b.Navigation("Packets");
+
+                    b.Navigation("Seances");
+                });
+
             modelBuilder.Entity("Entities.Concrete.User", b =>
                 {
                     b.Navigation("Appointments");
 
                     b.Navigation("Registrations");
-                });
-
-            modelBuilder.Entity("Entities.Trainer", b =>
-                {
-                    b.Navigation("Packets");
-
-                    b.Navigation("Seances");
                 });
 #pragma warning restore 612, 618
         }
