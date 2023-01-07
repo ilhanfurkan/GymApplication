@@ -13,9 +13,9 @@
             <th>Date Of Registration</th>
             <th>Payment</th>
             <th>Price</th>
+            <th>User</th>
+            <th>Packet</th>
             <th>Case</th>
-            <th></th>
-            <th></th>
             <th></th>
             <th></th>
           
@@ -28,9 +28,9 @@
                 <td>@item.DateOfRegistration</td>
                 <td>@item.PaymentType</td>
                 <td>@item.Price</td>
-                <td>@item.Deleted</td>
-                <td></td>
-                <td></td>
+                        <td>@item.User.FirstName @item.User.LastName</td>
+                    <td>@item.Packet.PacketName</td>
+                    <td>@item.Deleted</td>
              
                 <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.RegistrationId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>

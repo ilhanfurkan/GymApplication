@@ -17,7 +17,7 @@
         @Html.TextBoxFor(userHourTrainer=>userHourTrainer.Date,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.Date,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Hour")
+        @Html.Label("Hour (Minute)")
         @Html.TextBoxFor(userHourTrainer=>userHourTrainer.Hours ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.Hours  ,"",new { @class ="text-danger" })
         <br />

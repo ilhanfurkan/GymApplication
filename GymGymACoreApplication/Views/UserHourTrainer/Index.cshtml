@@ -12,11 +12,11 @@
     <thead>
         <tr>
             <th>Date</th>
-            <th>Hour</th>
-            <th>Seance Id</th>
-            <th>UserId</th>
+            <th>Hour(Minute)</th>
+            <th>Seance</th>
+            <th>User</th>
+            <th>Active</th>
             <th>Case</th>
-            <th></th>
             <th></th>
           
 
@@ -28,8 +28,9 @@
             <tr>
                 <td>@item.Date</td>
                 <td>@item.Hours</td>
-                <td>@item.SeanceId</td>
-                <td>@item.UserId</td>
+                        <td>@item.Seance.hour.Hours - @item.Seance.trainer.TrainerFirstName @item.Seance.trainer.TrainerLastName</td>
+                    <td>@item.User.FirstName @item.User.LastName</td>
+                <td>@item.ActivePassive</td>
                 <td>@item.Deleted</td>
 
                 <td>

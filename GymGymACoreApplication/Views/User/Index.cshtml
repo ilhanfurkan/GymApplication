@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var toplam="";
 }
 <h3></h3>
  <h3 class="ms-3 mt-5">All Users</h3>
@@ -14,6 +15,7 @@
             <th>User Password</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Remaining Right</th>
             <th>Date Of Birth</th>
             <th>National ID</th>
             <th>Height</th>
@@ -31,10 +33,13 @@
         {
                 <tr>
                     <td>@item.UserLogin</td>
-                    <td>@item.UserPassword</td>
+                        <td>
+                            *************
+                        </td>
                     <td>@item.FirstName</td>
                     <td>@item.LastName</td>
-                    <td>@item.DateOfBirth</td>
+                    <td>@item.RemainingRight</td>
+                    <td>@item.DateOfBirth.Year</td>
                     <td>@item.NationalId</td>
                     <td>@item.Height</td>
                     <td>@item.Weight</td>
@@ -45,8 +50,8 @@
                     <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw  text-center" data-bs-whatever="@item.UserId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
                 </td>
-                <td>@*<a href="/User/Update/@item.UserId" type="button" class="btn btn-success p-2">Update</a>*@
-                            <a href="/User/Update/@item.UserId" type="button" class="btn btn-inverse-success btn-fw">Update</a>    
+                <td>
+                       <a href="/User/Update/@item.UserId" type="button" class="btn btn-inverse-success btn-fw">Update</a>    
                 </td>
                 </tr>
         }
@@ -55,7 +60,7 @@
 </table>
 </div>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/User/Add" class="btn btn-inverse-primary btn-fw">Add New User</a>
+    <a href="/User/Add" class="mdi mdi-account-multiple-plus btn btn-inverse-primary btn-fw"> Add New User</a>
 </div>
 
 

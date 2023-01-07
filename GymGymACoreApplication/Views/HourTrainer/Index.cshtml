@@ -13,10 +13,10 @@
         <tr>
             <th>Quota</th>
             <th>Date</th>
-            <th>Hour Id</th>
-            <th>Trainer Id</th>
+            <th>Hour</th>
+            <th>Trainer</th>
+            <th>Active</th>
             <th>Case</th>
-            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -26,8 +26,9 @@
             <tr>
                 <td>@item.Quota</td>
                 <td>@item.Date</td>
-                <td>@item.HourId</td>
-                <td>@item.TrainerId</td>
+                <td>@item.hour.Hours</td>
+                    <td>@item.trainer.TrainerFirstName @item.trainer.TrainerLastName</td>
+                <td>@item.ActivePassive</td>
                 <td>@item.Deleted</td>
                 <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.SeanceId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
