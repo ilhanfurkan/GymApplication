@@ -14,8 +14,7 @@ namespace Business.Validations
         {
             //HourTrainer Quota
             RuleFor(HourTrainer => HourTrainer.Quota).NotEmpty().WithMessage("Cannot be Empty");
-            RuleFor(HourTrainer => HourTrainer.Quota).GreaterThan(2).WithMessage("Maximum 2 karakter girilebilir.");
-            RuleFor(HourTrainer => HourTrainer.Quota).LessThan(1).WithMessage("Minimum 1 karakter girilmedilir.");
+            RuleFor(HourTrainer => HourTrainer.Quota).GreaterThan(0).WithMessage("Should be Greater Than Zero");
 
 
 

@@ -13,7 +13,7 @@ namespace Entities.Concrete
         [Key]
         public int RegistrationId { get; set; }
         public DateTime DateOfRegistration { get; set; } 
-        public double PaymentType { get; set; }
+        public bool PaymentType { get; set; }
         public double Price { get; set; }
         public bool Deleted { get; set; }
 
