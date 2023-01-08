@@ -1,0 +1,80 @@
+﻿@using Entities.Concrete;
+@model List<Admin>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h3 class="ms-3 mt-5" style="color:black;">Admin Panel</h3><br />
+<div style="overflow: auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Admin Name</th>
+            <th>Admin Password</th>
+            <th>Mail</th>
+            <th>Admin Type</th>
+            <th>Deleted</th>
+            <th></th>
+            <th></th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.AdminName</td>
+                    <td>@item.AdminPassword</td>
+                    <td>@item.Mail</td>
+                    <td>@item.AdminType</td>
+                    <td>@item.Deleted</td> 
+                    <td>
+                            <button type="button" class="btn btn-inverse-danger btn-fw  text-center" data-bs-whatever="@item.AdminId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
+                    </td>
+                            <td><a href="/Admin/Update/@item.AdminId" type="button" class="btn btn-inverse-success btn-fw">Update</a></td>
+                </tr>
+            }
+
+    </tbody>
+</table>
+</div>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/Admin/Add" class="btn btn-inverse-primary btn-fw">Add New Packet</a>
+</div>
+
+
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Warning</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-danger">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var adminId = button.attr('data-bs-whatever');
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Admin/Delete/" + adminId
+        });
+    });
+</script>

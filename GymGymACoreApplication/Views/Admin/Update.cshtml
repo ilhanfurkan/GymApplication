@@ -1,0 +1,51 @@
+﻿@using Entities.Concrete;
+@model Admin
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="p-2">
+    <h3 style="text-align:center;">Update Admin Panel</h3>
+    @using (Html.BeginForm("Update", "Admin", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(admin=>admin.AdminId,new { @class = "form-control",@type="hidden"})
+        @Html.Label("Admin Name")
+        @Html.TextBoxFor(admin=>admin.AdminName,new { @class = "form-control" })
+        @Html.ValidationMessageFor(admin=>admin.AdminName,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Admin Password")
+        @Html.TextBoxFor(admin=>admin.AdminPassword,new { @class = "form-control" })
+        @Html.ValidationMessageFor(admin=>admin.AdminPassword,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Mail")
+        @Html.TextBoxFor(admin=>admin.Mail,new { @class = "form-control" })
+        @Html.ValidationMessageFor(admin=>admin.Mail,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Admin Type")
+
+               <select class="form-control" name="adminType">
+                                <option>Admin</option>
+                            <option>Users</option>
+               </select>
+                <br />
+        @Html.Label("Case")
+           <select class="form-control" name="deleted">
+            @if (Model.Deleted)
+            {
+            <option selected>True</option>
+             <option>False</option>
+            }
+            else
+            {
+              <option>True</option>
+              <option selected>False</option>
+            }
+            </select>
+                    <br />
+                    <input class="button-change form-control btn btn-primary" type="submit" value="Update Admin" />
+    }
+</div>
+
+
