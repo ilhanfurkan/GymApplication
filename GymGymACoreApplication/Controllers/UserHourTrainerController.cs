@@ -3,12 +3,15 @@ using Business.Validations;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using FluentValidation;
+using GymGymACoreApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GymGymACoreApplication.Controllers
 {
     public class UserHourTrainerController : Controller
     {
+        HourTrainerManager ht = new HourTrainerManager(new EfHourTrainerRepository());
+        UserManager um = new UserManager(new EfUserRepository());   
         UserHourTrainerManager uhtm = new UserHourTrainerManager(new EfUserHourTrainerRepository());
         public IActionResult Index()
         {
@@ -26,7 +29,11 @@ namespace GymGymACoreApplication.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
+            appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
+            appointmentSeanceUserModel.userModel = um.UserList();
+            appointmentSeanceUserModel.appointmentModel = new UserHourTrainer();
+            return View(appointmentSeanceUserModel);
         }
 
         [HttpPost]
@@ -42,11 +49,14 @@ namespace GymGymACoreApplication.Controllers
             }
             else
             {
+                AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
+                appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
+                appointmentSeanceUserModel.userModel= um.UserList();
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View();
+                return View(appointmentSeanceUserModel);
             }
 
         }
@@ -54,8 +64,11 @@ namespace GymGymACoreApplication.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            UserHourTrainer userHourTrainer = uhtm.UserHourTrainerGetById(id);
-            return View(userHourTrainer);
+            AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
+            appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
+            appointmentSeanceUserModel.userModel = um.UserList();
+            appointmentSeanceUserModel.appointmentModel = uhtm.UserHourTrainerGetById(id);
+            return View(appointmentSeanceUserModel);
 
         }
         [HttpPost]
