@@ -1,5 +1,5 @@
-﻿@using Entities.Concrete;
-@model UserHourTrainer
+﻿@using GymGymACoreApplication.Models
+@model AppointmentSeanceUserModel
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -12,49 +12,52 @@
 
     @using (Html.BeginForm("Update", "UserHourTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.AppointmentId,new { @class = "form-control",@name="AppointmentId",@value="@Model.AppointmentId",@type="hidden"})
-        @Html.Label("Date ")
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.Date,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.Date,"",new { @class ="text-danger" })
+        <input type="hidden" class="form-control" type="text" name="AppointmentId" value="@Model.appointmentModel.AppointmentId" />
+        @Html.Label("Date")
+        @Html.TextBox("Date","",new { @class = "form-control" })
+        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.Date,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Hour (Minute)")
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.Hours ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.Hours  ,"",new { @class ="text-danger" })
+        @Html.TextBox("Hours","" ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.Hours  ,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Seance ID")
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.SeanceId ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.SeanceId  ,"",new { @class ="text-danger" })
-        <br />
-        @Html.Label("User ID")
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.UserId ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.UserId  ,"",new { @class ="text-danger" })
-        <br />
-          @Html.Label("Active")
-        <select class="form-control" name="ActivePassive">
-            @if (Model.ActivePassive)
+        <label>Seance ID</label>
+        <select class="form-control" name="seanceId">
+
+
+            @foreach (var item in @Model.seanceModel)
             {
-                <option value="True" selected>Active</option>
-                <option value="False">Passive</option>
-            }
-            else
-            {
-                <option value="True">Active</option>
-                <option value="False" selected>Passive</option>
+
+
+                if (item.SeanceId == @Model.appointmentModel.SeanceId)
+                {
+                    <option value="@item.SeanceId" selected>@item.hour.Hours</option>
+                }
+                else
+                {
+                    <option value="@item.SeanceId">@item.hour.Hours</option>
+                }
             }
         </select>
         <br />
 
+        
+        @Html.Label("User ID")
+        @Html.TextBox("UserId","",new { @class = "form-control" })
+        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.UserId  ,"",new { @class ="text-danger" })
+        <br />
+
         @Html.Label("Case")
         <select class="form-control" name="deleted">
-            @if (Model.Deleted)
-          {
-                <option value="True" selected>Silindi</option>
-                <option value="False">--</option>
+            @if (Model.appointmentModel.Deleted)
+            {
+                <option selected>True</option>
+                <option>False</option>
             }
             else
             {
-                <option value="True">Silindi</option>
-                <option value="False" selected>--</option>
+                <option>True</option>
+                <option selected>False</option>
             }
         </select>
         <br />

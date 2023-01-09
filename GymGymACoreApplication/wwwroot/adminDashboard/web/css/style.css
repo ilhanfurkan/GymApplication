@@ -324,3 +324,8 @@
 .label{
     color:black;
 }
+
+.hover-overlay:hover i {
+    border-color: green !important;
+    background-color: green !important;
+}

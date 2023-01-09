@@ -1,5 +1,5 @@
 ﻿@using Entities.Concrete;
-@model UserHourTrainer
+@model AppointmentSeanceUserModel
 
 @{
     ViewData["Title"] = "Add";
@@ -14,20 +14,20 @@
     {
        
         @Html.Label("Date ")
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.Date,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.Date,"",new { @class ="text-danger" })
+        @Html.TextBox("Date","",new { @class = "form-control" })
+        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.Date,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Hour (Minute)")
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.Hours ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.Hours  ,"",new { @class ="text-danger" })
+        @Html.TextBox("Hours","",new { @class = "form-control" })
+        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.Hours  ,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Seance ID")
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.SeanceId,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.SeanceId  ,"",new { @class ="text-danger" })
+        @Html.TextBox("SeanceId","",new { @class = "form-control" })
+        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.SeanceId  ,"",new { @class ="text-danger" })
         <br />
         @Html.Label("User ID")
-        @Html.TextBoxFor(userHourTrainer=>userHourTrainer.UserId ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.UserId  ,"",new { @class ="text-danger" })
+        @Html.TextBox("UserId","",new { @class = "form-control" })
+        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.UserId  ,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Active")
         <select class="form-control " name="ActivePassive">
