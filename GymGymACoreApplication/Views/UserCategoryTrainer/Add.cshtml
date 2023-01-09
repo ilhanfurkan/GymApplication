@@ -15,9 +15,9 @@
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Payment")
-        <select class="form-control" name="payment">
-            <option>False</option>
-            <option>True</option>
+        <select class="form-control" name="PaymentType">
+            <option>Cash</option>
+            <option>Credit Card</option>
         </select>
         <br />
         @Html.Label("Price")

@@ -25,13 +25,15 @@
     <tbody>
         @foreach (var item in Model)
         {
+                var silindiDurum=@item.Deleted==true?"Silindi":"--";
+                var activePassive = item.ActivePassive == true ? "Active" : "Passive";
             <tr>
                 <td>@item.Date</td>
                 <td>@item.Hours</td>
                         <td>@item.Seance.hour.Hours - @item.Seance.trainer.TrainerFirstName.ToUpper() @item.Seance.trainer.TrainerLastName.ToUpper()</td>
                     <td>@item.User.FirstName.ToUpper() @item.User.LastName.ToUpper()</td>
-                <td>@item.ActivePassive</td>
-                <td>@item.Deleted</td>
+                <td>@activePassive</td>
+                <td>@silindiDurum</td>
 
                 <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.AppointmentId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>

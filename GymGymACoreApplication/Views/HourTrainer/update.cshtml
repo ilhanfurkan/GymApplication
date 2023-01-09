@@ -28,6 +28,7 @@
 		@Html.TextBoxFor(hourTrainer=>hourTrainer.TrainerId,new { @class = "form-control" })
 		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.TrainerId,"",new { @class ="text-danger" })
 		<br />
+		@Html.Label("Active")
 		<select class="form-control" name="ActivePassive">
             @if (Model.ActivePassive)
             {

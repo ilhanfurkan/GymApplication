@@ -15,19 +15,21 @@
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,new { @class = "form-control" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,"",new { @class ="text-danger" })
         <br />
-      @Html.Label("Case")
-                <select class="form-control" name="payment">
+      @Html.Label("Payment")
+        <select class="form-control" name="PaymentType">
             @if (Model.PaymentType)
-            {
-                        <option selected>True</option>
-                            <option>False</option>
+          {
+                <option value="True" selected>Cash</option>
+                <option value="False">Credit Card</option>
             }
             else
             {
-                            <option>True</option>
-                            <option selected>False</option>
+                <option value="True">Cash</option>
+                <option value="False" selected>Credit Card</option>
             }
+            
             </select>
+        <br />
         @Html.Label("Price")
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.Price ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.Price,"",new { @class ="text-danger" })
