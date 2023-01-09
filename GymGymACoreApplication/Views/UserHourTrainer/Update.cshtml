@@ -83,8 +83,8 @@
         <select class="form-control" name="deleted">
             @if (Model.appointmentModel.Deleted)
             {
-                <option selected>True</option>
-                <option>False</option>
+                <option value="True" selected>Silindi</option>
+                <option value="False">--</option>
             }
             else
             {
