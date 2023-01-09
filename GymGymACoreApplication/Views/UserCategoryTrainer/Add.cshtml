@@ -15,8 +15,10 @@
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Payment")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.PaymentType ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.PaymentType,"",new { @class ="text-danger" })
+        <select class="form-control" name="payment">
+            <option>False</option>
+            <option>True</option>
+        </select>
         <br />
         @Html.Label("Price")
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.Price ,new { @class = "form-control" })
@@ -32,11 +34,11 @@
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.PacketId,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Case")
-            <select class="form-control" name="Deleted">
-                <option>False</option>
-            <option>True</option>
-            </select>
-            <br />
+        <select class="form-control invisible" name="Deleted">
+            <option value="False"></option>
+            <option value="True">Silindi</option>
+        </select>
+        <br />
 
 
         <input class="button-change form-control btn btn-primary" type="submit" value="Add Registration" />

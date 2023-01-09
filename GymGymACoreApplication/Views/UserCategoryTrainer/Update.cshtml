@@ -15,10 +15,19 @@
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,new { @class = "form-control" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Payment")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.PaymentType ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.PaymentType,"",new { @class ="text-danger" })
-        <br />
+      @Html.Label("Case")
+                <select class="form-control" name="payment">
+            @if (Model.PaymentType)
+            {
+                        <option selected>True</option>
+                            <option>False</option>
+            }
+            else
+            {
+                            <option>True</option>
+                            <option selected>False</option>
+            }
+            </select>
         @Html.Label("Price")
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.Price ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.Price,"",new { @class ="text-danger" })
@@ -32,20 +41,20 @@
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.PacketId ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.PacketId,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Case")
-                <select class="form-control" name="deleted">
+       @Html.Label("Case")
+        <select class="form-control" name="deleted">
             @if (Model.Deleted)
-            {
-                        <option selected>True</option>
-                            <option>False</option>
+          {
+                <option value="True" selected>Silindi</option>
+                <option value="False">--</option>
             }
             else
             {
-                            <option>True</option>
-                            <option selected>False</option>
+                <option value="True">Silindi</option>
+                <option value="False" selected>--</option>
             }
-            </select>
-            <br />
+        </select>
+        <br />
 
 
 

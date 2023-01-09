@@ -51,19 +51,19 @@
         @Html.TextBoxFor(user=>user.Mail ,new { @class = "form-control" })
         @Html.ValidationMessageFor(user=>user.Mail,"",new { @class ="text-danger" })
             <br />
-        @Html.Label("Gender")
-            <select class="form-control" name="Gender">
-                <option>True</option>
-                <option>False</option>
-            </select>
-            <br />
+         @Html.Label("Gender")
+        <select class="form-control" name="Gender">
+            <option value="True">Man</option>
+            <option value="False">Woman</option>
+        </select>
+        <br />
 
-        @Html.Label("Case")
-            <select class="form-control" name="Deleted">
-                <option>False</option>
-                <option>True</option>
-            </select>
-            <br />
+       @Html.Label("Case")
+        <select class="form-control invisible" name="Deleted">
+            <option value="False"></option>
+            <option value="True">Silindi</option>
+        </select>
+        <br />
 
             <input class="button-change form-control btn btn-primary" type="submit" value="Add User" />
     }
