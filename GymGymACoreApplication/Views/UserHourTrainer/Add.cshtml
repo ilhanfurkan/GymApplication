@@ -29,12 +29,19 @@
         @Html.TextBoxFor(userHourTrainer=>userHourTrainer.UserId ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.UserId  ,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Case")
-        <select class="form-control" name="Deleted">
-            <option>False</option>
-            <option>True</option>
+         @Html.Label("Active")
+        <select class="form-control " name="ActivePassive">
+            <option value="False">Passive</option>
+            <option value="True">Active</option>
         </select>
         <br />
+        @Html.Label("Case")
+        <select class="form-control invisible" name="Deleted">
+            <option value="False"></option>
+            <option value="True">Silindi</option>
+        </select>
+        <br />
+
 
         
         <input class="form-control btn btn-primary" type="submit" value="Add Appointment" />

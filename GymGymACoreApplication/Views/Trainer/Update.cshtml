@@ -41,17 +41,17 @@
         @Html.TextBoxFor(trainer=>trainer.TrainerMail ,new { @class = "form-control" })
         @Html.ValidationMessageFor(trainer=>trainer.TrainerMail,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Gender")
-          <select class="form-control" name="TrainerGender">
+          @Html.Label("Gender")
+        <select class="form-control" name="TrainerGender">
             @if (Model.TrainerGender)
             {
-                <option selected>True</option>
-                <option>False</option>
+                <option value="True" selected>Man</option>
+                <option value="False">Woman</option>
             }
             else
             {
-                <option>True</option>
-                <option selected>False</option>
+                <option value="True">Man</option>
+                <option value="False" selected>Woman</option>
             }
         </select>
         <br />
@@ -60,15 +60,16 @@
         <select class="form-control" name="deleted">
             @if (Model.Deleted)
             {
-                <option selected>True</option>
-                <option>False</option>
+                <option value="True" selected>Silindi</option>
+                <option value="False">--</option>
             }
             else
             {
-                <option>True</option>
-                <option selected>False</option>
+                <option value="True">Silindi</option>
+                <option value="False" selected>--</option>
             }
         </select>
+        <br />
         <br />
 
         <input class="button-change form-control btn btn-success" type="submit" value="Update Trainer" />

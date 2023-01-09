@@ -29,18 +29,32 @@
         @Html.TextBoxFor(userHourTrainer=>userHourTrainer.UserId ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.UserId  ,"",new { @class ="text-danger" })
         <br />
+          @Html.Label("Active")
+        <select class="form-control" name="ActivePassive">
+            @if (Model.ActivePassive)
+            {
+                <option value="True" selected>Active</option>
+                <option value="False">Passive</option>
+            }
+            else
+            {
+                <option value="True">Active</option>
+                <option value="False" selected>Passive</option>
+            }
+        </select>
+        <br />
 
         @Html.Label("Case")
         <select class="form-control" name="deleted">
             @if (Model.Deleted)
-            {
-                <option selected>True</option>
-                <option>False</option>
+          {
+                <option value="True" selected>Silindi</option>
+                <option value="False">--</option>
             }
             else
             {
-                <option>True</option>
-                <option selected>False</option>
+                <option value="True">Silindi</option>
+                <option value="False" selected>--</option>
             }
         </select>
         <br />

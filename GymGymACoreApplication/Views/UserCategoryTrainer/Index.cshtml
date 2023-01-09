@@ -24,13 +24,14 @@
     <tbody>
         @foreach (var item in Model)
         {
+            var silindiDurum=@item.Deleted==true?"Silindi":"--";
             <tr>
                 <td>@item.DateOfRegistration</td>
                 <td>@item.PaymentType</td>
                 <td>@item.Price</td>
                         <td>@item.User.FirstName @item.User.LastName</td>
                     <td>@item.Packet.PacketName</td>
-                    <td>@item.Deleted</td>
+                    <td>@silindiDurum</td>
              
                 <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.RegistrationId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>

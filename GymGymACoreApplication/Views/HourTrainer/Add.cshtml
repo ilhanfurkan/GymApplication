@@ -26,12 +26,18 @@
         @Html.TextBoxFor(hourTrainer=>hourTrainer.TrainerId,new { @class = "form-control" })
         @Html.ValidationMessageFor(hourTrainer=>hourTrainer.TrainerId,"",new { @class ="text-danger" })
         <br />
+        @Html.Label("Active")
+        <select class="form-control " name="ActivePassive">
+            <option value="False">Passive</option>
+            <option value="True">Active</option>
+        </select>
+        <br />
         @Html.Label("Case")
-            <select class="form-control" name="Delete">
-            <option>False</option>
-                <option>True</option>
-            </select>
-            <br />
+        <select class="form-control invisible" name="Deleted">
+            <option value="False"></option>
+            <option value="True">Silindi</option>
+        </select>
+        <br />
         <input class="button-change form-control btn btn-primary" type="submit" value="Add Seance" />
     }
 </div>

@@ -15,19 +15,19 @@
             <br />
        
         @Html.Label("Case")
-               <select class="form-control" name="deleted">
+        <select class="form-control" name="deleted">
             @if (Model.Deleted)
-            {
-                <option selected>True</option>
-                <option>False</option>
+          {
+                <option value="True" selected>Silindi</option>
+                <option value="False">--</option>
             }
             else
             {
-                <option>True</option>
-                <option selected>False</option>
+                <option value="True">Silindi</option>
+                <option value="False" selected>--</option>
             }
         </select>
-            <br />
+        <br />
             <input class="button-change form-control btn btn-success" type="submit" value="Update Category" />
     }
 </div>

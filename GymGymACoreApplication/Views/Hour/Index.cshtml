@@ -26,10 +26,11 @@
     <tbody>
         @foreach (var item in Model)
         {
+            var silindiDurum=@item.Deleted==true?"Silindi":"--";
             <tr>
                 <td>@item.Hours</td>
                 <td>@item.Time</td>
-                <td>@item.Deleted</td>
+                <td>@silindiDurum</td>
                 <td></td>
                 <td></td>
                 <td></td>

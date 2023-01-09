@@ -31,6 +31,8 @@
     <tbody>
         @foreach (var item in Model)
         {
+            var silindiDurum=@item.Deleted==true?"Silindi":"--";
+                var UserGender = item.Gender == true ? "Man" : "Woman";
                 <tr>
                     <td>@item.UserLogin</td>
                         <td>
@@ -45,8 +47,8 @@
                     <td>@item.Weight</td>
                     <td>@item.PhoneNo</td>
                     <td>@item.Mail</td>
-                    <td>@item.Gender</td>
-                    <td>@item.Deleted</td>
+                    <td>@UserGender</td>
+                    <td>@silindiDurum</td>
                     <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw  text-center" data-bs-whatever="@item.UserId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
                 </td>
