@@ -13,21 +13,54 @@
     @using (Html.BeginForm("Add", "UserHourTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
        
-        @Html.Label("Date ")
-        @Html.TextBox("Date","",new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.Date,"",new { @class ="text-danger" })
+       
+        <label>Date</label>
+        <input class="form-control" type="date" name="Date" value="@Model.appointmentModel.Date" />
         <br />
-        @Html.Label("Hour (Minute)")
-        @Html.TextBox("Hours","",new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.Hours  ,"",new { @class ="text-danger" })
+
+        <label>Hour (Minute)</label>
+        <input class="form-control" type="text" name="Hours" value="@Model.appointmentModel.Hours" />
         <br />
-        @Html.Label("Seance ID")
-        @Html.TextBox("SeanceId","",new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.SeanceId  ,"",new { @class ="text-danger" })
+
+        <label>Seance</label>
+        <select class="form-control" name="seanceId">
+
+
+            @foreach (var item in @Model.seanceModel)
+            {
+
+
+                if (item.SeanceId == @Model.appointmentModel.SeanceId)
+                {
+                    <option value="@item.SeanceId" selected>@item.hour.Hours - @item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
+                }
+                else
+                {
+                    <option value="@item.SeanceId">@item.hour.Hours-@item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
+                }
+            }
+        </select>
         <br />
-        @Html.Label("User ID")
-        @Html.TextBox("UserId","",new { @class = "form-control" })
-        @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.UserId  ,"",new { @class ="text-danger" })
+
+
+        <label>User</label>
+        <select class="form-control" name="UserId">
+
+
+            @foreach (var item in @Model.userModel)
+            {
+
+
+                if (item.UserId == @Model.appointmentModel.UserId)
+                {
+                    <option value="@item.UserId" selected>@item.FirstName.ToUpper()  @item.LastName.ToUpper()</option>
+                }
+                else
+                {
+                    <option value="@item.UserId">@item.FirstName.ToUpper()  @item.LastName.ToUpper()</option>
+                }
+            }
+        </select>
         <br />
         @Html.Label("Active")
         <select class="form-control " name="ActivePassive">

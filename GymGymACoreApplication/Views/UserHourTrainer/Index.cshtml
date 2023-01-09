@@ -28,7 +28,7 @@
                 var silindiDurum=@item.Deleted==true?"Silindi":"--";
                 var activePassive = item.ActivePassive == true ? "Active" : "Passive";
             <tr>
-                <td>@item.Date</td>
+                    <td>@item.Date.ToString().Split(" ")[0]</td> @*date'i string formatına çevirip split fonksiyonuyla parçalara ayırıp dizi haline getiriyoruz.*@
                 <td>@item.Hours</td>
                         <td>@item.Seance.hour.Hours - @item.Seance.trainer.TrainerFirstName.ToUpper() @item.Seance.trainer.TrainerLastName.ToUpper()</td>
                     <td>@item.User.FirstName.ToUpper() @item.User.LastName.ToUpper()</td>
