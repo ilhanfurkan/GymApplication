@@ -29,11 +29,11 @@
         @Html.TextBox("UserId","",new { @class = "form-control" })
         @Html.ValidationMessageFor(userHourTrainer=>userHourTrainer.appointmentModel.UserId  ,"",new { @class ="text-danger" })
         <br />
-         @Html.Label("Active")
+        @Html.Label("Active")
         <select class="form-control " name="ActivePassive">
             <option value="True">Active</option>
             <option value="False">Passive</option>
-            
+
         </select>
         <br />
         @Html.Label("Case")

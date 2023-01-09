@@ -25,9 +25,10 @@
         @foreach (var item in Model)
         {
             var silindiDurum=@item.Deleted==true?"Silindi":"--";
-            <tr>
+                var paymentType = @item.PaymentType == true ? "Cash" : "Credit Card";
+                <tr>
                 <td>@item.DateOfRegistration</td>
-                <td>@item.PaymentType</td>
+                <td>@paymentType</td>
                 <td>@item.Price</td>
                         <td>@item.User.FirstName @item.User.LastName</td>
                     <td>@item.Packet.PacketName</td>
