@@ -11,12 +11,12 @@
     {
         <input type="hidden" class="form-control"  name="SeanceId" value="@Model.seanceModel.SeanceId" />
 
-        <label>Quato</label>
-        <input class="form-control" type="text" name="Date" value="@Model.seanceModel.Quota" />
+        <label>Quota</label>
+        <input class="form-control" type="text" name="Quota" value="@Model.seanceModel.Quota" />
         <br />
 
         <label>Date</label>
-        <input class="form-control" type="text" name="Hours" value="@Model.seanceModel.Date.ToString().Split(" ")[0]" />
+        <input class="form-control" type="text" name="Date" value="@Model.seanceModel.Date.ToString().Split(" ")[0]" />
         <br />
 
         <label>Hour</label>
@@ -77,15 +77,15 @@
         <br />
 
         @Html.Label("Case")
-        <select class="form-control" name="deleted">
+        <select class="form-control" name="Deleted">
             @if (Model.seanceModel.Deleted)
             {
-                <option value="True" selected>Silindi</option>
+                <option value="True" selected>Deleted</option>
                 <option value="False">--</option>
             }
             else
             {
-                <option value="True">Silindi</option>
+                <option value="True">Deleted</option>
                 <option value="False" selected>--</option>
             }
         </select>

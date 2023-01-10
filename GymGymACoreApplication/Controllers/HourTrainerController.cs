@@ -46,6 +46,7 @@ namespace GymGymACoreApplication.Controllers
                     SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
                     seanceHourTrainerModel.hourModel = hm.HourList();
                     seanceHourTrainerModel.trainerModel = tm.TrainerList();
+					seanceHourTrainerModel.seanceModel = hourTrainer;
                     foreach (var item in result.Errors)
                     {
                         ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
@@ -66,7 +67,7 @@ namespace GymGymACoreApplication.Controllers
             SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
             seanceHourTrainerModel.hourModel = hm.HourList();
             seanceHourTrainerModel.trainerModel = tm.TrainerList();
-            seanceHourTrainerModel.seanceModel = new HourTrainer();
+			seanceHourTrainerModel.seanceModel = htm.HourTrainerGetById(id);
             return View(seanceHourTrainerModel);
         }
 		[HttpPost]
@@ -82,11 +83,15 @@ namespace GymGymACoreApplication.Controllers
 			}
 			else
 			{
-				foreach (var item in result.Errors)
+                SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
+                seanceHourTrainerModel.hourModel = hm.HourList();
+                seanceHourTrainerModel.trainerModel = tm.TrainerList();
+                seanceHourTrainerModel.seanceModel = hourTrainer;
+                foreach (var item in result.Errors)
 				{
 					ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
 				}
-				return View(hourTrainer);
+				return View(seanceHourTrainerModel);
 			}
 		}
 	}

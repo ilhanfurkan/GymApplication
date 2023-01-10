@@ -6,38 +6,40 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
 <div class="p-2">
     <h3 style="text-align:center;">Add Appointment</h3>
 
     @using (Html.BeginForm("Add", "UserHourTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-       
+     
+
        
         <label>Date</label>
-        <input class="form-control" type="date" name="Date" value="@Model.appointmentModel.Date.ToString().Split(" ")[0]" />
+            <input class="form-control" type="date" name="Date" />
+        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Date, "", new { @class = "text-danger" })
         <br />
 
         <label>Hour (Minute)</label>
-        <input class="form-control" type="text" name="Hours" value="@Model.appointmentModel.Hours" />
+        <input class="form-control" type="text" name="Hours" />
+        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Hours, "", new { @class = "text-danger" })
         <br />
 
         <label>Seance</label>
         <select class="form-control" name="seanceId">
-
+                                         <option value="-1">Seçiniz</option>
 
             @foreach (var item in @Model.seanceModel)
             {
+                         <option value="@item.SeanceId">@item.hour.Hours-@item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
 
-
-                if (item.SeanceId == @Model.appointmentModel.SeanceId)
+               @* if (item.SeanceId == @Model.appointmentModel.SeanceId)
                 {
                     <option value="@item.SeanceId" selected>@item.hour.Hours - @item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
                 }
                 else
                 {
                     <option value="@item.SeanceId">@item.hour.Hours-@item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
-                }
+                }*@
             }
         </select>
         <br />

@@ -51,7 +51,8 @@ namespace GymGymACoreApplication.Controllers
             {
                 AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
                 appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
-                appointmentSeanceUserModel.userModel= um.UserList();
+                appointmentSeanceUserModel.userModel = um.UserList();
+                appointmentSeanceUserModel.appointmentModel = userHourTrainer;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);

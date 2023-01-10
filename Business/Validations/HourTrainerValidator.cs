@@ -15,16 +15,14 @@ namespace Business.Validations
             //HourTrainer Quota
             RuleFor(HourTrainer => HourTrainer.Quota).NotEmpty().WithMessage("Cannot be Empty");
             RuleFor(HourTrainer => HourTrainer.Quota).GreaterThan(0).WithMessage("Should be Greater Than Zero");
+            
+            
+            RuleFor(HourTrainer => HourTrainer.Date).NotEmpty().WithMessage("Cannot be Empty");
 
 
 
             //HourTrainer Date
             RuleFor(HourTrainer => HourTrainer.Date).NotEmpty().WithMessage("Cannot be Empty");
-
-            // HourId And TrainerId
-            RuleFor(HourTrainer => HourTrainer.HourId).NotEmpty().WithMessage("Cannot be Empty");
-            RuleFor(HourTrainer => HourTrainer.TrainerId).NotEmpty().WithMessage("Cannot be Empty");
-
         }
     }
 }
