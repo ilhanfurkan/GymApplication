@@ -1,5 +1,5 @@
 ﻿@using Entities.Concrete;
-@model HourTrainer;
+@model SeanceHourTrainerModel;
 @{
 	ViewData["Title"] = "Update";
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -8,29 +8,62 @@
 <div class="p-2">
 	<h3 style="text-align:center;">Update Seance</h3>
 	@using (Html.BeginForm("update", "HourTrainer", FormMethod.Post, new { @class = "form-group" }))
-	{
-		@Html.TextBoxFor(hourTrainer=>hourTrainer.SeanceId ,new { @class = "form-control",@name="AppointmentId",@value="@Model.AppointmentId",@type="hidden"})
-		@Html.Label("Quato")
-		@Html.TextBoxFor(hourTrainer=>hourTrainer.Quota,new { @class = "form-control" })
-		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.Quota,"",new { @class ="text-danger" })
+    {
+        <input type="hidden" class="form-control"  name="SeanceId" value="@Model.seanceModel.SeanceId" />
 
-		<br />
-		@Html.Label("Date")
-		@Html.TextBoxFor(hourTrainer=>hourTrainer.Date,new { @class = "form-control" })
-		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.Date,"",new { @class ="text-danger" })
-		
-		<br />
-		@Html.Label("Hour Id")
-		@Html.TextBoxFor(hourTrainer=>hourTrainer.HourId,new { @class = "form-control" })
-		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.HourId,"",new { @class ="text-danger" })
-		<br />
-		@Html.Label("Trainer Id")
-		@Html.TextBoxFor(hourTrainer=>hourTrainer.TrainerId,new { @class = "form-control" })
-		@Html.ValidationMessageFor(hourTrainer=>hourTrainer.TrainerId,"",new { @class ="text-danger" })
-		<br />
-		@Html.Label("Active")
-		<select class="form-control" name="ActivePassive">
-            @if (Model.ActivePassive)
+        <label>Quato</label>
+        <input class="form-control" type="text" name="Date" value="@Model.seanceModel.Quota" />
+        <br />
+
+        <label>Date</label>
+        <input class="form-control" type="text" name="Hours" value="@Model.seanceModel.Date.ToString().Split(" ")[0]" />
+        <br />
+
+        <label>Hour</label>
+        <select class="form-control" name="hourId">
+
+
+            @foreach (var item in @Model.hourModel)
+            {
+
+
+                if (item.HourId == @Model.seanceModel.HourId)
+                {
+                    <option value="@item.HourId" selected>@item.Hours </option>
+                }
+                else
+                {
+                    <option value="@item.HourId">@item.Hours</option>
+                }
+            }
+        </select>
+        <br />
+
+
+        <label>Trainer</label>
+        <select class="form-control" name="TrainerId">
+
+
+            @foreach (var item in @Model.trainerModel)
+            {
+
+
+                if (item.TrainerId == @Model.seanceModel.TrainerId)
+                {
+                    <option value="@item.TrainerId" selected>@item.TrainerFirstName.ToUpper()  @item.TrainerLastName.ToUpper()</option>
+                }
+                else
+                {
+                    <option value="@item.TrainerId">@item.TrainerFirstName.ToUpper()  @item.TrainerLastName.ToUpper()</option>
+                }
+            }
+        </select>
+        <br />
+
+
+        @Html.Label("Active")
+        <select class="form-control" name="ActivePassive">
+            @if (Model.seanceModel.ActivePassive)
             {
                 <option value="True" selected>Active</option>
                 <option value="False">Passive</option>
@@ -43,20 +76,21 @@
         </select>
         <br />
 
-		@Html.Label("Case")
-		   <select class="form-control" name="deleted">
-			@if (Model.Deleted)
-			{
-					  <option value="True" selected>Silindi</option>
-					  <option value="False">--</option>
-			}
-			else
-			{
-					  <option value="True">Silindi</option>
-					  <option value="False" selected>--</option>
-			}
-		   </select>
-		  <br />
-		<input class="button-change form-control btn btn-success" type="submit" value="Update Seance" />
-	}
+        @Html.Label("Case")
+        <select class="form-control" name="deleted">
+            @if (Model.seanceModel.Deleted)
+            {
+                <option value="True" selected>Silindi</option>
+                <option value="False">--</option>
+            }
+            else
+            {
+                <option value="True">Silindi</option>
+                <option value="False" selected>--</option>
+            }
+        </select>
+        <br />
+
+        <input class="button-change form-control btn btn-success" type="submit" value="Update Seance" />
+    }
 </div>

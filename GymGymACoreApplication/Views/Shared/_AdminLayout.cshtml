@@ -35,12 +35,12 @@
 	  <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 		<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center pe-1">
 
-		  <a class="navbar-brand pt-4" style="width:50px; margin-right:-18px;" href="~/Views/Shared/_AdminLayout.cshtml"><img style="width:50px; height:50px;"src="~/template/assets/images/gglogo.png" alt="logo" /></a>
-		  <a class="navbar-brand pt-4" style="width:50px;" href="~/Views/Shared/_AdminLayout.cshtml"><img style="width:50px; height:50px;" src="~/template/assets/images/gglogo.png" alt="logo" /></a>
-		  <div class="d-inline-block  mt-5" style="z-index:3; position:absolute; font-family: 'Red Hat Display', sans-serif;">GymGym-A</div>
+		  <a class="navbar-brand pt-4" id="firstG" style="width:50px; margin-right:-18px;" href="~/Views/Shared/_AdminLayout.cshtml"><img id="firstGi"style="width:50px; height:50px;"src="~/template/assets/images/gglogo.png" alt="logo" /></a>
+		  <a class="navbar-brand pt-4" id="secondG" style="width:50px;" href="~/Views/Shared/_AdminLayout.cshtml"><img id="secondGi" style="width:50px; height:50px;" src="~/template/assets/images/gglogo.png" alt="logo" /></a>
+		  <div class="d-inline-block  mt-5" id="text" style="z-index:3; position:absolute; font-family: 'Red Hat Display', sans-serif; opacity:0.5;">GymGym-A</div>
 		</div>
 		<div class="navbar-menu-wrapper d-flex align-items-stretch">
-		  <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+		  <button class="navbar-toggler navbar-toggler align-self-center" onclick="logoChange()" type="button" data-toggle="minimize">
 			<span class="mdi mdi-menu"></span>
 		  </button>
 		 @RenderSection("search",false)
@@ -104,7 +104,7 @@
 				 <a class="dropdown-item py-1 d-flex align-items-center justify-content-between hover-overlay" href="/Admin/Index">
 					<span>Panel</span>
 					<span class="p-0">
-@*	<span class="badge badge-success"><i class="mdi mdi-fingerprint"></i></span>*@
+										@*	<span class="badge badge-success"><i class="mdi mdi-fingerprint"></i></span>*@
 					<i class="mdi mdi-account-multiple-outline"></i>
 					</span>
 				  </a>
@@ -291,3 +291,33 @@
 	<!-- End custom js for this page -->
   </body>
 </html>
+
+	<script>
+		function logoChange() {
+	var firstG = document.getElementById("firstG");
+	var secondG = document.getElementById("secondG");
+	var firstGi = document.getElementById("firstGi");
+	var secondGi = document.getElementById("secondGi");
+	var text = document.getElementById("text");
+
+	if (firstGi.style.width=="30px") {
+
+		firstG.style.width = "50px";
+		firstGi.style.width = "50px";
+		secondG.style.width = "50px";
+		secondGi.style.width = "50px";
+		secondGi.style.height = "50px";
+		firstGi.style.height = "50px";
+		text.style.opacity = "1";
+	}
+	else {
+		firstGi.style.width = "30px";
+		firstG.style.width = "30px";
+		secondGi.style.width = "30px";
+		secondG.style.width = "30px";
+		secondGi.style.height = "30px";
+		firstGi.style.height = "30px";
+		text.style.opacity = "0";
+	}
+}
+	</script>
