@@ -8,7 +8,7 @@
     <h3 style="text-align:center;">Update Packet</h3>
     @using (Html.BeginForm("update", "CategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketId,new { @class = "form-control"})
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketId,new { @class = "form-control",@type="hidden"})
         @Html.Label("Packet Name")
         @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketName,new { @class = "form-control" })
         @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.packetModel.PacketName  ,"",new { @class ="text-danger" })
@@ -27,24 +27,38 @@
         <br />
         <label>Categories</label>
 				<select class="form-control" name="CategoryId">
-												 <option value="-1">--Choose Category--</option>
 			@foreach (var item in @Model.categoryModel)
 			{
-						<option value="@item.CategoryId">@item.CategoryName</option>
+                if (item.CategoryId == @Model.packetModel.CategoryId)
+                {
+                                    <option value="@item.CategoryId" selected>@item.CategoryName</option>
+                }
+                else
+                {
+                                    <option value="@item.CategoryId">@item.CategoryName</option>
+                }
 			}
 				</select>
 		@Html.ValidationMessage("CategoryId","",new { @class ="text-danger" })
         <br />
-            <label>Trainer</label>
+            <label>Trainers</label>
                         <select class="form-control" name="TrainerId">
-                                                         <option value="-1">--Choose Trainer--</option>
             @foreach (var item in @Model.trainerModel)
             {
-                                        <option value="@item.TrainerId">@item.TrainerFirstName.ToUpper() @item.TrainerLastName.ToUpper()</option>
+                if (item.TrainerId == @Model.packetModel.TrainerId)
+                {
+                            <option value="@item.TrainerId" selected>@item.TrainerFirstName.ToUpper() @item.TrainerLastName.ToUpper()</option>
+                }
+                else
+                {
+                         <option value="@item.TrainerId">@item.TrainerFirstName.ToUpper() @item.TrainerLastName.ToUpper()</option>
+                }
+                                       
             }
                         </select>
         @Html.ValidationMessage("TrainerId","",new { @class ="text-danger" })
         <br />
+                @Html.Label("Active")
         <select class="form-control" name="ActivePassive">
             @if (Model.packetModel.ActivePassive)
             {
@@ -60,15 +74,15 @@
         <br />
 
         @Html.Label("Case")
-        <select class="form-control" name="deleted">
+        <select class="form-control" name="Deleted">
             @if (Model.packetModel.Deleted)
             {
-                <option value="True" selected>Silindi</option>
+                <option value="True" selected>Deleted</option>
                 <option value="False">--</option>
             }
             else
             {
-                <option value="True">Silindi</option>
+                <option value="True">Deleted</option>
                 <option value="False" selected>--</option>
             }
         </select>

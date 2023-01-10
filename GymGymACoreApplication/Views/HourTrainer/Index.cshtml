@@ -23,7 +23,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            var silindiDurum=@item.Deleted==true?"Silindi":"--";
+            var deletedCase=@item.Deleted==true?"Deleted":"--";
             var activePassive = item.ActivePassive == true ? "Active" : "Passive";
             <tr>
                 <td>@item.Quota</td>
@@ -31,7 +31,7 @@
                 <td>@item.hour.Hours</td>
                     <td>@item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</td>
                 <td>@activePassive</td>
-                <td>@silindiDurum</td>
+                <td>@deletedCase</td>
                 <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.SeanceId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
                 </td>

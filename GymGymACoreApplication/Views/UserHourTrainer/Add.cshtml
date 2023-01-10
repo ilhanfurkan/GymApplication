@@ -19,27 +19,18 @@
         @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Date, "", new { @class = "text-danger" })
         <br />
 
-        <label>Hour (Minute)</label>
+        <label>Minute</label>
         <input class="form-control" type="text" name="Hours" />
         @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Hours, "", new { @class = "text-danger" })
         <br />
 
         <label>Seance</label>
         <select class="form-control" name="seanceId">
-                                         <option value="-1">Seçiniz</option>
+                                         <option value="-1">--Choose Seance--</option>
 
             @foreach (var item in @Model.seanceModel)
             {
                          <option value="@item.SeanceId">@item.hour.Hours-@item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
-
-               @* if (item.SeanceId == @Model.appointmentModel.SeanceId)
-                {
-                    <option value="@item.SeanceId" selected>@item.hour.Hours - @item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
-                }
-                else
-                {
-                    <option value="@item.SeanceId">@item.hour.Hours-@item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
-                }*@
             }
         </select>
         <br />
@@ -47,20 +38,10 @@
 
         <label>User</label>
         <select class="form-control" name="UserId">
-
-
+                                                     <option value="-1">--Choose User--</option>
             @foreach (var item in @Model.userModel)
             {
-
-
-                if (item.UserId == @Model.appointmentModel.UserId)
-                {
-                    <option value="@item.UserId" selected>@item.FirstName.ToUpper()  @item.LastName.ToUpper()</option>
-                }
-                else
-                {
                     <option value="@item.UserId">@item.FirstName.ToUpper()  @item.LastName.ToUpper()</option>
-                }
             }
         </select>
         <br />
@@ -71,12 +52,10 @@
 
         </select>
         <br />
-        @Html.Label("Case")
         <select class="form-control invisible" name="Deleted">
             <option value="False"></option>
-            <option value="True">Silindi</option>
+            <option value="True">Deleted</option>
         </select>
-        <br />
 
 
         

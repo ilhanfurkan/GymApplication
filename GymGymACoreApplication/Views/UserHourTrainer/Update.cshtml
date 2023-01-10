@@ -18,7 +18,7 @@
         @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Date, "", new { @class = "text-danger" })
         <br />
 
-        <label>Hour (Minute)</label>
+        <label>Minute</label>
         <input class="form-control" type="text" name="Hours" value="@Model.appointmentModel.Hours" />
         @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Date, " ", new { @class = "text-danger" })
 
@@ -85,12 +85,12 @@
         <select class="form-control" name="deleted">
             @if (Model.appointmentModel.Deleted)
             {
-                <option value="True" selected>Silindi</option>
+                <option value="True" selected>Deleted</option>
                 <option value="False">--</option>
             }
             else
             {
-                <option value="True">Silindi</option>
+                <option value="True">Deleted</option>
                 <option value="False" selected>--</option>
             }
         </select>

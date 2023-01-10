@@ -10,7 +10,7 @@
 	@using (Html.BeginForm("Add", "HourTrainer", FormMethod.Post, new { @class = "form-group" }))
 	{
 			<label>Quota</label>
-			<input class="form-control" type="text" name="Quota" value="@Model.seanceModel.Quota" />
+			<input class="form-control" type="text" name="Quota" />
 			<br />
 
 			<label>Date</label>
@@ -19,8 +19,7 @@
 
 			<label>Hour</label>
 			<select class="form-control" name="HourId">
-
-
+					<option value="-1">--Choose Hour--</option>
 			@foreach (var item in Model.hourModel)
 			{
 						<option value="@item.HourId">@item.Hours </option>
@@ -31,14 +30,10 @@
 
 			<label>Trainer</label>
 			<select class="form-control" name="TrainerId">
-
-
+				<option value="-1">--Choose Trainer--</option>
 			@foreach (var item in Model.trainerModel)
 			{
-
-
 							<option value="@item.TrainerId">@item.TrainerFirstName.ToUpper()  @item.TrainerLastName.ToUpper()</option>
-
 			}
 			</select>
 			<br />
@@ -52,7 +47,7 @@
 
 			<select class="form-control invisible" name="Deleted">
 				<option value="False"></option>
-				<option value="True">Silindi</option>
+				<option value="True">Deleted</option>
 			</select>
 			<input class="form-control btn btn-primary" type="submit" value="Add Appointment" />
 	}

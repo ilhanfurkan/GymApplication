@@ -12,7 +12,7 @@
     {
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.RegistrationId,new { @class = "form-control",@name="userCategoryTrainerId",@value="@Model.userCategoryTrainerId",@type="hidden"})
         @Html.Label("Date Of Registration ")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,new { @class = "form-control" })
+               <input class="form-control" type="text" name="DateOfRegistration" value="@Model.DateOfRegistration.ToString().Split(" ")[0]" />
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,"",new { @class ="text-danger" })
         <br />
       @Html.Label("Payment")
@@ -44,15 +44,15 @@
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.PacketId,"",new { @class ="text-danger" })
         <br />
        @Html.Label("Case")
-        <select class="form-control" name="deleted">
+        <select class="form-control" name="Deleted">
             @if (Model.Deleted)
           {
-                <option value="True" selected>Silindi</option>
+                <option value="True" selected>Deleted</option>
                 <option value="False">--</option>
             }
             else
             {
-                <option value="True">Silindi</option>
+                <option value="True">Deleted</option>
                 <option value="False" selected>--</option>
             }
         </select>

@@ -24,15 +24,15 @@
     <tbody>
         @foreach (var item in Model)
         {
-            var silindiDurum=@item.Deleted==true?"Silindi":"--";
+            var deleteCase=@item.Deleted==true?"Deleted":"--";
                 var paymentType = @item.PaymentType == true ? "Cash" : "Credit Card";
                 <tr>
-                <td>@item.DateOfRegistration</td>
+                <td>@item.DateOfRegistration.ToString().Split(" ")[0]</td>
                 <td>@paymentType</td>
-                <td>@item.Price</td>
+                <td>@item.Price TL</td>
                         <td>@item.User.FirstName @item.User.LastName</td>
                     <td>@item.Packet.PacketName</td>
-                    <td>@silindiDurum</td>
+                    <td>@deleteCase</td>
              
                 <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.RegistrationId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>

@@ -12,7 +12,7 @@
     <thead>
         <tr>
             <th>Date</th>
-            <th>Hour(Minute)</th>
+            <th>Minute</th>
             <th>Seance</th>
             <th>User</th>
             <th>Active</th>
@@ -25,15 +25,15 @@
     <tbody>
         @foreach (var item in Model)
         {
-                var silindiDurum=@item.Deleted==true?"Silindi":"--";
+                var deletedCase=@item.Deleted==true?"Deleted":"--";
                 var activePassive = item.ActivePassive == true ? "Active" : "Passive";
             <tr>
                     <td>@item.Date.ToString().Split(" ")[0]</td> @*date'i string formatına çevirip split fonksiyonuyla parçalara ayırıp dizi haline getiriyoruz.*@
-                <td>@item.Hours</td>
+                <td>@item.Hours Min</td>
                         <td>@item.Seance.hour.Hours - @item.Seance.trainer.TrainerFirstName.ToUpper() @item.Seance.trainer.TrainerLastName.ToUpper()</td>
                     <td>@item.User.FirstName.ToUpper() @item.User.LastName.ToUpper()</td>
                 <td>@activePassive</td>
-                <td>@silindiDurum</td>
+                <td>@deletedCase</td>
 
                 <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.AppointmentId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>

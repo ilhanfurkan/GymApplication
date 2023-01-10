@@ -11,7 +11,7 @@
     @using (Html.BeginForm("Add", "userCategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Date Of Registration ")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,new { @class = "form-control" })
+        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,new { @class = "form-control" , @type = "Date" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Payment")
@@ -33,12 +33,10 @@
         @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.PacketId ,new { @class = "form-control" })
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.PacketId,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Case")
         <select class="form-control invisible" name="Deleted">
             <option value="False"></option>
-            <option value="True">Silindi</option>
+            <option value="True">Deleted</option>
         </select>
-        <br />
 
 
         <input class="button-change form-control btn btn-primary" type="submit" value="Add Registration" />
