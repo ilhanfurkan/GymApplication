@@ -1,5 +1,5 @@
 ﻿@using Entities.Concrete;
-@model CategoryTrainer;
+@model PacketCategoryTrainerModel;
 @{
     ViewData["Title"] = "update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -8,33 +8,45 @@
     <h3 style="text-align:center;">Update Packet</h3>
     @using (Html.BeginForm("update", "CategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.PacketId,new { @class = "form-control",@type="hidden"})
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketId,new { @class = "form-control"})
         @Html.Label("Packet Name")
-        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.PacketName,new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.PacketName  ,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketName,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.packetModel.PacketName  ,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Packet Detail")
-        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.PacketDetail,new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.PacketDetail  ,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketDetail,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.packetModel.PacketDetail  ,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Packet Price")
-        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.PacketPrice,new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.PacketPrice  ,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketPrice,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.packetModel.PacketPrice  ,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Right")
-        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.Right,new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.Right  ,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.Right,new { @class = "form-control" })
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.packetModel.Right  ,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Category Id")
-        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.CategoryId,new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.CategoryId  ,"",new { @class ="text-danger" })
+        <label>Categories</label>
+				<select class="form-control" name="CategoryId">
+												 <option value="-1">--Choose Category--</option>
+			@foreach (var item in @Model.categoryModel)
+			{
+						<option value="@item.CategoryId">@item.CategoryName</option>
+			}
+				</select>
+		@Html.ValidationMessage("CategoryId","",new { @class ="text-danger" })
         <br />
-        @Html.Label("Trainer Id")
-        @Html.TextBoxFor(CategoryTrainer=>CategoryTrainer.TrainerId,new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.TrainerId  ,"",new { @class ="text-danger" })
+            <label>Trainer</label>
+                        <select class="form-control" name="TrainerId">
+                                                         <option value="-1">--Choose Trainer--</option>
+            @foreach (var item in @Model.trainerModel)
+            {
+                                        <option value="@item.TrainerId">@item.TrainerFirstName.ToUpper() @item.TrainerLastName.ToUpper()</option>
+            }
+                        </select>
+        @Html.ValidationMessage("TrainerId","",new { @class ="text-danger" })
         <br />
         <select class="form-control" name="ActivePassive">
-            @if (Model.ActivePassive)
+            @if (Model.packetModel.ActivePassive)
             {
                 <option value="True" selected>Active</option>
                 <option value="False">Passive</option>
@@ -49,7 +61,7 @@
 
         @Html.Label("Case")
         <select class="form-control" name="deleted">
-            @if (Model.Deleted)
+            @if (Model.packetModel.Deleted)
             {
                 <option value="True" selected>Silindi</option>
                 <option value="False">--</option>

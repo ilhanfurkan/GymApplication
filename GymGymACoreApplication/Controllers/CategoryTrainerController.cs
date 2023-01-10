@@ -3,6 +3,7 @@ using Business.Validations;
 using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Entities.Concrete;
+using GymGymACoreApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -11,6 +12,8 @@ namespace GymGymACoreApplication.Controllers
     public class CategoryTrainerController : Controller
     {
         CategoryTrainerManager ctm = new CategoryTrainerManager(new EfCategoryTrainerRepository());
+        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
+        TrainerManager tm = new TrainerManager(new EfTrainerRepository());
 
         public IActionResult Index()
         {
@@ -21,7 +24,11 @@ namespace GymGymACoreApplication.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            PacketCategoryTrainerModel packetCategoryTrainerModel = new PacketCategoryTrainerModel();
+            packetCategoryTrainerModel.categoryModel = cm.CategoryList();
+            packetCategoryTrainerModel.trainerModel = tm.TrainerList();
+            packetCategoryTrainerModel.packetModel = new CategoryTrainer();
+            return View(packetCategoryTrainerModel);
         }
 
         [HttpPost]
@@ -37,11 +44,15 @@ namespace GymGymACoreApplication.Controllers
             }
             else
             {
+                PacketCategoryTrainerModel packetCategoryTrainerModel = new PacketCategoryTrainerModel();
+                packetCategoryTrainerModel.categoryModel = cm.CategoryList();
+                packetCategoryTrainerModel.trainerModel = tm.TrainerList();
+                packetCategoryTrainerModel.packetModel = categoryTrainer;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View();
+                return View(packetCategoryTrainerModel);
             }
 
         }
@@ -55,9 +66,11 @@ namespace GymGymACoreApplication.Controllers
         }
         public IActionResult update(int id)
         {
-            CategoryTrainer categoryTrainer = ctm.CategoryTrainerGetById(id);
-
-            return View(categoryTrainer);
+            PacketCategoryTrainerModel packetCategoryTrainerModel = new PacketCategoryTrainerModel();
+            packetCategoryTrainerModel.categoryModel = cm.CategoryList();
+            packetCategoryTrainerModel.trainerModel = tm.TrainerList();
+            packetCategoryTrainerModel.packetModel = ctm.CategoryTrainerGetById(id);
+            return View(packetCategoryTrainerModel);
         }
         [HttpPost]
         public IActionResult update(CategoryTrainer categoryTrainer)
@@ -72,11 +85,15 @@ namespace GymGymACoreApplication.Controllers
             }
             else
             {
+                PacketCategoryTrainerModel packetCategoryTrainerModel = new PacketCategoryTrainerModel();
+                packetCategoryTrainerModel.categoryModel = cm.CategoryList();
+                packetCategoryTrainerModel.trainerModel = tm.TrainerList();
+                packetCategoryTrainerModel.packetModel = categoryTrainer;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View(categoryTrainer);
+                return View(packetCategoryTrainerModel);
             }
         }
     }
