@@ -84,11 +84,20 @@ namespace GymGymACoreApplication.Controllers
             }
             else
             {
+     
+             
+
+                AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
+                appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
+                appointmentSeanceUserModel.userModel = um.UserList();
+                appointmentSeanceUserModel.appointmentModel = userHourTrainer;
                 foreach (var item in result.Errors)
+
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                   
                 }
-                return View(userHourTrainer);
+                return View(appointmentSeanceUserModel);
             }
         }
 
