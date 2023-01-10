@@ -2,6 +2,7 @@
 using Business.Validations;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using GymGymACoreApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -9,7 +10,8 @@ namespace GymGymACoreApplication.Controllers
 {
     public class HourTrainerController : Controller
     {
-
+		HourManager hm = new HourManager(new EfHourRepository());
+		TrainerManager tm = new TrainerManager(new EfTrainerRepository());
         HourTrainerManager htm = new HourTrainerManager(new EfHourTrainerRepository());
 		public IActionResult Index()
 		{
@@ -20,7 +22,11 @@ namespace GymGymACoreApplication.Controllers
 		[HttpGet]
 		public IActionResult Add()
 		{
-			return View();
+			SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
+			seanceHourTrainerModel.hourModel = hm.HourList();
+			seanceHourTrainerModel.trainerModel = tm.TrainerList();
+			seanceHourTrainerModel.seanceModel = new HourTrainer();
+			return View(seanceHourTrainerModel);
 		}
 
 		[HttpPost]
@@ -35,13 +41,17 @@ namespace GymGymACoreApplication.Controllers
 
 			}
 			else
+			
 			{
-				foreach (var item in result.Errors)
-				{
-					ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-				}
-				return View();
-			}
+                    SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
+                    seanceHourTrainerModel.hourModel = hm.HourList();
+                    seanceHourTrainerModel.trainerModel = tm.TrainerList();
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                    return View(seanceHourTrainerModel);
+            }
 
 		}
 		public IActionResult delete(int id)
@@ -53,10 +63,12 @@ namespace GymGymACoreApplication.Controllers
 		}
 		public IActionResult update(int id)
 		{
-			HourTrainer hourTrainer = htm.HourTrainerGetById(id);
-
-			return View(hourTrainer);
-		}
+            SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
+            seanceHourTrainerModel.hourModel = hm.HourList();
+            seanceHourTrainerModel.trainerModel = tm.TrainerList();
+            seanceHourTrainerModel.seanceModel = new HourTrainer();
+            return View(seanceHourTrainerModel);
+        }
 		[HttpPost]
 		public IActionResult update(HourTrainer hourTrainer)
 		{

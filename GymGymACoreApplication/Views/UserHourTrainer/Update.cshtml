@@ -15,7 +15,7 @@
         <input type="hidden" class="form-control" type="text" name="AppointmentId" value="@Model.appointmentModel.AppointmentId" />
 
         <label>Date</label>
-        <input class="form-control" type="text" name="Date" value="@Model.appointmentModel.Date" />
+        <input class="form-control" type="text" name="Date" value="@Model.appointmentModel.Date.ToString().Split(" ")[0]" />
         <br />
 
         <label>Hour (Minute)</label>
