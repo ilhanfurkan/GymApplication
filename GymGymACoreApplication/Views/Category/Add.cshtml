@@ -13,12 +13,10 @@
         @Html.TextBoxFor(category=>category.CategoryName,new { @class = "form-control" })
         @Html.ValidationMessageFor(category=>category.CategoryName,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Case")
         <select class="form-control invisible" name="Deleted">
             <option value="False"></option>
-            <option value="True">Silindi</option>
+            <option value="True">Deleted</option>
         </select>
-        <br />
         <input class="button-change form-control btn btn-primary" type="submit" value="Add Category" />
     }
 </div>

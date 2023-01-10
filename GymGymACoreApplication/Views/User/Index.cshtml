@@ -12,7 +12,7 @@
             <div class="input-group-prepend bg-transparent">
                 <i class="input-group-text border-0 mdi mdi-magnify"></i>
             </div>
-            <input type="text" class="form-control bg-transparent border-0" placeholder="Kullanıcı ara">
+            <input type="text" class="form-control bg-transparent border-0" placeholder="Search User">
         </div>
     </form>
 </div>
@@ -43,7 +43,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            var silindiDurum=@item.Deleted==true?"Silindi":"--";
+            var deletedCase=@item.Deleted==true?"Deleted":"--";
                 var UserGender = item.Gender == true ? "Man" : "Woman";
                 <tr>
                     <td>@item.UserLogin</td>
@@ -60,7 +60,7 @@
                     <td>@item.PhoneNo</td>
                     <td>@item.Mail</td>
                     <td>@UserGender</td>
-                    <td>@silindiDurum</td>
+                    <td>@deletedCase</td>
                     <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw  text-center" data-bs-whatever="@item.UserId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
                 </td>

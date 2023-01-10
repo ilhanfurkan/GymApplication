@@ -5,6 +5,18 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@section search{
+<div class="search-field d-none d-xl-block">
+    <form class="d-flex align-items-center h-100" action="#">
+        <div class="input-group">
+            <div class="input-group-prepend bg-transparent">
+                <i class="input-group-text border-0 mdi mdi-magnify"></i>
+            </div>
+            <input type="text" class="form-control bg-transparent border-0" placeholder="Search Trainer">
+        </div>
+    </form>
+</div>
+}
 <h3></h3>
  <h3 class="ms-3 mt-5">All Trainers</h3>
  <div style="overflow: auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
@@ -29,7 +41,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-                var silindiDurum = @item.Deleted == true ? "Silindi" : "--";
+                var deletedCase = @item.Deleted == true ? "Deleted" : "--";
                 var Trainergender = item.TrainerGender == true ? "Man" : "Woman";
             <tr>
                 <td>@item.TrainerLogin</td>
@@ -40,8 +52,8 @@
                 <td>@item.TrainerPhoneNo</td>
                 <td>@item.TrainerMail</td>
                 <td>@Trainergender</td>
-                <td>@item.TrainerDateOfBirth</td>
-                <td>@silindiDurum</td>
+                <td>@item.TrainerDateOfBirth.Year</td>
+                <td>@deletedCase</td>
               
                 <td>
                         <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.TrainerId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>

@@ -41,6 +41,10 @@
         @Html.TextBoxFor(trainer=>trainer.TrainerMail ,new { @class = "form-control" })
         @Html.ValidationMessageFor(trainer=>trainer.TrainerMail,"",new { @class ="text-danger" })
         <br />
+        @Html.Label("Date Of Birth")
+               <input class="form-control" type="text" name="TrainerDateOfBirth" value="@Model.TrainerDateOfBirth.ToString().Split(" ")[0]" />
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerDateOfBirth  ,"",new { @class ="text-danger" })
+        <br />
           @Html.Label("Gender")
         <select class="form-control" name="TrainerGender">
             @if (Model.TrainerGender)

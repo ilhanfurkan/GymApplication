@@ -28,7 +28,7 @@
         @Html.ValidationMessageFor(user=>user.LastName,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Date Of Birth")
-        @Html.TextBoxFor(user=>user.DateOfBirth,new { @class = "form-control" })
+           <input class="form-control" type="text" name="DateOfBirth" value="@Model.DateOfBirth.ToString().Split(" ")[0]" />
         @Html.ValidationMessageFor(user=>user.DateOfBirth,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Natıonal ID")
@@ -67,15 +67,15 @@
         <br />
 
         @Html.Label("Case")
-        <select class="form-control" name="deleted">
+        <select class="form-control" name="Deleted">
             @if (Model.Deleted)
             {
-                <option value="True" selected>Silindi</option>
+                <option value="True" selected>Deleted</option>
                 <option value="False">--</option>
             }
             else
             {
-                <option value="True">Silindi</option>
+                <option value="True">Deleted</option>
                 <option value="False" selected>--</option>
             }
         </select>

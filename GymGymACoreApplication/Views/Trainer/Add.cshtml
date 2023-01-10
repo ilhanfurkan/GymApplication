@@ -40,6 +40,10 @@
         @Html.TextBoxFor(trainer=>trainer.TrainerMail ,new { @class = "form-control" })
         @Html.ValidationMessageFor(trainer=>trainer.TrainerMail  ,"",new { @class ="text-danger" })
         <br />
+        @Html.Label("Date Of Birth")
+        @Html.TextBoxFor(trainer=>trainer.TrainerDateOfBirth ,new {@type = "Date", @class = "form-control" })
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerDateOfBirth  ,"",new { @class ="text-danger" })
+        <br />
         @Html.Label("Gender")
         <select class="form-control" name="TrainerGender">
             <option value="True">Man</option>
@@ -47,12 +51,10 @@
         </select>
         <br />
 
-       @Html.Label("Case")
         <select class="form-control invisible" name="Deleted">
             <option value="False"></option>
-            <option value="True">Silindi</option>
+            <option value="True">Deleted</option>
         </select>
-        <br />
 
         <input class="button-change form-control btn btn-primary" type="submit" value="Add Trainer" />
     }

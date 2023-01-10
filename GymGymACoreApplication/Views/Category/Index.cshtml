@@ -11,7 +11,7 @@
             <div class="input-group-prepend bg-transparent">
                 <i class="input-group-text border-0 mdi mdi-magnify"></i>
             </div>
-            <input type="text" class="form-control bg-transparent border-0" placeholder="Kategori ara">
+            <input type="text" class="form-control bg-transparent border-0" placeholder="Search Category">
         </div>
     </form>
 </div>
@@ -39,10 +39,10 @@
     <tbody>
         @foreach (var item in Model)
         {
-                var silindiDurum = @item.Deleted == true ? "Silindi" : "--";
+                var deletedCase = @item.Deleted == true ? "Deleted" : "--";
             <tr>
                 <td>@item.CategoryName</td>
-                <td>@silindiDurum</td>
+                <td>@deletedCase</td>
                 <td></td>
                 <td></td>
                 <td></td>

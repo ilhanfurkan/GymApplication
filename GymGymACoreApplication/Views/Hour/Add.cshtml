@@ -17,12 +17,10 @@
         @Html.TextBoxFor(hour=>hour.Time,new { @class = "form-control" })
         @Html.ValidationMessageFor(hour=>hour.Time,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Case")
         <select class="form-control invisible" name="Deleted">
             <option value="False"></option>
-            <option value="True">Silindi</option>
+            <option value="True">Deleted</option>
         </select>
-        <br />
         <input class="button-change form-control btn btn-primary" type="submit" value="Add Hour" />
     }
 </div>
