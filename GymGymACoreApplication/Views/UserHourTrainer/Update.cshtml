@@ -1,5 +1,5 @@
 ﻿@using Entities.Concrete
-@model AppointmentSeanceUserModel
+@model AppointmentSeanceUserModel;
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,17 +9,19 @@
 
 <div class="p-2">
     <h3 style="text-align:center;">Update Appointment</h3>
-
-    @using (Html.BeginForm("Update", "UserHourTrainer", FormMethod.Post, new { @class = "form-group" }))
-    {
-        <input type="hidden" class="form-control" type="text" name="AppointmentId" value="@Model.appointmentModel.AppointmentId" />
+     <form action="/UserHourTrainer/Update" method="post">
+  
+        <input type="hidden" class="form-control" name="AppointmentId" value="@Model.appointmentModel.AppointmentId"  />
 
         <label>Date</label>
-        <input class="form-control" type="text" name="Date" value="@Model.appointmentModel.Date" />
+       <input class="form-control" type="text" name="Date" value="@Model.appointmentModel.Date.ToString().Split(" ")[0]" />
+        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Date, "", new { @class = "text-danger" })
         <br />
 
         <label>Hour (Minute)</label>
         <input class="form-control" type="text" name="Hours" value="@Model.appointmentModel.Hours" />
+        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Date, " ", new { @class = "text-danger" })
+
         <br />
 
         <label>Seance</label>
@@ -95,6 +97,7 @@
         <br />
 
         <input class="button-change form-control btn btn-success" type="submit" value="Update Appointment" />
-    }
+        </form>
+   @* }*@
 </div>
 
