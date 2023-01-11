@@ -4,6 +4,7 @@ using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Entities.Concrete;
 using FluentValidation;
+using GymGymACoreApplication.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,8 @@ namespace GymGymACoreApplication.Controllers
     public class UserCategoryTrainerController : Controller
     {
         UserCategoryTrainerManager uctm = new UserCategoryTrainerManager(new EfUserCategoryTrainerRepository());
+        CategoryTrainerManager ctm = new CategoryTrainerManager(new EfCategoryTrainerRepository());
+        UserManager um = new UserManager(new EfUserRepository());
         // GET: UserCategoryTrainerController
         public ActionResult Index()
         {
@@ -29,7 +32,11 @@ namespace GymGymACoreApplication.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            RegistrationPacketUserModel registrationPacketUserModel = new RegistrationPacketUserModel();
+            registrationPacketUserModel.packetModel = ctm.CategoryTrainerList();
+            registrationPacketUserModel.userModel = um.UserList();
+            registrationPacketUserModel.registrationModel = new UserCategoryTrainer();
+            return View(registrationPacketUserModel);
         }
 
         [HttpPost]
@@ -45,11 +52,15 @@ namespace GymGymACoreApplication.Controllers
             }
             else
             {
+                RegistrationPacketUserModel registrationPacketUserModel = new RegistrationPacketUserModel();
+                registrationPacketUserModel.packetModel = ctm.CategoryTrainerList();
+                registrationPacketUserModel.userModel = um.UserList();
+                registrationPacketUserModel.registrationModel = userCategoryTrainer;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View();
+                return View(registrationPacketUserModel);
             }
 
         }
@@ -57,8 +68,11 @@ namespace GymGymACoreApplication.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            UserCategoryTrainer userCategoryTrainer = uctm.UserCategoryTrainerGetById(id);
-            return View(userCategoryTrainer);
+            RegistrationPacketUserModel registrationPacketUserModel = new RegistrationPacketUserModel();
+            registrationPacketUserModel.packetModel = ctm.CategoryTrainerList();
+            registrationPacketUserModel.userModel = um.UserList();
+            registrationPacketUserModel.registrationModel = uctm.UserCategoryTrainerGetById(id);
+            return View(registrationPacketUserModel);
 
         }
         [HttpPost]
@@ -74,11 +88,15 @@ namespace GymGymACoreApplication.Controllers
             }
             else
             {
+                RegistrationPacketUserModel registrationPacketUserModel = new RegistrationPacketUserModel();
+                registrationPacketUserModel.packetModel = ctm.CategoryTrainerList();
+                registrationPacketUserModel.userModel = um.UserList();
+                registrationPacketUserModel.registrationModel = userCategoryTrainer;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return View(userCategoryTrainer);
+                return View(registrationPacketUserModel);
             }
         }
 

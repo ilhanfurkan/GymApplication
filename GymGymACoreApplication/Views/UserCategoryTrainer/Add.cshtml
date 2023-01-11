@@ -1,5 +1,5 @@
 ﻿@using Entities.Concrete
-@model UserCategoryTrainer
+@model RegistrationPacketUserModel
 @{
     ViewData["Title"] = "Add";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -11,8 +11,8 @@
     @using (Html.BeginForm("Add", "userCategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Date Of Registration ")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,new { @class = "form-control" , @type = "Date" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,"",new { @class ="text-danger" })
+        @Html.TextBox("DateOfRegistration","",new { @class = "form-control" , @type = "Date" })
+        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.DateOfRegistration,"",new { @class ="text-danger" })
         <br />
         @Html.Label("Payment")
         <select class="form-control" name="PaymentType">
@@ -21,17 +21,28 @@
         </select>
         <br />
         @Html.Label("Price")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.Price ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.Price,"",new { @class ="text-danger" })
+        @Html.TextBox("Price","",new { @class = "form-control" })
+        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.Price,"",new { @class ="text-danger" })
         <br />
-      
-        @Html.Label("User ID")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.UserId ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.UserId,"",new { @class ="text-danger" })
+      <label>User</label>
+				<select class="form-control" name="UserId">
+												 <option value="-1">--Choose User--</option>
+			@foreach (var item in @Model.userModel)
+			{
+						<option value="@item.UserId">@item.FirstName.ToUpper() @item.LastName.ToUpper()</option>
+			}
+				</select>
+		@Html.ValidationMessage("UserId","",new { @class ="text-danger" })
         <br />
-        @Html.Label("Packet ID")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.PacketId ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.PacketId,"",new { @class ="text-danger" })
+            <label>Packet</label>
+                    <select class="form-control" name="PacketId">
+                                                     <option value="-1">--Choose Packet--</option>
+            @foreach (var item in @Model.packetModel)
+            {
+                                <option value="@item.PacketId">@item.PacketName</option>
+            }
+                    </select>
+        @Html.ValidationMessage("PacketId","",new { @class ="text-danger" })
         <br />
         <select class="form-control invisible" name="Deleted">
             <option value="False"></option>

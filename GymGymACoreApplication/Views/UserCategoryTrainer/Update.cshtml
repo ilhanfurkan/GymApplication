@@ -1,5 +1,5 @@
 ﻿@using Entities.Concrete
-@model UserCategoryTrainer
+@model RegistrationPacketUserModel
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -10,14 +10,14 @@
 
     @using (Html.BeginForm("Update", "userCategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.RegistrationId,new { @class = "form-control",@name="userCategoryTrainerId",@value="@Model.userCategoryTrainerId",@type="hidden"})
+        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.RegistrationId,new { @class = "form-control",@name="userCategoryTrainerId",@value="@Model.userCategoryTrainerId",@type="hidden"})
         @Html.Label("Date Of Registration ")
-               <input class="form-control" type="text" name="DateOfRegistration" value="@Model.DateOfRegistration.ToString().Split(" ")[0]" />
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.DateOfRegistration,"",new { @class ="text-danger" })
+               <input class="form-control" type="text" name="DateOfRegistration" value="@Model.registrationModel.DateOfRegistration.ToString().Split(" ")[0]" />
+        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.DateOfRegistration,"",new { @class ="text-danger" })
         <br />
       @Html.Label("Payment")
         <select class="form-control" name="PaymentType">
-            @if (Model.PaymentType)
+            @if (Model.registrationModel.PaymentType)
           {
                 <option value="True" selected>Cash</option>
                 <option value="False">Credit Card</option>
@@ -31,21 +31,45 @@
             </select>
         <br />
         @Html.Label("Price")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.Price ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.Price,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.Price ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.Price,"",new { @class ="text-danger" })
         <br />
-      
-        @Html.Label("User ID")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.UserId ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.UserId,"",new { @class ="text-danger" })
+          <label>User</label>
+                    <select class="form-control" name="UserId">
+
+            @foreach (var item in @Model.userModel)
+            {
+                if (item.UserId == @Model.registrationModel.UserId)
+                {
+                        <option value="@item.UserId" selected>@item.FirstName.ToUpper() @item.LastName.ToUpper()</option>
+                }
+                else
+                {
+                        <option value="@item.UserId">@item.FirstName.ToUpper() @item.LastName.ToUpper()</option>
+                }
+            }
+                    </select>
+        @Html.ValidationMessage("UserId","",new { @class ="text-danger" })
         <br />
-        @Html.Label("Packet ID")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.PacketId ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.PacketId,"",new { @class ="text-danger" })
+            <label>Packet</label>
+                        <select class="form-control" name="PacketId">
+            @foreach (var item in @Model.packetModel)
+            {
+                if (item.PacketId == @Model.registrationModel.PacketId)
+                {
+                        <option value="@item.PacketId" selected>@item.PacketName</option>
+                }
+                else
+                {
+                        <option value="@item.PacketId">@item.PacketName</option>
+                }
+            }
+                        </select>
+        @Html.ValidationMessage("PacketId","",new { @class ="text-danger" })
         <br />
        @Html.Label("Case")
         <select class="form-control" name="Deleted">
-            @if (Model.Deleted)
+            @if (Model.registrationModel.Deleted)
           {
                 <option value="True" selected>Deleted</option>
                 <option value="False">--</option>
