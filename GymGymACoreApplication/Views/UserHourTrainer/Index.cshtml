@@ -4,7 +4,18 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+@section search{
+    <div class="search-field d-none d-xl-block">
+        <form class="d-flex align-items-center h-100" action="#">
+            <div class="input-group">
+                <div class="input-group-prepend bg-transparent">
+                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                </div>
+                <input type="text" class="form-control bg-transparent border-0" placeholder="Search Appointment">
+            </div>
+        </form>
+    </div>
+}
 <h3></h3>
 <h3 class="ms-3 mt-5">All Appointments </h3>
 <div style="overflow: auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
