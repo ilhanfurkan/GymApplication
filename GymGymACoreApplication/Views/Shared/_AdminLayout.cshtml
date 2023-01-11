@@ -29,7 +29,6 @@
 
   </head>
   <body>
-	<div class="container-scroller">
 
 	  <!-- partial:partials/_navbar.html -->
 	  <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -46,6 +45,13 @@
 		 @RenderSection("search",false)
 		  <ul class="navbar-nav navbar-nav-right">
 
+			  @*Team*@
+				<li class="nav-item">
+					<a class="nav-link" href="/Team/Index/">
+						<span class="menu-title" style="color:green;">TEAM</span>
+					</a>
+				</li>
+
 			<li class="nav-item nav-language dropdown d-none d-md-block">
 			  <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
 				<div class="nav-language-icon">
@@ -55,6 +61,7 @@
 				  <p class="mb-1 text-black">English</p>
 				</div>
 			  </a>
+			
 			  <div class="dropdown-menu navbar-dropdown" aria-labelledby="languageDropdown">
 				<a class="dropdown-item" href="#">
 				  <div class="nav-language-icon me-2">
@@ -232,6 +239,7 @@
 				<span class="menu-title">Appointments</span>
 			  </a>
 			</li>
+				
 			<br />
 			<li class="nav-item sidebar-user-actions">
 			  <div class="user-details">
