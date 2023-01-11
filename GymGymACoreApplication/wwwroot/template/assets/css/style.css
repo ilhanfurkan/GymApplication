@@ -15129,3 +15129,14 @@ dl {
     color: #b1b1b1; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+@media only screen and (max-width: 985px) {
+    .first {
+        display: none!important;
+    }
+
+    .second {
+        display: inline-block!important;
+    }
+}
