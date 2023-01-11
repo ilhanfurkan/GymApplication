@@ -2,10 +2,10 @@
 
 namespace GymGymACoreApplication.Controllers
 {
-    [Route("Error")]
     public class ErrorController : Controller
     {
         [Route("/Error/HandleError/{code:int}")]
+        [Route("error/404")]
 
         public IActionResult HandleError(int code)
         {
