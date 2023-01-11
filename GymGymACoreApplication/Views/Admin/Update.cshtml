@@ -31,18 +31,18 @@
                </select>
                 <br />
         @Html.Label("Case")
-           <select class="form-control" name="deleted">
+           <select class="form-control" name="Deleted">
             @if (Model.Deleted)
             {
-            <option selected>True</option>
-             <option>False</option>
+                <option value="True" selected>Deleted</option>
+                <option value="False">--</option>
             }
             else
             {
-              <option>True</option>
-              <option selected>False</option>
+                <option value="True">Deleted</option>
+                <option value="False" selected>--</option>
             }
-            </select>
+        </select>
                     <br />
                     <input class="button-change form-control btn btn-primary" type="submit" value="Update Admin" />
     }
