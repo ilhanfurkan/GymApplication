@@ -30,10 +30,10 @@
         
             <br />
         @Html.Label("Case")
-                <select class="form-control" name="Deleted">
-                    <option>False</option>
-                    <option>True</option>
-                </select>
+                <select class="form-control invisible" name="Deleted">
+				<option value="False"></option>
+				<option value="True">Deleted</option>
+			</select>
                 <br />
                 <input class="button-change form-control btn btn-primary" type="submit" value="Add Admin" />
     }

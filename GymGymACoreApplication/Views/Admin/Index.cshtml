@@ -15,7 +15,7 @@
             <th>Admin Password</th>
             <th>Mail</th>
             <th>Admin Type</th>
-            <th>Deleted</th>
+            <th>Case</th>
             <th></th>
             <th></th>
 
@@ -26,12 +26,13 @@
     <tbody>
             @foreach (var item in Model)
             {
+                var deletedCase = @item.Deleted == true ? "Deleted" : "--";
                 <tr>
                     <td>@item.AdminName</td>
                     <td>@item.AdminPassword</td>
                     <td>@item.Mail</td>
                     <td>@item.AdminType</td>
-                    <td>@item.Deleted</td> 
+                    <td>@deletedCase</td> 
                     <td>
                             <button type="button" class="btn btn-inverse-danger btn-fw  text-center" data-bs-whatever="@item.AdminId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
                     </td>
@@ -43,7 +44,7 @@
 </table>
 </div>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/Admin/Add" class="btn btn-inverse-primary btn-fw">Add New Packet</a>
+    <a href="/Admin/Add" class="btn btn-inverse-primary btn-fw">Add New Admin</a>
 </div>
 
 
