@@ -33,6 +33,7 @@
                          <option value="@item.SeanceId">@item.hour.Hours-@item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
             }
         </select>
+        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.seanceModel.FirstOrDefault().SeanceId, "", new { @class = "text-danger" })
         <br />
 
 
@@ -44,6 +45,7 @@
                     <option value="@item.UserId">@item.FirstName.ToUpper()  @item.LastName.ToUpper()</option>
             }
         </select>
+        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.userModel.FirstOrDefault().UserId, "", new { @class = "text-danger" })
         <br />
         @Html.Label("Active")
         <select class="form-control " name="ActivePassive">

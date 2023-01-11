@@ -39,6 +39,10 @@ namespace GymGymACoreApplication.Controllers
         [HttpPost]
         public IActionResult Add(UserHourTrainer userHourTrainer)
         {
+             AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
+                appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
+                appointmentSeanceUserModel.userModel = um.UserList();
+                appointmentSeanceUserModel.appointmentModel = new UserHourTrainer();
             UserHourTrainerValidator userHourTrainerValidator = new UserHourTrainerValidator();
             var result = userHourTrainerValidator.Validate(userHourTrainer);
             if (result.IsValid)
@@ -49,10 +53,6 @@ namespace GymGymACoreApplication.Controllers
             }
             else
             {
-                AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
-                appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
-                appointmentSeanceUserModel.userModel = um.UserList();
-                appointmentSeanceUserModel.appointmentModel = userHourTrainer;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
