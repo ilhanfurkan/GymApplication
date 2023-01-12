@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+    var data = TempData["init"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Design by foolishdeveloper.com -->
+    <title>Glassmorphism login Form Tutorial in html css</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <link href="~/template/assets/css/login.css" rel="stylesheet" />
+</head>
+<body>
+    @if (@data != null && (int)@data == 1)
+    {
+        TempData["init"] = 0;
+        @await Component.InvokeAsync("NToastNotify")
+    }
+<div class="login-box">
+  <h2>Login</h2>
+  <form>
+    <div class="user-box">
+      <input type="text" name="" required="">
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="" required="">
+      <label>Password</label>
+    </div>
+    <a href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </a>
+  </form>
+</div>
+</body>
+</html>
+
+
