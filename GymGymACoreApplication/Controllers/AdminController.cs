@@ -1,22 +1,89 @@
 ﻿using Business.Concrete;
 using Business.Validations;
+using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
+using System.Security.Claims;
+using System.Text;
+using XSystem.Security.Cryptography;
 
 namespace GymGymACoreApplication.Controllers
 {
+    
     public class AdminController : Controller
     {
         AdminManager adminManager = new AdminManager(new EfAdminRepository());
         private readonly ILogger<AdminController> _logger;
-        public AdminController(ILogger<AdminController> logger)
+        private readonly IToastNotification _toastNotification;
+        public AdminController(ILogger<AdminController> logger, IToastNotification toastNotification)
         {
             _logger = logger;
+            _toastNotification = toastNotification;
         }
 
         [AllowAnonymous]
+        [HttpGet]
+        public IActionResult login()
+        {
+            return View();
+
+        }
+
+        public IActionResult profile()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> Giris(Admin admin)
+        {
+
+            Context context = new Context();
+            var result = context.Admins .Where(x => x.Mail == admin.Mail && x.AdminPassword == admin.AdminPassword).SingleOrDefault();
+            if (result != null)
+            {
+
+                var claims = new List<Claim> { new Claim(ClaimTypes.Email, admin.Mail) };
+
+                var userIdentify = new ClaimsIdentity(claims, "Login");
+                ClaimsPrincipal principal = new ClaimsPrincipal(userIdentify);
+                //  await HttpContext.SignInAsync(principal);
+                await HttpContext
+                    .SignInAsync(
+                    principal,
+                    new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(1) });
+                return RedirectToAction("Index", "Firma");
+            }
+            _toastNotification.AddErrorToastMessage("Kullanıcı adı veya password hatalı");
+            TempData["init"] = 1;
+            return RedirectToAction("login");
+        }
+        public async Task<IActionResult> Cikis()
+        {
+
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("login");
+
+        }
+        public string sifreleme(string value)
+        {
+            MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider();
+            byte[] dizi = Encoding.UTF8.GetBytes(value);
+            dizi = provider.ComputeHash(dizi);
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (byte bayt in dizi)
+            {
+                stringBuilder.Append(bayt.ToString().ToLower());
+            }
+            return stringBuilder.ToString();
+        }
+
         [HttpGet]
         public IActionResult Index()
         {

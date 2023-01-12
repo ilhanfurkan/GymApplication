@@ -15,7 +15,7 @@ namespace Business.Validations
             //UserHourTrainer Date
             RuleFor(userCategoryTrainer => userCategoryTrainer.DateOfRegistration).NotEmpty().WithMessage("Cannot be Empty");
 
-            
+
 
             //UserHourTrainer Price
             RuleFor(userCategoryTrainer => userCategoryTrainer.Price).NotEmpty().WithMessage("Cannot be Empty");

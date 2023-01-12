@@ -10,7 +10,7 @@
 
     @using (Html.BeginForm("Update", "userCategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.RegistrationId,new { @class = "form-control",@name="userCategoryTrainerId",@value="@Model.userCategoryTrainerId",@type="hidden"})
+        <input type="hidden" class="form-control" name="RegistrationId" value="@Model.registrationModel.RegistrationId" />
         @Html.Label("Date Of Registration ")
                <input class="form-control" type="text" name="DateOfRegistration" value="@Model.registrationModel.DateOfRegistration.ToString().Split(" ")[0]" />
         @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.DateOfRegistration,"",new { @class ="text-danger" })
@@ -31,8 +31,8 @@
             </select>
         <br />
         @Html.Label("Price")
-        @Html.TextBoxFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.Price ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.Price,"",new { @class ="text-danger" })
+        <input class="form-control" type="text" name="Price" value="@Model.registrationModel.Price" />
+        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.registrationModel.Price  ,"",new { @class ="text-danger" })
         <br />
           <label>User</label>
                     <select class="form-control" name="UserId">

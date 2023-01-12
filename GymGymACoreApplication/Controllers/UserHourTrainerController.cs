@@ -85,9 +85,6 @@ namespace GymGymACoreApplication.Controllers
             }
             else
             {
-     
-             
-
                 AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
                 appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
                 appointmentSeanceUserModel.userModel = um.UserList();
