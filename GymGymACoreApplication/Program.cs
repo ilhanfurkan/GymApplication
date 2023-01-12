@@ -1,4 +1,12 @@
+using NToastNotify;
+
 var builder = WebApplication.CreateBuilder(args);
+// Add services to the container.
+builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
+{
+    ProgressBar = true,
+    Timeout = 5000
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -19,6 +27,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+//toastNotify packects
+app.UseNToastNotify();
+
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
