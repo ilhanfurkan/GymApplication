@@ -8,21 +8,21 @@
     <h3 style="text-align:center;">Update Packet</h3>
     @using (Html.BeginForm("update", "CategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketId,new { @class = "form-control",@type="hidden"})
+            <input type="hidden" class="form-control" name="PacketId" value="@Model.packetModel.PacketId"  />
         @Html.Label("Packet Name")
-        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketName,new { @class = "form-control" })
+            <input class="form-control" type="text" name="PacketName" value="@Model.packetModel.PacketName" />
         @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.packetModel.PacketName  ,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Packet Detail")
-        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketDetail,new { @class = "form-control" })
+            <input class="form-control" type="text" name="PacketDetail" value="@Model.packetModel.PacketDetail" />
         @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.packetModel.PacketDetail  ,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Packet Price")
-        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.PacketPrice,new { @class = "form-control" })
+            <input class="form-control" type="text" name="PacketPrice" value="@Model.packetModel.PacketPrice" />
         @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.packetModel.PacketPrice  ,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Right")
-        @Html.TextBoxFor(categoryTrainer=>categoryTrainer.packetModel.Right,new { @class = "form-control" })
+            <input class="form-control" type="text" name="Right" value="@Model.packetModel.Right" />
         @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.packetModel.Right  ,"",new { @class ="text-danger" })
         <br />
         <label>Categories</label>
