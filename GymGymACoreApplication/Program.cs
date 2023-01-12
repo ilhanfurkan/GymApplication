@@ -1,42 +1,78 @@
+using FluentAssertions;
+using FluentAssertions.Common;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using NToastNotify;
 
-var builder = WebApplication.CreateBuilder(args);
-// Add services to the container.
-builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
+
+
+public class Program
 {
-    ProgressBar = true,
-    Timeout = 5000
-});
+    private static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+            AddCookie(options => { options.LoginPath = "/Admin/login"; });
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+        builder.Services.AddMvc(config =>
+        {
+            var policy = new AuthorizationPolicyBuilder()
+               .RequireAuthenticatedUser()
+               .Build();
+            config.Filters.Add(new AuthorizeFilter(policy));
+        });
+        // Add services to the container.
+        builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
+        {
+            ProgressBar = true,
+            Timeout = 5000
+        });
+       
+       
+        // Add services to the container.
+        builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+        var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-   
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+        // Configure the HTTP request pipeline.
+        if (!app.Environment.IsDevelopment())
+        {
+
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+        }
+        app.UseStatusCodePagesWithReExecute("/error/{0}");
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+
+        app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        //toastNotify packects
+        app.UseNToastNotify();
+
+        app.MapRazorPages();
+
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=User}/{action=Index}/{id?}");
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=User}/{action=Index}/{id?}");
+
+            endpoints.MapControllerRoute(name: "denemegstrdt",
+            pattern: "/User/Index",
+            defaults: new { controller = "User", action = "Index" });
+
+
+
+        });
+
+        app.Run();
+    }
 }
-app.UseStatusCodePagesWithReExecute("/error/{0}");
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-//toastNotify packects
-app.UseNToastNotify();
-
-app.MapRazorPages();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();
-
-

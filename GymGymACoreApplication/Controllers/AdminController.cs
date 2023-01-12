@@ -50,14 +50,14 @@ namespace GymGymACoreApplication.Controllers
 
                 var claims = new List<Claim> { new Claim(ClaimTypes.Email, admin.Mail) };
 
-                var userIdentify = new ClaimsIdentity(claims, "Login");
+                var userIdentify = new ClaimsIdentity(claims, "login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentify);
                 //  await HttpContext.SignInAsync(principal);
                 await HttpContext
                     .SignInAsync(
                     principal,
                     new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(1) });
-                return RedirectToAction("Index", "Firma");
+                return RedirectToAction("Index", "Home");
             }
             _toastNotification.AddErrorToastMessage("Kullanıcı adı veya password hatalı");
             TempData["init"] = 1;

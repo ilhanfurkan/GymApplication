@@ -2,13 +2,14 @@
 using Business.Validations;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace GymGymACoreApplication.Controllers
 {
-
+   
     public class TrainerController : Controller
     {
         TrainerManager tm = new TrainerManager(new EfTrainerRepository());
@@ -19,6 +20,7 @@ namespace GymGymACoreApplication.Controllers
             var trainer = tm.TrainerList();
             return View(trainer);
         }
+        
         [HttpGet]
         public IActionResult Add() 
         {
