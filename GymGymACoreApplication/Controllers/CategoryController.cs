@@ -3,15 +3,16 @@ using Business.Validations;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace GymGymACoreApplication.Controllers
 {
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var category = cm.CategoryList();
+            var category = cm.CategoryList().ToPagedList(page,pageSize);
             return View(category);
         }
 

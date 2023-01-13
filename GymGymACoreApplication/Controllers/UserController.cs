@@ -4,7 +4,7 @@ using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
-
+using X.PagedList;
 
 namespace GymGymACoreApplication.Controllers
 {
@@ -12,9 +12,9 @@ namespace GymGymACoreApplication.Controllers
     {
         UserManager um = new UserManager(new EfUserRepository());
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1 , int pageSize =5)
         {
-            var users = um.UserList();
+            var users = um.UserList().ToPagedList(page,pageSize);
             return View(users);
         }
         public IActionResult Delete(int id)

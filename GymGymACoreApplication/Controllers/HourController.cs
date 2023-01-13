@@ -4,6 +4,7 @@ using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace GymGymACoreApplication.Controllers
 {
@@ -11,9 +12,9 @@ namespace GymGymACoreApplication.Controllers
     {
 
         HourManager hm = new HourManager(new EfHourRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var hour = hm.HourList();
+            var hour = hm.HourList().ToPagedList(page, pageSize);
             return View(hour);
         }
 

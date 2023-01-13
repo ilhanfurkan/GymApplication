@@ -11,6 +11,7 @@ using NToastNotify;
 using System.Security.Claims;
 using System.Text;
 using XSystem.Security.Cryptography;
+using X.PagedList;
 
 namespace GymGymACoreApplication.Controllers
 {
@@ -71,24 +72,24 @@ namespace GymGymACoreApplication.Controllers
             return RedirectToAction("login");
 
         }
-        public string sifreleme(string value)
-        {
-            MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider();
-            byte[] dizi = Encoding.UTF8.GetBytes(value);
-            dizi = provider.ComputeHash(dizi);
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (byte bayt in dizi)
-            {
-                stringBuilder.Append(bayt.ToString().ToLower());
-            }
-            return stringBuilder.ToString();
-        }
+        //public string sifreleme(string value)
+        //{
+        //    MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider();
+        //    byte[] dizi = Encoding.UTF8.GetBytes(value);
+        //    dizi = provider.ComputeHash(dizi);
+        //    StringBuilder stringBuilder = new StringBuilder();
+        //    foreach (byte bayt in dizi)
+        //    {
+        //        stringBuilder.Append(bayt.ToString().ToLower());
+        //    }
+        //    return stringBuilder.ToString();
+        //}
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
 
-            var admin = adminManager.AdminList();
+            var admin = adminManager.AdminList().ToPagedList(page, pageSize);
             return View(admin);
         }
 

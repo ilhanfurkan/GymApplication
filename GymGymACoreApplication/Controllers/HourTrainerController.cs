@@ -5,6 +5,7 @@ using Entities.Concrete;
 using GymGymACoreApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using X.PagedList;
 
 namespace GymGymACoreApplication.Controllers
 {
@@ -13,9 +14,9 @@ namespace GymGymACoreApplication.Controllers
 		HourManager hm = new HourManager(new EfHourRepository());
 		TrainerManager tm = new TrainerManager(new EfTrainerRepository());
         HourTrainerManager htm = new HourTrainerManager(new EfHourTrainerRepository());
-		public IActionResult Index()
+		public IActionResult Index(int page = 1, int pageSize = 5)
 		{
-			var hourTrainer = htm.HourTrainerList();
+			var hourTrainer = htm.HourTrainerList().ToPagedList(page, pageSize);
 			return View(hourTrainer);
 		}
 

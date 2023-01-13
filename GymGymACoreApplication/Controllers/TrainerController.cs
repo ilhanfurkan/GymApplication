@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using X.PagedList;
 
 namespace GymGymACoreApplication.Controllers
 {
@@ -15,9 +16,9 @@ namespace GymGymACoreApplication.Controllers
         TrainerManager tm = new TrainerManager(new EfTrainerRepository());
 
         // GET: TrainerController
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 5 )
         {
-            var trainer = tm.TrainerList();
+            var trainer = tm.TrainerList().ToPagedList(page,pageSize);
             return View(trainer);
         }
         

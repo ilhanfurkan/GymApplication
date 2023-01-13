@@ -5,6 +5,7 @@ using Entities.Concrete;
 using FluentValidation;
 using GymGymACoreApplication.Models;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace GymGymACoreApplication.Controllers
 {
@@ -13,9 +14,9 @@ namespace GymGymACoreApplication.Controllers
         HourTrainerManager ht = new HourTrainerManager(new EfHourTrainerRepository());
         UserManager um = new UserManager(new EfUserRepository());   
         UserHourTrainerManager uhtm = new UserHourTrainerManager(new EfUserHourTrainerRepository());
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var userHour = uhtm.UserHourTrainerList();
+            var userHour = uhtm.UserHourTrainerList().ToPagedList(page,pageSize);
             return View(userHour);
         }
         public IActionResult Delete(int id)
