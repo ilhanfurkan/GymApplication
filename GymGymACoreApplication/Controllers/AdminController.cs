@@ -56,7 +56,7 @@ namespace GymGymACoreApplication.Controllers
                 await HttpContext
                     .SignInAsync(
                     principal,
-                    new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(1) });
+                    new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(20) });
                 return RedirectToAction("Index", "Admin");
             }
             _toastNotification.AddErrorToastMessage("Kullanıcı adı veya password hatalı");
