@@ -4,16 +4,18 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using NToastNotify;
-
+using Microsoft.AspNetCore.Http;
 
 
 public class Program
 {
+    [Obsolete]
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
          builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
-            AddCookie(options => { options.LoginPath = "/Admin/login"; });
+            AddCookie(options => { options.LoginPath = "/Admin/login"; 
+            });
 
         builder.Services.AddMvc(config =>
         {
@@ -28,8 +30,15 @@ public class Program
             ProgressBar = true,
             Timeout = 5000000
         });
-       
-       
+        //builder.Services.AddMvc();
+
+        ////Set Session Timeout. Default is 20 minutes.
+        //builder.Services.AddSession(options =>
+        //{
+        //    options.IdleTimeout = TimeSpan.FromMinutes(30);
+        //});
+
+
         // Add services to the container.
         builder.Services.AddControllersWithViews();
 
