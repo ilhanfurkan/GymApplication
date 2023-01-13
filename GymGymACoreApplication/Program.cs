@@ -26,7 +26,7 @@ public class Program
         builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
         {
             ProgressBar = true,
-            Timeout = 5000
+            Timeout = 5000000
         });
        
        
@@ -47,31 +47,31 @@ public class Program
         app.UseStaticFiles();
 
         app.UseRouting();
+
+
+        // Bu dört fonksiyon login ekraný için
         app.UseAuthentication();
         app.UseAuthorization();
-
+        app.MapRazorPages();
         //toastNotify packects
         app.UseNToastNotify();
 
-        app.MapRazorPages();
+        
 
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=User}/{action=Index}/{id?}");
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=User}/{action=Index}/{id?}");
+        //app.UseEndpoints(endpoints =>
+        //{
+        //    endpoints.MapControllerRoute(
+        //        name: "default",
+        //        pattern: "{controller=User}/{action=Index}/{id?}");
 
-            endpoints.MapControllerRoute(name: "denemegstrdt",
-            pattern: "/User/Index",
-            defaults: new { controller = "User", action = "Index" });
-
-
-
-        });
+        //    endpoints.MapControllerRoute(name: "denemegstrdt",
+        //    pattern: "/User/Index",
+        //    defaults: new { controller = "User", action = "Index" });
+        //});
 
         app.Run();
     }
