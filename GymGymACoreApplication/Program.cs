@@ -28,15 +28,15 @@ public class Program
         builder.Services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
         {
             ProgressBar = true,
-            Timeout = 5000000
+            Timeout = 5000
         });
-        //builder.Services.AddMvc();
+        builder.Services.AddMvc();
 
-        ////Set Session Timeout. Default is 20 minutes.
-        //builder.Services.AddSession(options =>
-        //{
-        //    options.IdleTimeout = TimeSpan.FromMinutes(30);
-        //});
+        //Set Session Timeout. Default is 20 minutes.
+        builder.Services.AddSession(options =>
+        {
+            options.IdleTimeout = TimeSpan.FromMinutes(1);
+        });
 
 
         // Add services to the container.
@@ -71,16 +71,16 @@ public class Program
             name: "default",
             pattern: "{controller=User}/{action=Index}/{id?}");
 
-        //app.UseEndpoints(endpoints =>
-        //{
-        //    endpoints.MapControllerRoute(
-        //        name: "default",
-        //        pattern: "{controller=User}/{action=Index}/{id?}");
+        app.UseEndpoints(endpoints =>  
+        {
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=User}/{action=Index}/{id?}");
 
-        //    endpoints.MapControllerRoute(name: "denemegstrdt",
-        //    pattern: "/User/Index",
-        //    defaults: new { controller = "User", action = "Index" });
-        //});
+            endpoints.MapControllerRoute(name: "denemegstrdt",
+            pattern: "/User/Index",
+            defaults: new { controller = "User", action = "Index" });
+        });
 
         app.Run();
     }

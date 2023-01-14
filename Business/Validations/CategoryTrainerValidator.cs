@@ -27,9 +27,9 @@ namespace Business.Validations
             RuleFor(categoryTrainer => categoryTrainer.Right).NotEmpty().WithMessage("Cannot be Empty");
 
             //// CategoryId And TrainerId
-            //RuleFor(categoryTrainer => categoryTrainer.CategoryId).NotEmpty().WithMessage("Cannot be Empty");
+            RuleFor(categoryTrainer => categoryTrainer.CategoryId).NotEmpty().WithMessage("Cannot be Empty");
 
-            //RuleFor(categoryTrainer => categoryTrainer.TrainerId).NotEmpty().WithMessage("Cannot be Empty");
+            RuleFor(categoryTrainer => categoryTrainer.TrainerId).NotEmpty().WithMessage("Cannot be Empty");
 
 
 
