@@ -11,7 +11,7 @@
     @using (Html.BeginForm("Update", "Admin", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.TextBoxFor(admin=>admin.AdminId,new { @class = "form-control",@type="hidden"})
-        @Html.Label("Admin Name")
+        @Html.Label("Admin Full Name")
         @Html.TextBoxFor(admin=>admin.AdminName,new { @class = "form-control" })
         @Html.ValidationMessageFor(admin=>admin.AdminName,"",new { @class ="text-danger" })
                 <br />
@@ -26,9 +26,15 @@
         @Html.Label("Admin Type")
 
                <select class="form-control" name="adminType">
-                                <option>Admin</option>
-                            <option>Users</option>
+                                <option disabled selected>--Choose Title--</option>
+									<option value="Boss">Boss</option>
+									<option value="GeneralManager">General Manager</option>
+									<option value="Shareholder">Shareholder</option>
+									<option value="Manager">Manager</option>
+									<option value="AssistantManager">Assistant Manager</option>
+									<option value="Accountant">Accountant</option>
                </select>
+        @Html.ValidationMessageFor(admin=>admin.AdminType,"",new { @class ="text-danger" })
                 <br />
         @Html.Label("Case")
            <select class="form-control" name="Deleted">

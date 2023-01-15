@@ -23,16 +23,16 @@
 			<br />
 		@Html.Label("Right")
 		@Html.TextBox("Right","",new { @class = "form-control"})
-		@Html.ValidationMessageFor(m=>m.CategoryTrainer.Right,"",new { @class ="text-danger" })
+		@Html.ValidationMessage("CategoryTrainer.Right","",new { @class ="text-danger" })
 			<br />
 		@Html.Label("Categories")
 		@Html.DropDownListFor(m => m.CategoryTrainer.CategoryId, new SelectList(Model.Categories, "CategoryId", "CategoryName"), "--Choose Category--", new { @class = "form-control" })
-		@Html.ValidationMessageFor(m => m.Categories.FirstOrDefault().CategoryId, "", new { @class = "text-danger" })
+		@Html.ValidationMessageFor(m => m.CategoryTrainer.CategoryId, "", new { @class = "text-danger" })
 
 			<br />
 		@Html.Label("Trainers")
 		@Html.DropDownListFor(m => m.CategoryTrainer.TrainerId, new SelectList(Model.Trainers, "TrainerId", "TrainerFirstName"), "--Choose Trainer--", new { @class = "form-control" })
-		@Html.ValidationMessageFor(m => m.Trainers.FirstOrDefault().TrainerId, "", new { @class = "text-danger" })
+		@Html.ValidationMessageFor(m => m.CategoryTrainer.TrainerId, "", new { @class = "text-danger" })
 			<br />
 		@Html.Label("Active")
 			<select class="form-control " name="ActivePassive">

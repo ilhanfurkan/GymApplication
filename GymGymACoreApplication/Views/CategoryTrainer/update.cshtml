@@ -10,19 +10,20 @@
     {
             <input type="hidden" class="form-control" name="PacketId" value="@Model.CategoryTrainer.PacketId"  />
         @Html.Label("Packet Name")
-            <input class="form-control" type="text" name="PacketName" value="@Model.CategoryTrainer.PacketName" />
+            @*<input class="form-control" type="text" name="PacketName" value="@Model.CategoryTrainer.PacketName" />*@
+        @Html.TextBoxFor(m=>m.CategoryTrainer.PacketName,"",new { @class = "form-control" })
         @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.CategoryTrainer.PacketName  ,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Packet Detail")
-            <input class="form-control" type="text" name="PacketDetail" value="@Model.CategoryTrainer.PacketDetail" />
+        @Html.TextBoxFor(m=>m.CategoryTrainer.PacketDetail,"",new { @class = "form-control" })
         @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.CategoryTrainer.PacketDetail  ,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Packet Price")
-            <input class="form-control" type="text" name="PacketPrice" value="@Model.CategoryTrainer.PacketPrice" />
+        @Html.TextBoxFor(m=>m.CategoryTrainer.PacketPrice,"",new { @class = "form-control" })
         @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.CategoryTrainer.PacketPrice  ,"",new { @class ="text-danger" })
         <br />
          @Html.Label("Right")
-            <input class="form-control" type="text" name="Right" value="@Model.CategoryTrainer.Right" />
+        @Html.TextBoxFor(m=>m.CategoryTrainer.Right,"",new { @class = "form-control" })
         @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.CategoryTrainer.Right  ,"",new { @class ="text-danger" })
         <br />
         <label>Categories</label>
@@ -39,7 +40,7 @@
                 }
 			}
 				</select>
-		@Html.ValidationMessage("CategoryId","",new { @class ="text-danger" })
+        
         <br />
             <label>Trainers</label>
                         <select class="form-control" name="TrainerId">
@@ -56,7 +57,7 @@
                                        
             }
                         </select>
-        @Html.ValidationMessage("TrainerId","",new { @class ="text-danger" })
+        
         <br />
                 @Html.Label("Active")
         <select class="form-control" name="ActivePassive">

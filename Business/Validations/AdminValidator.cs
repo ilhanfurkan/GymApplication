@@ -12,7 +12,16 @@ namespace Business.Validations
     {
         public AdminValidator() 
         {
+            RuleFor(admin => admin.AdminName).NotEmpty();
+            RuleFor(admin => admin.AdminPassword).NotEmpty();
+            RuleFor(admin => admin.Mail).NotEmpty();
+            RuleFor(admin => admin.AdminType).NotEmpty();
+           
+            
+            RuleFor(admin => admin.AdminPassword).MinimumLength(8);
+            
 
+            
         }
 
     }

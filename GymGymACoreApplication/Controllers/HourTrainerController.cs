@@ -24,9 +24,9 @@ namespace GymGymACoreApplication.Controllers
 		public IActionResult Add()
 		{
 			SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
-			seanceHourTrainerModel.hourModel = hm.HourList();
-			seanceHourTrainerModel.trainerModel = tm.TrainerList();
-			seanceHourTrainerModel.seanceModel = new HourTrainer();
+			seanceHourTrainerModel.Hours = hm.HourList();
+			seanceHourTrainerModel.Trainers = tm.TrainerList();
+			seanceHourTrainerModel.HourTrainer = new HourTrainer();
 			return View(seanceHourTrainerModel);
 		}
 
@@ -45,9 +45,9 @@ namespace GymGymACoreApplication.Controllers
 			
 			{
                     SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
-                    seanceHourTrainerModel.hourModel = hm.HourList();
-                    seanceHourTrainerModel.trainerModel = tm.TrainerList();
-					seanceHourTrainerModel.seanceModel = hourTrainer;
+                    seanceHourTrainerModel.Hours = hm.HourList();
+                    seanceHourTrainerModel.Trainers = tm.TrainerList();
+					seanceHourTrainerModel.HourTrainer = hourTrainer;
                     foreach (var item in result.Errors)
                     {
                         ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
@@ -66,9 +66,9 @@ namespace GymGymACoreApplication.Controllers
 		public IActionResult update(int id)
 		{
             SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
-            seanceHourTrainerModel.hourModel = hm.HourList();
-            seanceHourTrainerModel.trainerModel = tm.TrainerList();
-			seanceHourTrainerModel.seanceModel = htm.HourTrainerGetById(id);
+            seanceHourTrainerModel.Hours = hm.HourList();
+            seanceHourTrainerModel.Trainers = tm.TrainerList();
+			seanceHourTrainerModel.HourTrainer = htm.HourTrainerGetById(id);
             return View(seanceHourTrainerModel);
         }
 		[HttpPost]
@@ -85,9 +85,9 @@ namespace GymGymACoreApplication.Controllers
 			else
 			{
                 SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
-                seanceHourTrainerModel.hourModel = hm.HourList();
-                seanceHourTrainerModel.trainerModel = tm.TrainerList();
-                seanceHourTrainerModel.seanceModel = hourTrainer;
+                seanceHourTrainerModel.Hours = hm.HourList();
+                seanceHourTrainerModel.Trainers = tm.TrainerList();
+                seanceHourTrainerModel.HourTrainer = hourTrainer;
                 foreach (var item in result.Errors)
 				{
 					ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
