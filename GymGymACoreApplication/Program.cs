@@ -13,9 +13,11 @@ public class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
-            AddCookie(options => { options.LoginPath = "/Admin/login"; 
-            });
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+           AddCookie(options =>
+           {
+               options.LoginPath = "/Admin/login";
+           });
 
         builder.Services.AddMvc(config =>
         {

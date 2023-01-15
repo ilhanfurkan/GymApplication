@@ -21,6 +21,6 @@ namespace Entities.Concrete
         [StringLength(20)]
         public string AdminType { get; set; }
         public bool Deleted { get; set; }
-        
+
     }
 }
