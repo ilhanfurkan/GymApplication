@@ -7,9 +7,11 @@ using NLog.Layouts;
 using XAct;
 using X.PagedList;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 
 namespace GymGymACoreApplication.Controllers.İnterfaceController
 {
+   
     [AllowAnonymous]
     public class HomePageController : Controller
     {
@@ -28,8 +30,13 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
         //    }
         //}
         // GET: HomePageController
-      
-    
+
+        public HomePageController()
+        {
+            MenuManager manager = new MenuManager(new EfMenuRepository());
+            var menuList= manager.MenuList();
+            ViewData["menu"] = menuList;
+        }
         public ActionResult Index()
         {
             return View();
