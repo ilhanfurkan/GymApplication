@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using NLog.Layouts;
 using XAct;
 using X.PagedList;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GymGymACoreApplication.Controllers.İnterfaceController
 {
+    [AllowAnonymous]
     public class HomePageController : Controller
     {
-      
+
         //public string Layout { get; }
 
         //public HomePageController(Admin admin)
@@ -26,6 +28,8 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
         //    }
         //}
         // GET: HomePageController
+      
+    
         public ActionResult Index()
         {
             return View();
