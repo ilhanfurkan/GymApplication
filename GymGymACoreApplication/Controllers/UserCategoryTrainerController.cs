@@ -7,6 +7,7 @@ using FluentValidation;
 using GymGymACoreApplication.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace GymGymACoreApplication.Controllers
 {
@@ -16,9 +17,9 @@ namespace GymGymACoreApplication.Controllers
         CategoryTrainerManager ctm = new CategoryTrainerManager(new EfCategoryTrainerRepository());
         UserManager um = new UserManager(new EfUserRepository());
         // GET: UserCategoryTrainerController
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 5)
         {
-            var userCategoryTrainer = uctm.UserCategoryTrainerList();
+            var userCategoryTrainer = uctm.UserCategoryTrainerList().ToPagedList(page,pageSize);
             return View(userCategoryTrainer);
         }
         public IActionResult Delete(int id)

@@ -1,5 +1,6 @@
 ﻿@using Entities.Concrete;
-@model List<Hour>;
+@using X.PagedList
+@model PagedList<Hour>;
 
 @{
     ViewData["Title"] = "Index";
@@ -41,7 +42,7 @@
             var deletedCase=@item.Deleted==true?"Deleted":"--";
             <tr>
                 <td>@item.Hours</td>
-                <td>@item.Time</td>
+                <td>@item.Time Min</td>
                 <td>@deletedCase</td>
                 <td></td>
                 <td></td>
@@ -80,7 +81,11 @@
     </div>
 </div>
 
-
+<div style="position:relative;">
+<div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+    <partial name="PagingPartialView" model="@Model" />
+</div>
+</div>
 <script>
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {

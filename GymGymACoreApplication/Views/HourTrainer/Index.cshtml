@@ -1,5 +1,6 @@
 ﻿@using Entities.Concrete;
-@model List<HourTrainer>;
+@using X.PagedList;
+@model PagedList<HourTrainer>;
 
 @{
     ViewData["Title"] = "Index";
@@ -77,7 +78,11 @@
     </div>
 </div>
 
-
+<div style="position:relative;">
+<div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+    <partial name="PagingPartialView" model="@Model" />
+</div>
+</div>
 <script>
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {

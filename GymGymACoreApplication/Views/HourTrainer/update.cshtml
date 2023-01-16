@@ -9,25 +9,25 @@
 	<h3 style="text-align:center;">Update Seance</h3>
 	@using (Html.BeginForm("update", "HourTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        <input type="hidden" class="form-control"  name="SeanceId" value="@Model.seanceModel.SeanceId" />
+        <input type="hidden" class="form-control"  name="SeanceId" value="@Model.HourTrainer.SeanceId" />
 
         <label>Quota</label>
-        <input class="form-control" type="text" name="Quota" value="@Model.seanceModel.Quota" />
+        <input class="form-control" type="text" name="Quota" value="@Model.HourTrainer.Quota" />
         <br />
 
         <label>Date</label>
-        <input class="form-control" type="text" name="Date" value="@Model.seanceModel.Date.ToString().Split(" ")[0]" />
+        <input class="form-control" type="text" name="Date" value="@Model.HourTrainer.Date.ToString().Split(" ")[0]" />
         <br />
 
         <label>Hour</label>
         <select class="form-control" name="hourId">
 
 
-            @foreach (var item in @Model.hourModel)
+            @foreach (var item in @Model.Hours)
             {
 
 
-                if (item.HourId == @Model.seanceModel.HourId)
+                if (item.HourId == @Model.HourTrainer.HourId)
                 {
                     <option value="@item.HourId" selected>@item.Hours </option>
                 }
@@ -44,11 +44,11 @@
         <select class="form-control" name="TrainerId">
 
 
-            @foreach (var item in @Model.trainerModel)
+            @foreach (var item in @Model.Trainers)
             {
 
 
-                if (item.TrainerId == @Model.seanceModel.TrainerId)
+                if (item.TrainerId == @Model.HourTrainer.TrainerId)
                 {
                     <option value="@item.TrainerId" selected>@item.TrainerFirstName.ToUpper()  @item.TrainerLastName.ToUpper()</option>
                 }
@@ -63,7 +63,7 @@
 
         @Html.Label("Active")
         <select class="form-control" name="ActivePassive">
-            @if (Model.seanceModel.ActivePassive)
+            @if (Model.HourTrainer.ActivePassive)
             {
                 <option value="True" selected>Active</option>
                 <option value="False">Passive</option>
@@ -78,7 +78,7 @@
 
         @Html.Label("Case")
         <select class="form-control" name="Deleted">
-            @if (Model.seanceModel.Deleted)
+            @if (Model.HourTrainer.Deleted)
             {
                 <option value="True" selected>Deleted</option>
                 <option value="False">--</option>

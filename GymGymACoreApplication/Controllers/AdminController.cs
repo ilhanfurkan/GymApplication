@@ -11,17 +11,22 @@ using NToastNotify;
 using System.Security.Claims;
 using System.Text;
 using XSystem.Security.Cryptography;
+using X.PagedList;
+using NLog.Layouts;
+using XAct.Users;
 
 namespace GymGymACoreApplication.Controllers
 {
     
     public class AdminController : Controller
     {
+        
         AdminManager adminManager = new AdminManager(new EfAdminRepository());
         private readonly ILogger<AdminController> _logger;
         private readonly IToastNotification _toastNotification;
         public AdminController(ILogger<AdminController> logger, IToastNotification toastNotification)
         {
+         
             _logger = logger;
             _toastNotification = toastNotification;
         }
@@ -42,26 +47,30 @@ namespace GymGymACoreApplication.Controllers
         [HttpPost]
         public async Task<IActionResult> Giris(Admin admin)
         {
+          
+                Context context = new Context();
+                var result = context.Admins.Where(x => x.Mail == admin.Mail && x.AdminPassword == admin.AdminPassword).SingleOrDefault();
+                if (result != null)
+                {
 
-            Context context = new Context();
-            var result = context.Admins .Where(x => x.Mail == admin.Mail && x.AdminPassword == admin.AdminPassword).SingleOrDefault();
-            if (result != null)
-            {
+                    var claims = new List<Claim> { new Claim(ClaimTypes.Email, admin.Mail) };
 
-                var claims = new List<Claim> { new Claim(ClaimTypes.Email, admin.Mail) };
+                    var userIdentify = new ClaimsIdentity(claims, "login");
+                    ClaimsPrincipal principal = new ClaimsPrincipal(userIdentify);
+                    //  await HttpContext.SignInAsync(principal);
+                    await HttpContext
+                        .SignInAsync(
+                        principal,
+                        new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(20) });
+                    return RedirectToAction("Index", "Admin");
 
-                var userIdentify = new ClaimsIdentity(claims, "login");
-                ClaimsPrincipal principal = new ClaimsPrincipal(userIdentify);
-                //  await HttpContext.SignInAsync(principal);
-                await HttpContext
-                    .SignInAsync(
-                    principal,
-                    new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(20) });
-                return RedirectToAction("Index", "Admin");
-            }
-            _toastNotification.AddErrorToastMessage("Kullanıcı adı veya password hatalı");
-            TempData["init"] = 1;
-            return RedirectToAction("login");
+                }
+                _toastNotification.AddErrorToastMessage("Kullanıcı adı veya password hatalı");
+                TempData["init"] = 1;
+                return RedirectToAction("login");
+            
+          
+            
         }
         public async Task<IActionResult> Cikis()
         {
@@ -71,24 +80,24 @@ namespace GymGymACoreApplication.Controllers
             return RedirectToAction("login");
 
         }
-        public string sifreleme(string value)
-        {
-            MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider();
-            byte[] dizi = Encoding.UTF8.GetBytes(value);
-            dizi = provider.ComputeHash(dizi);
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (byte bayt in dizi)
-            {
-                stringBuilder.Append(bayt.ToString().ToLower());
-            }
-            return stringBuilder.ToString();
-        }
+        //public string sifreleme(string value)
+        //{
+        //    MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider();
+        //    byte[] dizi = Encoding.UTF8.GetBytes(value);
+        //    dizi = provider.ComputeHash(dizi);
+        //    StringBuilder stringBuilder = new StringBuilder();
+        //    foreach (byte bayt in dizi)
+        //    {
+        //        stringBuilder.Append(bayt.ToString().ToLower());
+        //    }
+        //    return stringBuilder.ToString();
+        //}
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
 
-            var admin = adminManager.AdminList();
+            var admin = adminManager.AdminList().ToPagedList(page, pageSize);
             return View(admin);
         }
 

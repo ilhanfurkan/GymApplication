@@ -13,9 +13,11 @@ public class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
-            AddCookie(options => { options.LoginPath = "/Admin/login"; 
-            });
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+           AddCookie(options =>
+           {
+               options.LoginPath = "/Admin/login";
+           });
 
         builder.Services.AddMvc(config =>
         {
@@ -30,13 +32,13 @@ public class Program
             ProgressBar = true,
             Timeout = 5000
         });
-        //builder.Services.AddMvc();
+        builder.Services.AddMvc();
 
-        ////Set Session Timeout. Default is 20 minutes.
-        //builder.Services.AddSession(options =>
-        //{
-        //    options.IdleTimeout = TimeSpan.FromMinutes(30);
-        //});
+        //Set Session Timeout. Default is 20 minutes.
+        builder.Services.AddSession(options =>
+        {
+            options.IdleTimeout = TimeSpan.FromMinutes(1);
+        });
 
 
         // Add services to the container.
@@ -56,19 +58,22 @@ public class Program
         app.UseStaticFiles();
 
         app.UseRouting();
+
+
+        // Bu dört fonksiyon login ekraný için
         app.UseAuthentication();
         app.UseAuthorization();
-
+        app.MapRazorPages();
         //toastNotify packects
         app.UseNToastNotify();
 
-        app.MapRazorPages();
+        
 
         app.MapControllerRoute(
             name: "default",
             pattern: "{controller=User}/{action=Index}/{id?}");
 
-        app.UseEndpoints(endpoints =>
+        app.UseEndpoints(endpoints =>  
         {
             endpoints.MapControllerRoute(
                 name: "default",
@@ -77,9 +82,6 @@ public class Program
             endpoints.MapControllerRoute(name: "denemegstrdt",
             pattern: "/User/Index",
             defaults: new { controller = "User", action = "Index" });
-
-
-
         });
 
         app.Run();

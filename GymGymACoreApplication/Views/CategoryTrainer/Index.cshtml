@@ -1,5 +1,6 @@
 ﻿@using Entities.Concrete;
-@model List<CategoryTrainer>;
+@using X.PagedList
+@model PagedList<CategoryTrainer>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -83,7 +84,11 @@
     </div>
 </div>
 
-
+<div style="position:relative;">
+<div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+    <partial name="PagingPartialView" model="@Model" />
+</div>
+</div>
 <script>
     $(document).ready(function () {
         $('#decisionPopup').on('show.bs.modal', function (event) {

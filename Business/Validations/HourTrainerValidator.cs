@@ -18,11 +18,9 @@ namespace Business.Validations
             
             
             RuleFor(HourTrainer => HourTrainer.Date).NotEmpty().WithMessage("Cannot be Empty");
+            RuleFor(HourTrainer => HourTrainer.HourId).NotEmpty().WithMessage("Cannot be Empty");
+            RuleFor(HourTrainer => HourTrainer.TrainerId).NotEmpty().WithMessage("Cannot be Empty");
 
-
-
-            //HourTrainer Date
-            RuleFor(HourTrainer => HourTrainer.Date).NotEmpty().WithMessage("Cannot be Empty");
         }
     }
 }

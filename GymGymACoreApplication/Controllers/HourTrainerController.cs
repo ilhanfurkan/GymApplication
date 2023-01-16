@@ -5,6 +5,7 @@ using Entities.Concrete;
 using GymGymACoreApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using X.PagedList;
 
 namespace GymGymACoreApplication.Controllers
 {
@@ -13,9 +14,9 @@ namespace GymGymACoreApplication.Controllers
 		HourManager hm = new HourManager(new EfHourRepository());
 		TrainerManager tm = new TrainerManager(new EfTrainerRepository());
         HourTrainerManager htm = new HourTrainerManager(new EfHourTrainerRepository());
-		public IActionResult Index()
+		public IActionResult Index(int page = 1, int pageSize = 5)
 		{
-			var hourTrainer = htm.HourTrainerList();
+			var hourTrainer = htm.HourTrainerList().ToPagedList(page, pageSize);
 			return View(hourTrainer);
 		}
 
@@ -23,9 +24,9 @@ namespace GymGymACoreApplication.Controllers
 		public IActionResult Add()
 		{
 			SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
-			seanceHourTrainerModel.hourModel = hm.HourList();
-			seanceHourTrainerModel.trainerModel = tm.TrainerList();
-			seanceHourTrainerModel.seanceModel = new HourTrainer();
+			seanceHourTrainerModel.Hours = hm.HourList();
+			seanceHourTrainerModel.Trainers = tm.TrainerList();
+			seanceHourTrainerModel.HourTrainer = new HourTrainer();
 			return View(seanceHourTrainerModel);
 		}
 
@@ -44,9 +45,9 @@ namespace GymGymACoreApplication.Controllers
 			
 			{
                     SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
-                    seanceHourTrainerModel.hourModel = hm.HourList();
-                    seanceHourTrainerModel.trainerModel = tm.TrainerList();
-					seanceHourTrainerModel.seanceModel = hourTrainer;
+                    seanceHourTrainerModel.Hours = hm.HourList();
+                    seanceHourTrainerModel.Trainers = tm.TrainerList();
+					seanceHourTrainerModel.HourTrainer = hourTrainer;
                     foreach (var item in result.Errors)
                     {
                         ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
@@ -65,9 +66,9 @@ namespace GymGymACoreApplication.Controllers
 		public IActionResult update(int id)
 		{
             SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
-            seanceHourTrainerModel.hourModel = hm.HourList();
-            seanceHourTrainerModel.trainerModel = tm.TrainerList();
-			seanceHourTrainerModel.seanceModel = htm.HourTrainerGetById(id);
+            seanceHourTrainerModel.Hours = hm.HourList();
+            seanceHourTrainerModel.Trainers = tm.TrainerList();
+			seanceHourTrainerModel.HourTrainer = htm.HourTrainerGetById(id);
             return View(seanceHourTrainerModel);
         }
 		[HttpPost]
@@ -84,9 +85,9 @@ namespace GymGymACoreApplication.Controllers
 			else
 			{
                 SeanceHourTrainerModel seanceHourTrainerModel = new SeanceHourTrainerModel();
-                seanceHourTrainerModel.hourModel = hm.HourList();
-                seanceHourTrainerModel.trainerModel = tm.TrainerList();
-                seanceHourTrainerModel.seanceModel = hourTrainer;
+                seanceHourTrainerModel.Hours = hm.HourList();
+                seanceHourTrainerModel.Trainers = tm.TrainerList();
+                seanceHourTrainerModel.HourTrainer = hourTrainer;
                 foreach (var item in result.Errors)
 				{
 					ModelState.AddModelError(item.PropertyName, item.ErrorMessage);

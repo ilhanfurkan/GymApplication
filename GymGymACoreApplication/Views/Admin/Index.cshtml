@@ -1,5 +1,6 @@
 ﻿@using Entities.Concrete;
-@model List<Admin>
+@using X.PagedList;
+@model PagedList<Admin>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -29,7 +30,7 @@
                 var deletedCase = @item.Deleted == true ? "Deleted" : "--";
                 <tr>
                     <td>@item.AdminName</td>
-                    <td>@item.AdminPassword</td>
+                    <td>************</td>
                     <td>@item.Mail</td>
                     <td>@item.AdminType</td>
                     <td>@deletedCase</td> 
@@ -44,7 +45,7 @@
 </table>
 </div>
 <div class="text-center d-flex justify-content-start p-2">
-    <a href="/Admin/Add" class="btn btn-inverse-primary btn-fw">Add New Admin</a>
+    <a href="/Admin/Add" class="mdi mdi-account-multiple-plus btn btn-inverse-primary btn-fw"> Add New Admin</a>
 </div>
 
 
@@ -67,7 +68,11 @@
         </div>
     </div>
 </div>
-
+<div style="position:relative;">
+<div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+    <partial name="PagingPartialView" model="@Model" />
+</div>
+</div>
 
 <script>
     $(document).ready(function () {

@@ -5,7 +5,7 @@ using Entities;
 using Entities.Concrete;
 using GymGymACoreApplication.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using X.PagedList;
 
 namespace GymGymACoreApplication.Controllers
 {
@@ -15,9 +15,9 @@ namespace GymGymACoreApplication.Controllers
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         TrainerManager tm = new TrainerManager(new EfTrainerRepository());
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
-            var categoryTrainer = ctm.CategoryTrainerList();
+            var categoryTrainer = ctm.CategoryTrainerList().ToPagedList(page,pageSize);
             return View(categoryTrainer);
         }
 
@@ -25,15 +25,19 @@ namespace GymGymACoreApplication.Controllers
         public IActionResult Add()
         {
             PacketCategoryTrainerModel packetCategoryTrainerModel = new PacketCategoryTrainerModel();
-            packetCategoryTrainerModel.categoryModel = cm.CategoryList();
-            packetCategoryTrainerModel.trainerModel = tm.TrainerList();
-            packetCategoryTrainerModel.packetModel = new CategoryTrainer();
+            packetCategoryTrainerModel.Categories = cm.CategoryList();
+            packetCategoryTrainerModel.Trainers = tm.TrainerList();
+            packetCategoryTrainerModel.CategoryTrainer = new CategoryTrainer();
             return View(packetCategoryTrainerModel);
         }
 
         [HttpPost]
         public IActionResult Add(CategoryTrainer categoryTrainer)
         {
+            PacketCategoryTrainerModel packetCategoryTrainerModel = new PacketCategoryTrainerModel();
+            packetCategoryTrainerModel.Categories = cm.CategoryList();
+            packetCategoryTrainerModel.Trainers = tm.TrainerList();
+            packetCategoryTrainerModel.CategoryTrainer = categoryTrainer;
             CategoryTrainerValidator categoryTrainerValidator = new CategoryTrainerValidator();
             var result = categoryTrainerValidator.Validate(categoryTrainer);
             if (result.IsValid)
@@ -44,10 +48,7 @@ namespace GymGymACoreApplication.Controllers
             }
             else
             {
-                PacketCategoryTrainerModel packetCategoryTrainerModel = new PacketCategoryTrainerModel();
-                packetCategoryTrainerModel.categoryModel = cm.CategoryList();
-                packetCategoryTrainerModel.trainerModel = tm.TrainerList();
-                packetCategoryTrainerModel.packetModel = categoryTrainer;
+                
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
@@ -67,9 +68,9 @@ namespace GymGymACoreApplication.Controllers
         public IActionResult update(int id)
         {
             PacketCategoryTrainerModel packetCategoryTrainerModel = new PacketCategoryTrainerModel();
-            packetCategoryTrainerModel.categoryModel = cm.CategoryList();
-            packetCategoryTrainerModel.trainerModel = tm.TrainerList();
-            packetCategoryTrainerModel.packetModel = ctm.CategoryTrainerGetById(id);
+            packetCategoryTrainerModel.Categories = cm.CategoryList();
+            packetCategoryTrainerModel.Trainers = tm.TrainerList();
+            packetCategoryTrainerModel.CategoryTrainer = ctm.CategoryTrainerGetById(id);
             return View(packetCategoryTrainerModel);
         }
         [HttpPost]
@@ -86,9 +87,9 @@ namespace GymGymACoreApplication.Controllers
             else
             {
                 PacketCategoryTrainerModel packetCategoryTrainerModel = new PacketCategoryTrainerModel();
-                packetCategoryTrainerModel.categoryModel = cm.CategoryList();
-                packetCategoryTrainerModel.trainerModel = tm.TrainerList();
-                packetCategoryTrainerModel.packetModel = categoryTrainer;
+                packetCategoryTrainerModel.Categories = cm.CategoryList();
+                packetCategoryTrainerModel.Trainers = tm.TrainerList();
+                packetCategoryTrainerModel.CategoryTrainer = categoryTrainer;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
