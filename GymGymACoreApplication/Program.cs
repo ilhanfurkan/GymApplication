@@ -60,7 +60,7 @@ public class Program
         app.UseRouting();
 
 
-        // Bu dört fonksiyon login ekraný için
+        // Bu dï¿½rt fonksiyon login ekranï¿½ iï¿½in
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapRazorPages();
