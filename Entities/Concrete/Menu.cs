@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +12,7 @@ namespace Entities.Concrete
     {
         
             [Key]
-            public int menuId { get; set; }
+            public int MenuId { get; set; }
             [StringLength(50)]
             public string MenuName { get; set; }
             [StringLength(100)]

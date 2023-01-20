@@ -45,7 +45,7 @@ namespace GymGymACoreApplication.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Giris(Admin admin)
+        public async Task<IActionResult> Entry(Admin admin)
         {
           
                 Context context = new Context();
@@ -53,7 +53,7 @@ namespace GymGymACoreApplication.Controllers
                 if (result != null)
                 {
 
-                    var claims = new List<Claim> { new Claim(ClaimTypes.Email, admin.Mail) };
+                    var claims = new List<Claim> { new Claim(ClaimTypes.Email, result.Mail), new Claim(ClaimTypes.Name, result.AdminName) };
 
                     var userIdentify = new ClaimsIdentity(claims, "login");
                     ClaimsPrincipal principal = new ClaimsPrincipal(userIdentify);
@@ -61,18 +61,18 @@ namespace GymGymACoreApplication.Controllers
                     await HttpContext
                         .SignInAsync(
                         principal,
-                        new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(20) });
+                        new AuthenticationProperties { ExpiresUtc = DateTime.UtcNow.AddMinutes(10) });
                     return RedirectToAction("Index", "Admin");
 
                 }
-                _toastNotification.AddErrorToastMessage("Kullanıcı adı veya password hatalı");
+                _toastNotification.AddErrorToastMessage("User Name And Password Are Wrong");
                 TempData["init"] = 1;
                 return RedirectToAction("login");
             
           
             
         }
-        public async Task<IActionResult> Cikis()
+        public async Task<IActionResult> Logout()
         {
 
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

@@ -1,4 +1,5 @@
-﻿
+﻿@using Entities.Concrete
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -78,10 +79,10 @@
                                 if (i == 0)
                                 {
                                   
-                                    if (@menuList.ElementAt(i).children.Count>0)
+                                    if (@menuList.ElementAt(i).Children.Count>0)
                                     {
                                           <li class="active">
-                                    <a href=@menuList.ElementAt(0).url>@menuList.ElementAt(0).menuName</a>
+                                    <a href=@menuList.ElementAt(0).SeoUrl>@menuList.ElementAt(0).MenuName</a>
                                             @{
                                                 /*subMenuAdd(@menuList.ElementAt(i).children)*/
                                             }
@@ -92,9 +93,9 @@
                                  }  
                                 else
                                {
-                                    if (@menuList.ElementAt(i).children.Count>0)
+                                    if (@menuList.ElementAt(i).Children.Count>0)
                                     {
-                                  <li><a href=@menuList.ElementAt(i).url> @menuList.ElementAt(i).menuName</a>
+                                  <li><a href=@menuList.ElementAt(i).SeoUrl> @menuList.ElementAt(i).MenuName</a>
                                 @{
                                     /*subMenuAdd(@menuList.ElementAt(i).children)*/
                                 }
@@ -102,7 +103,7 @@
                                     }
                                     else{
                             <li>
-                            <a href=@menuList.ElementAt(i).url> @menuList.ElementAt(i).menuName</a>
+                            <a href=@menuList.ElementAt(i).SeoUrl> @menuList.ElementAt(i).MenuName</a>
                              </li>
                                     }
                                }

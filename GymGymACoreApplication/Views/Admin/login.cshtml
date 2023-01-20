@@ -24,7 +24,7 @@
     }
 <div class="login-box">
   <h2>Login</h2>
-        <form id="accesspanel" action="/Admin/Giris/" method="post">
+        <form id="accesspanel" action="/Admin/Entry/" method="post">
     <div class="user-box">
                 <input type="text" name="Mail" required="">
       <label>E Mail</label>
@@ -34,7 +34,7 @@
       <label>Password</label>
     </div>
    
-            <a id="giris_btn" href="#">
+            <a id="entry_btn" href="#">
       <span></span>
       <span></span>
       <span></span>
@@ -46,7 +46,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
         $(document).ready(function () {
-            $('#giris_btn').click(function () { document.forms[0].submit() });
+            $('#entry_btn').click(function () { document.forms[0].submit() });
         });
 </script>
 </body>
