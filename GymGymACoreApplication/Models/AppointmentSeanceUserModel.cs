@@ -5,10 +5,10 @@ namespace GymGymACoreApplication.Models
 {
     public class AppointmentSeanceUserModel
     {
-        public UserHourTrainer appointmentModel { get; set; }
+        public UserHourTrainer UserHourTrainer { get; set; }
 
-        public IEnumerable<HourTrainer> seanceModel { get; set; }  
+        public IEnumerable<HourTrainer> HourTrainers { get; set; }  
 
-        public IEnumerable<User> userModel { get; set; }
+        public IEnumerable<User> Users { get; set; }
     }
 }

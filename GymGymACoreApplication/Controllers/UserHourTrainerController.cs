@@ -31,9 +31,9 @@ namespace GymGymACoreApplication.Controllers
         public IActionResult Add()
         {
             AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
-            appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
-            appointmentSeanceUserModel.userModel = um.UserList();
-            appointmentSeanceUserModel.appointmentModel = new UserHourTrainer();
+            appointmentSeanceUserModel.HourTrainers = ht.HourTrainerList();
+            appointmentSeanceUserModel.Users = um.UserList();
+            appointmentSeanceUserModel.UserHourTrainer = new UserHourTrainer();
             return View(appointmentSeanceUserModel);
         }
 
@@ -41,9 +41,9 @@ namespace GymGymACoreApplication.Controllers
         public IActionResult Add(UserHourTrainer userHourTrainer)
         {
              AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
-                appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
-                appointmentSeanceUserModel.userModel = um.UserList();
-                appointmentSeanceUserModel.appointmentModel = new UserHourTrainer();
+                appointmentSeanceUserModel.HourTrainers = ht.HourTrainerList();
+                appointmentSeanceUserModel.Users = um.UserList();
+                appointmentSeanceUserModel.UserHourTrainer = new UserHourTrainer();
             UserHourTrainerValidator userHourTrainerValidator = new UserHourTrainerValidator();
             var result = userHourTrainerValidator.Validate(userHourTrainer);
             if (result.IsValid)
@@ -67,9 +67,9 @@ namespace GymGymACoreApplication.Controllers
         public IActionResult Update(int id)
         {
             AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
-            appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
-            appointmentSeanceUserModel.userModel = um.UserList();
-            appointmentSeanceUserModel.appointmentModel = uhtm.UserHourTrainerGetById(id);
+            appointmentSeanceUserModel.HourTrainers = ht.HourTrainerList();
+            appointmentSeanceUserModel.Users = um.UserList();
+            appointmentSeanceUserModel.UserHourTrainer = uhtm.UserHourTrainerGetById(id);
             return View(appointmentSeanceUserModel);
 
         }
@@ -87,9 +87,9 @@ namespace GymGymACoreApplication.Controllers
             else
             {
                 AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
-                appointmentSeanceUserModel.seanceModel = ht.HourTrainerList();
-                appointmentSeanceUserModel.userModel = um.UserList();
-                appointmentSeanceUserModel.appointmentModel = userHourTrainer;
+                appointmentSeanceUserModel.HourTrainers = ht.HourTrainerList();
+                appointmentSeanceUserModel.Users = um.UserList();
+                appointmentSeanceUserModel.UserHourTrainer = userHourTrainer;
                 foreach (var item in result.Errors)
 
                 {

@@ -9,18 +9,18 @@
 
 <div class="p-2">
     <h3 style="text-align:center;">Update Appointment</h3>
-     <form action="/UserHourTrainer/Update" method="post">
-  
-        <input type="hidden" class="form-control" name="AppointmentId" value="@Model.appointmentModel.AppointmentId"  />
+     @using (Html.BeginForm("Update", "UserHourTrainer", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBoxFor(uht=>uht.UserHourTrainer.AppointmentId,"",new{@class="form-control",@type="hidden"})
 
-        <label>Date</label>
-       <input class="form-control" type="text" name="Date" value="@Model.appointmentModel.Date.ToString().Split(" ")[0]" />
-        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Date, "", new { @class = "text-danger" })
+        @Html.Label("Date")
+        @Html.TextBoxFor(uht=>uht.UserHourTrainer.Date,"",new{@class="form-control"})
+        @Html.ValidationMessage("Date", "", new { @class = "text-danger" })
         <br />
 
-        <label>Minute</label>
-        <input class="form-control" type="text" name="Hours" value="@Model.appointmentModel.Hours" />
-        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Date, " ", new { @class = "text-danger" })
+        @Html.Label("Minute")
+        @Html.TextBoxFor(uht=>uht.UserHourTrainer.Hours,"",new{@class="form-control"})
+        @Html.ValidationMessage("Hours", "", new { @class = "text-danger" })
 
         <br />
 
@@ -28,11 +28,11 @@
         <select class="form-control" name="seanceId">
 
 
-            @foreach (var item in @Model.seanceModel)
+            @foreach (var item in @Model.HourTrainers)
             {
 
 
-                if (item.SeanceId == @Model.appointmentModel.SeanceId)
+                if (item.SeanceId == @Model.UserHourTrainer.SeanceId)
                 {
                     <option value="@item.SeanceId" selected>@item.hour.Hours - @item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
                 }
@@ -42,6 +42,7 @@
                 }
             }
         </select>
+        @Html.ValidationMessage("SeanceId", "", new { @class = "text-danger" })
         <br />
 
 
@@ -49,11 +50,11 @@
         <select class="form-control" name="UserId">
 
 
-            @foreach (var item in @Model.userModel)
+            @foreach (var item in @Model.Users)
             {
 
 
-                if (item.UserId == @Model.appointmentModel.UserId)
+                if (item.UserId == @Model.UserHourTrainer.UserId)
                 {
                     <option value="@item.UserId" selected>@item.FirstName.ToUpper()  @item.LastName.ToUpper()</option>
                 }
@@ -63,12 +64,13 @@
                 }
             }
         </select>
+        @Html.ValidationMessage("UserId", "", new { @class = "text-danger" })
         <br />
 
 
           @Html.Label("Active")
         <select class="form-control" name="ActivePassive">
-            @if (Model.appointmentModel.ActivePassive)
+            @if (Model.UserHourTrainer.ActivePassive)
             {
                 <option value="True" selected>Active</option>
                 <option value="False">Passive</option>
@@ -79,11 +81,12 @@
                 <option value="False" selected>Passive</option>
             }
         </select>
+        @Html.ValidationMessage("ActivePassive", "", new { @class = "text-danger" })
         <br />
 
         @Html.Label("Case")
         <select class="form-control" name="deleted">
-            @if (Model.appointmentModel.Deleted)
+            @if (Model.UserHourTrainer.Deleted)
             {
                 <option value="True" selected>Deleted</option>
                 <option value="False">--</option>
@@ -94,10 +97,12 @@
                 <option value="False" selected>--</option>
             }
         </select>
+        @Html.ValidationMessage("Deleted", "", new { @class = "text-danger" })
         <br />
 
         <input class="button-change form-control btn btn-success" type="submit" value="Update Appointment" />
-        </form>
-   @* }*@
+        
+    }
+
 </div>
 

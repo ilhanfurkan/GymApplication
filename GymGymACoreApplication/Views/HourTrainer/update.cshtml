@@ -9,18 +9,60 @@
 	<h3 style="text-align:center;">Update Seance</h3>
 	@using (Html.BeginForm("update", "HourTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        <input type="hidden" class="form-control"  name="SeanceId" value="@Model.HourTrainer.SeanceId" />
+        @Html.TextBoxFor(ht=>ht.HourTrainer.SeanceId,"",new {@class="form-control" ,@type="hidden"})
 
-        <label>Quota</label>
-        <input class="form-control" type="text" name="Quota" value="@Model.HourTrainer.Quota" />
+        @Html.Label("Quota")
+        @Html.TextBoxFor(ht=>ht.HourTrainer.Quota,"",new {@class="form-control"})
+        @Html.ValidationMessage("Quota",new { @class ="text-danger" })
         <br />
-
-        <label>Date</label>
-        <input class="form-control" type="text" name="Date" value="@Model.HourTrainer.Date.ToString().Split(" ")[0]" />
+        @Html.Label("Date")
+        @Html.TextBoxFor(ht=>ht.HourTrainer.Date,"",new {@class="form-control"})
+        @Html.ValidationMessage("Date",new { @class ="text-danger" })
         <br />
+        @Html.Label("Hour")
+        @Html.DropDownListFor(ht => ht.HourTrainer.HourId, new SelectList(Model.Hours, "HourId", "Hours"), "--Update Hour--", new { @class = "form-control" })
+        @Html.ValidationMessage("HourId",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Trainer")
+        @Html.DropDownListFor(m => m.HourTrainer.TrainerId, new SelectList(Model.Trainers, "TrainerId", "TrainerFirstName" ,"TrainerLastName"), "--Update Trainer--", new { @class = "form-control" })
+        @Html.ValidationMessage("TrainerId",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Active")
+        <select class="form-control" name="ActivePassive">
+            @if (Model.HourTrainer.ActivePassive)
+            {
+                <option value="True" selected>Active</option>
+                <option value="False">Passive</option>
+            }
+            else
+            {
+                <option value="True">Active</option>
+                <option value="False" selected>Passive</option>
+            }
+        </select>
+        @Html.ValidationMessage("ActivePassive",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Case")
+        <select class="form-control" name="Deleted">
+            @if (Model.HourTrainer.Deleted)
+            {
+                <option value="True" selected>Deleted</option>
+                <option value="False">--</option>
+            }
+            else
+            {
+                <option value="True">Deleted</option>
+                <option value="False" selected>--</option>
+            }
+        </select>
+        @Html.ValidationMessage("Deleted",new { @class ="text-danger" })
+        <br />
+        <input class="button-change form-control btn btn-success" type="submit" value="Update Seance" />
+    }
+</div>
 
-        <label>Hour</label>
-        <select class="form-control" name="hourId">
+
+@*<select class="form-control" name="hourId">
 
 
             @foreach (var item in @Model.Hours)
@@ -36,61 +78,4 @@
                     <option value="@item.HourId">@item.Hours</option>
                 }
             }
-        </select>
-        <br />
-
-
-        <label>Trainer</label>
-        <select class="form-control" name="TrainerId">
-
-
-            @foreach (var item in @Model.Trainers)
-            {
-
-
-                if (item.TrainerId == @Model.HourTrainer.TrainerId)
-                {
-                    <option value="@item.TrainerId" selected>@item.TrainerFirstName.ToUpper()  @item.TrainerLastName.ToUpper()</option>
-                }
-                else
-                {
-                    <option value="@item.TrainerId">@item.TrainerFirstName.ToUpper()  @item.TrainerLastName.ToUpper()</option>
-                }
-            }
-        </select>
-        <br />
-
-
-        @Html.Label("Active")
-        <select class="form-control" name="ActivePassive">
-            @if (Model.HourTrainer.ActivePassive)
-            {
-                <option value="True" selected>Active</option>
-                <option value="False">Passive</option>
-            }
-            else
-            {
-                <option value="True">Active</option>
-                <option value="False" selected>Passive</option>
-            }
-        </select>
-        <br />
-
-        @Html.Label("Case")
-        <select class="form-control" name="Deleted">
-            @if (Model.HourTrainer.Deleted)
-            {
-                <option value="True" selected>Deleted</option>
-                <option value="False">--</option>
-            }
-            else
-            {
-                <option value="True">Deleted</option>
-                <option value="False" selected>--</option>
-            }
-        </select>
-        <br />
-
-        <input class="button-change form-control btn btn-success" type="submit" value="Update Seance" />
-    }
-</div>
+        </select>*@

@@ -10,14 +10,14 @@
 
     @using (Html.BeginForm("Update", "userCategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        <input type="hidden" class="form-control" name="RegistrationId" value="@Model.registrationModel.RegistrationId" />
+        @Html.TextBoxFor(uct=>uct.UserCategoryTrainer.RegistrationId,"",new{@class="form-control", @type="hidden"})
         @Html.Label("Date Of Registration ")
-               <input class="form-control" type="text" name="DateOfRegistration" value="@Model.registrationModel.DateOfRegistration.ToString().Split(" ")[0]" />
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.DateOfRegistration,"",new { @class ="text-danger" })
+        @Html.TextBoxFor(uct=>uct.UserCategoryTrainer.DateOfRegistration,"",new{@class="form-control"})
+        @Html.ValidationMessage("DateOfRegistration","",new { @class ="text-danger" })
         <br />
       @Html.Label("Payment")
         <select class="form-control" name="PaymentType">
-            @if (Model.registrationModel.PaymentType)
+            @if (Model.UserCategoryTrainer.PaymentType)
           {
                 <option value="True" selected>Cash</option>
                 <option value="False">Credit Card</option>
@@ -27,49 +27,25 @@
                 <option value="True">Cash</option>
                 <option value="False" selected>Credit Card</option>
             }
-            
             </select>
+        @Html.ValidationMessage("PaymentType","",new { @class ="text-danger" })
+
         <br />
         @Html.Label("Price")
-        <input class="form-control" type="text" name="Price" value="@Model.registrationModel.Price" />
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.registrationModel.Price  ,"",new { @class ="text-danger" })
-        <br />
+        @Html.TextBoxFor(uct=>uct.UserCategoryTrainer.Price,"",new{@class="form-control"})
+        @Html.ValidationMessage("Price","",new { @class ="text-danger" })
+            <br />
           <label>User</label>
-                    <select class="form-control" name="UserId">
-
-            @foreach (var item in @Model.userModel)
-            {
-                if (item.UserId == @Model.registrationModel.UserId)
-                {
-                        <option value="@item.UserId" selected>@item.FirstName.ToUpper() @item.LastName.ToUpper()</option>
-                }
-                else
-                {
-                        <option value="@item.UserId">@item.FirstName.ToUpper() @item.LastName.ToUpper()</option>
-                }
-            }
-                    </select>
+        @Html.DropDownListFor(m => m.UserCategoryTrainer.UserId, new SelectList(Model.Users, "UserId", "FirstName"), "--Update User--", new { @class = "form-control" })
         @Html.ValidationMessage("UserId","",new { @class ="text-danger" })
         <br />
             <label>Packet</label>
-                        <select class="form-control" name="PacketId">
-            @foreach (var item in @Model.packetModel)
-            {
-                if (item.PacketId == @Model.registrationModel.PacketId)
-                {
-                        <option value="@item.PacketId" selected>@item.PacketName</option>
-                }
-                else
-                {
-                        <option value="@item.PacketId">@item.PacketName</option>
-                }
-            }
-                        </select>
+        @Html.DropDownListFor(m => m.UserCategoryTrainer.PacketId, new SelectList(Model.CategoryTrainers, "PacketId", "PacketName"), "--Update Packet--", new { @class = "form-control" })
         @Html.ValidationMessage("PacketId","",new { @class ="text-danger" })
         <br />
        @Html.Label("Case")
         <select class="form-control" name="Deleted">
-            @if (Model.registrationModel.Deleted)
+            @if (Model.UserCategoryTrainer.Deleted)
           {
                 <option value="True" selected>Deleted</option>
                 <option value="False">--</option>
@@ -80,10 +56,8 @@
                 <option value="False" selected>--</option>
             }
         </select>
+        @Html.ValidationMessage("Deleted","",new { @class ="text-danger" })
         <br />
-
-
-
         <input class="button-change form-control btn btn-success" type="submit" value="Update Registration" />
     }
 </div>

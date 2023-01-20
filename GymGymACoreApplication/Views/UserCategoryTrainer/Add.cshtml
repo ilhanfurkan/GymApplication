@@ -12,36 +12,27 @@
     {
         @Html.Label("Date Of Registration ")
         @Html.TextBox("DateOfRegistration","",new { @class = "form-control" , @type = "Date" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.DateOfRegistration,"",new { @class ="text-danger" })
-        <br />
+        @Html.ValidationMessage("DateOfRegistration","",new { @class ="text-danger" })
+            <br />
         @Html.Label("Payment")
         <select class="form-control" name="PaymentType">
+            <option disabled selected>--Choose Payment Type--</option>
             <option>Cash</option>
             <option>Credit Card</option>
         </select>
+        @Html.ValidationMessage("PaymentType","",new { @class ="text-danger" })
+
         <br />
         @Html.Label("Price")
         @Html.TextBox("Price","",new { @class = "form-control" })
-        @Html.ValidationMessageFor(userCategoryTrainer=>userCategoryTrainer.registrationModel.Price,"",new { @class ="text-danger" })
-        <br />
+        @Html.ValidationMessage("Price","",new { @class ="text-danger" })
+            <br />
       <label>User</label>
-				<select class="form-control" name="UserId">
-												 <option value="-1">--Choose User--</option>
-			@foreach (var item in @Model.userModel)
-			{
-						<option value="@item.UserId">@item.FirstName.ToUpper() @item.LastName.ToUpper()</option>
-			}
-				</select>
+        @Html.DropDownListFor(m => m.UserCategoryTrainer.UserId, new SelectList(Model.Users, "UserId", "FirstName"), "--Choose User--", new { @class = "form-control" })
 		@Html.ValidationMessage("UserId","",new { @class ="text-danger" })
         <br />
             <label>Packet</label>
-                    <select class="form-control" name="PacketId">
-                                                     <option value="-1">--Choose Packet--</option>
-            @foreach (var item in @Model.packetModel)
-            {
-                                <option value="@item.PacketId">@item.PacketName</option>
-            }
-                    </select>
+        @Html.DropDownListFor(m => m.UserCategoryTrainer.PacketId, new SelectList(Model.CategoryTrainers, "PacketId", "PacketName"), "--Choose Packet--", new { @class = "form-control" })
         @Html.ValidationMessage("PacketId","",new { @class ="text-danger" })
         <br />
         <select class="form-control invisible" name="Deleted">

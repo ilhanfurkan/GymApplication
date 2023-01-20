@@ -8,56 +8,32 @@
     <h3 style="text-align:center;">Update Packet</h3>
     @using (Html.BeginForm("update", "CategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-            <input type="hidden" class="form-control" name="PacketId" value="@Model.CategoryTrainer.PacketId"  />
+            @Html.TextBoxFor(m=>m.CategoryTrainer.PacketId,"",new {@class="form-control",@type="hidden"})
         @Html.Label("Packet Name")
             @*<input class="form-control" type="text" name="PacketName" value="@Model.CategoryTrainer.PacketName" />*@
         @Html.TextBoxFor(m=>m.CategoryTrainer.PacketName,"",new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.CategoryTrainer.PacketName  ,"",new { @class ="text-danger" })
+        @Html.ValidationMessage("PacketName",new { @class ="text-danger" })
         <br />
          @Html.Label("Packet Detail")
         @Html.TextBoxFor(m=>m.CategoryTrainer.PacketDetail,"",new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.CategoryTrainer.PacketDetail  ,"",new { @class ="text-danger" })
+        @Html.ValidationMessage("PacketDetail",new { @class ="text-danger" })
         <br />
          @Html.Label("Packet Price")
         @Html.TextBoxFor(m=>m.CategoryTrainer.PacketPrice,"",new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.CategoryTrainer.PacketPrice  ,"",new { @class ="text-danger" })
+        @Html.ValidationMessage("PacketPrice",new { @class ="text-danger" })
         <br />
          @Html.Label("Right")
         @Html.TextBoxFor(m=>m.CategoryTrainer.Right,"",new { @class = "form-control" })
-        @Html.ValidationMessageFor(CategoryTrainer=>CategoryTrainer.CategoryTrainer.Right  ,"",new { @class ="text-danger" })
+        @Html.ValidationMessage("Right",new { @class ="text-danger" })
         <br />
         <label>Categories</label>
-				<select class="form-control" name="CategoryId">
-			@foreach (var item in @Model.Categories)
-			{
-                if (item.CategoryId == @Model.CategoryTrainer.CategoryId)
-                {
-                                    <option value="@item.CategoryId" selected>@item.CategoryName</option>
-                }
-                else
-                {
-                                    <option value="@item.CategoryId">@item.CategoryName</option>
-                }
-			}
-				</select>
+        @Html.DropDownListFor(m => m.CategoryTrainer.CategoryId, new SelectList(Model.Categories, "CategoryId", "CategoryName"), "--Update Category--", new { @class = "form-control" })
+        @Html.ValidationMessage("CategoryId",new { @class ="text-danger" })
         
         <br />
             <label>Trainers</label>
-                        <select class="form-control" name="TrainerId">
-            @foreach (var item in @Model.Trainers)
-            {
-                if (item.TrainerId == @Model.CategoryTrainer.TrainerId)
-                {
-                            <option value="@item.TrainerId" selected>@item.TrainerFirstName.ToUpper() @item.TrainerLastName.ToUpper()</option>
-                }
-                else
-                {
-                         <option value="@item.TrainerId">@item.TrainerFirstName.ToUpper() @item.TrainerLastName.ToUpper()</option>
-                }
-                                       
-            }
-                        </select>
-        
+        @Html.DropDownListFor(m => m.CategoryTrainer.TrainerId, new SelectList(Model.Trainers, "TrainerId", "TrainerFirstName" ,"TrainerLastName"), "--Update Trainer--", new { @class = "form-control" })
+        @Html.ValidationMessage("TrainerId",new { @class ="text-danger" })
         <br />
                 @Html.Label("Active")
         <select class="form-control" name="ActivePassive">
@@ -72,7 +48,8 @@
                 <option value="False" selected>Passive</option>
             }
         </select>
-        <br />
+        @Html.ValidationMessage("ActivePassive",new { @class ="text-danger" })
+            <br />
 
         @Html.Label("Case")
         <select class="form-control" name="Deleted">
@@ -87,8 +64,24 @@
                 <option value="False" selected>--</option>
             }
         </select>
-        <br />
+        
+       @Html.ValidationMessage("Deleted",new { @class ="text-danger" })
+            <br />
         <input class="button-change form-control btn btn-success" type="submit" value="Update Packet" />
     }
 </div>
 
+
+@*<select class="form-control" name="CategoryId">
+			@foreach (var item in @Model.Categories)
+			{
+                if (item.CategoryId == @Model.CategoryTrainer.CategoryId)
+                {
+                                    <option value="@item.CategoryId" selected>@item.CategoryName</option>
+                }
+                else
+                {
+                                    <option value="@item.CategoryId">@item.CategoryName</option>
+                }
+			}
+				</select>*@

@@ -34,9 +34,9 @@ namespace GymGymACoreApplication.Controllers
         public IActionResult Add()
         {
             RegistrationPacketUserModel registrationPacketUserModel = new RegistrationPacketUserModel();
-            registrationPacketUserModel.packetModel = ctm.CategoryTrainerList();
-            registrationPacketUserModel.userModel = um.UserList();
-            registrationPacketUserModel.registrationModel = new UserCategoryTrainer();
+            registrationPacketUserModel.CategoryTrainers = ctm.CategoryTrainerList();
+            registrationPacketUserModel.Users = um.UserList();
+            registrationPacketUserModel.UserCategoryTrainer = new UserCategoryTrainer();
             return View(registrationPacketUserModel);
         }
 
@@ -54,9 +54,9 @@ namespace GymGymACoreApplication.Controllers
             else
             {
                 RegistrationPacketUserModel registrationPacketUserModel = new RegistrationPacketUserModel();
-                registrationPacketUserModel.packetModel = ctm.CategoryTrainerList();
-                registrationPacketUserModel.userModel = um.UserList();
-                registrationPacketUserModel.registrationModel = userCategoryTrainer;
+                registrationPacketUserModel.CategoryTrainers = ctm.CategoryTrainerList();
+                registrationPacketUserModel.Users = um.UserList();
+                registrationPacketUserModel.UserCategoryTrainer = userCategoryTrainer;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
@@ -70,9 +70,9 @@ namespace GymGymACoreApplication.Controllers
         public IActionResult Update(int id)
         {
             RegistrationPacketUserModel registrationPacketUserModel = new RegistrationPacketUserModel();
-            registrationPacketUserModel.packetModel = ctm.CategoryTrainerList();
-            registrationPacketUserModel.userModel = um.UserList();
-            registrationPacketUserModel.registrationModel = uctm.UserCategoryTrainerGetById(id);
+            registrationPacketUserModel.CategoryTrainers = ctm.CategoryTrainerList();
+            registrationPacketUserModel.Users = um.UserList();
+            registrationPacketUserModel.UserCategoryTrainer = uctm.UserCategoryTrainerGetById(id);
             return View(registrationPacketUserModel);
 
         }
@@ -90,9 +90,9 @@ namespace GymGymACoreApplication.Controllers
             else
             {
                 RegistrationPacketUserModel registrationPacketUserModel = new RegistrationPacketUserModel();
-                registrationPacketUserModel.packetModel = ctm.CategoryTrainerList();
-                registrationPacketUserModel.userModel = um.UserList();
-                registrationPacketUserModel.registrationModel = userCategoryTrainer;
+                registrationPacketUserModel.CategoryTrainers = ctm.CategoryTrainerList();
+                registrationPacketUserModel.Users = um.UserList();
+                registrationPacketUserModel.UserCategoryTrainer = userCategoryTrainer;
                 foreach (var item in result.Errors)
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);

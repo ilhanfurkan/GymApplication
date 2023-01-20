@@ -14,38 +14,38 @@
      
 
        
-        <label>Date</label>
-            <input class="form-control" type="date" name="Date" />
-        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Date, "", new { @class = "text-danger" })
+        @Html.Label("Date")
+        @Html.TextBoxFor(uht=>uht.UserHourTrainer.Date,"",new{@class="form-control"})
+        @Html.ValidationMessage("Date", "", new { @class = "text-danger" })
         <br />
 
-        <label>Minute</label>
-        <input class="form-control" type="text" name="Hours" />
-        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.appointmentModel.Hours, "", new { @class = "text-danger" })
+        @Html.Label("Minute")
+        @Html.TextBoxFor(uht=>uht.UserHourTrainer.Hours,"",new{@class="form-control"})
+        @Html.ValidationMessage("Hours", "", new { @class = "text-danger" })
         <br />
 
         <label>Seance</label>
         <select class="form-control" name="seanceId">
-                                         <option value="-1">--Choose Seance--</option>
+                                             <option value="-1" disabled selected>--Choose Seance--</option>
 
-            @foreach (var item in @Model.seanceModel)
+            @foreach (var item in @Model.HourTrainers)
             {
                          <option value="@item.SeanceId">@item.hour.Hours-@item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
             }
         </select>
-        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.seanceModel.FirstOrDefault().SeanceId, "", new { @class = "text-danger" })
+        @Html.ValidationMessage("SeanceId", "", new { @class = "text-danger" })
         <br />
 
 
         <label>User</label>
         <select class="form-control" name="UserId">
-                                                     <option value="-1">--Choose User--</option>
-            @foreach (var item in @Model.userModel)
+                                                         <option value="-1" disabled selected>--Choose User--</option>
+            @foreach (var item in @Model.Users)
             {
                     <option value="@item.UserId">@item.FirstName.ToUpper()  @item.LastName.ToUpper()</option>
             }
         </select>
-        @Html.ValidationMessageFor(userHourTrainer => userHourTrainer.userModel.FirstOrDefault().UserId, "", new { @class = "text-danger" })
+        @Html.ValidationMessage("UserId", "", new { @class = "text-danger" })
         <br />
         @Html.Label("Active")
         <select class="form-control " name="ActivePassive">

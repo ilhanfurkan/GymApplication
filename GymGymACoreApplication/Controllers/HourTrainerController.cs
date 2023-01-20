@@ -14,7 +14,7 @@ namespace GymGymACoreApplication.Controllers
 		HourManager hm = new HourManager(new EfHourRepository());
 		TrainerManager tm = new TrainerManager(new EfTrainerRepository());
         HourTrainerManager htm = new HourTrainerManager(new EfHourTrainerRepository());
-		public IActionResult Index(int page = 1, int pageSize = 5)
+		public IActionResult Index(int page = 1, int pageSize = 1)
 		{
 			var hourTrainer = htm.HourTrainerList().ToPagedList(page, pageSize);
 			return View(hourTrainer);
