@@ -15,14 +15,14 @@
 
        
         @Html.Label("Date")
-        @Html.TextBoxFor(uht=>uht.UserHourTrainer.Date,"",new{@class="form-control"})
-        @Html.ValidationMessage("Date", "", new { @class = "text-danger" })
-        <br />
+        @Html.TextBox("Date","",new{@class="form-control", @type="Date"})
+@*        @Html.ValidationMessage("Date", "", new { @class = "text-danger" })
+*@        <br />
 
         @Html.Label("Minute")
-        @Html.TextBoxFor(uht=>uht.UserHourTrainer.Hours,"",new{@class="form-control"})
-        @Html.ValidationMessage("Hours", "", new { @class = "text-danger" })
-        <br />
+        @Html.TextBox("Hours","",new{@class="form-control"})
+@*        @Html.ValidationMessage("Hours", "", new { @class = "text-danger" })
+*@        <br />
 
         <label>Seance</label>
         <select class="form-control" name="seanceId">
@@ -33,8 +33,8 @@
                          <option value="@item.SeanceId">@item.hour.Hours-@item.trainer.TrainerFirstName.ToUpper() @item.trainer.TrainerLastName.ToUpper()</option>
             }
         </select>
-        @Html.ValidationMessage("SeanceId", "", new { @class = "text-danger" })
-        <br />
+@*        @Html.ValidationMessage("SeanceId", "", new { @class = "text-danger" })
+*@        <br />
 
 
         <label>User</label>
@@ -45,8 +45,8 @@
                     <option value="@item.UserId">@item.FirstName.ToUpper()  @item.LastName.ToUpper()</option>
             }
         </select>
-        @Html.ValidationMessage("UserId", "", new { @class = "text-danger" })
-        <br />
+@*        @Html.ValidationMessage("UserId", "", new { @class = "text-danger" })
+*@        <br />
         @Html.Label("Active")
         <select class="form-control " name="ActivePassive">
             <option value="True">Active</option>
