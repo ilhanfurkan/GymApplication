@@ -25,7 +25,7 @@
         <br />
 
         <label>Seance</label>
-        <select class="form-control" name="seanceId">
+        <select class="form-control" name="SeanceId">
 
 
             @foreach (var item in @Model.HourTrainers)
@@ -42,7 +42,6 @@
                 }
             }
         </select>
-        @Html.ValidationMessage("SeanceId", "", new { @class = "text-danger" })
         <br />
 
 
@@ -64,7 +63,6 @@
                 }
             }
         </select>
-        @Html.ValidationMessage("UserId", "", new { @class = "text-danger" })
         <br />
 
 
@@ -81,7 +79,6 @@
                 <option value="False" selected>Passive</option>
             }
         </select>
-        @Html.ValidationMessage("ActivePassive", "", new { @class = "text-danger" })
         <br />
 
         @Html.Label("Case")
@@ -97,7 +94,6 @@
                 <option value="False" selected>--</option>
             }
         </select>
-        @Html.ValidationMessage("Deleted", "", new { @class = "text-danger" })
         <br />
 
         <input class="button-change form-control btn btn-success" type="submit" value="Update Appointment" />

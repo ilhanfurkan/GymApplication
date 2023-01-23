@@ -17,10 +17,6 @@ namespace Business.Validations
 
             //UserHourTrainer Hours
             RuleFor(userHourTrainer => userHourTrainer.Hours).NotEmpty().WithMessage("Boş geçilemez");
-            // UserId And SeanceId
-            RuleFor(userHourTrainer => userHourTrainer.SeanceId).NotEmpty().WithMessage("Cannot be Empty");
-
-            RuleFor(userHourTrainer => userHourTrainer.UserId).NotEmpty().WithMessage("Cannot be Empty");
 
         }
 

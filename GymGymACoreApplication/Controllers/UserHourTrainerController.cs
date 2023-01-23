@@ -63,7 +63,6 @@ namespace GymGymACoreApplication.Controllers
 
         }
 
-        [HttpGet]
         public IActionResult Update(int id)
         {
             AppointmentSeanceUserModel appointmentSeanceUserModel = new AppointmentSeanceUserModel();
