@@ -17,7 +17,7 @@
         <br />
         @Html.Label("Date")
         @Html.TextBoxFor(ht=>ht.HourTrainer.Date,"",new {@class="form-control"})
-        @Html.ValidationMessage("Date",new { @class ="text-danger" })
+        @Html.ValidationMessage("Date",new { @class ="text-danger"})
         <br />
         @Html.Label("Hour")
         @Html.DropDownListFor(ht => ht.HourTrainer.HourId, new SelectList(Model.Hours, "HourId", "Hours"), "--Update Hour--", new { @class = "form-control" })

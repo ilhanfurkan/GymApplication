@@ -11,16 +11,17 @@
     <h3 style="text-align:center;">Update Appointment</h3>
      @using (Html.BeginForm("Update", "UserHourTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(uht=>uht.UserHourTrainer.AppointmentId,"",new{@class="form-control",@type="hidden"})
+        @Html.TextBox("AppointmentId",Model.UserHourTrainer.AppointmentId,new { @class = "form-control" ,@type="hidden"})
+
 
         @Html.Label("Date")
-        @Html.TextBoxFor(uht=>uht.UserHourTrainer.Date,"",new{@class="form-control"})
-        @Html.ValidationMessage("Date", "", new { @class = "text-danger" })
+        @Html.TextBox("Date",Model.UserHourTrainer.Date,new{@class="form-control"})
+        @Html.ValidationMessage("Date","", new { @class = "text-danger" })
         <br />
 
         @Html.Label("Minute")
-        @Html.TextBoxFor(uht=>uht.UserHourTrainer.Hours,"",new{@class="form-control"})
-        @Html.ValidationMessage("Hours", "", new { @class = "text-danger" })
+        @Html.TextBox("Hours",Model.UserHourTrainer.Hours,new{@class="form-control"})
+        @Html.ValidationMessage("Hours","", new { @class = "text-danger" })
 
         <br />
 
