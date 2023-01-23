@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class UserHourTrainer : IEntity  //Randevular Tablosu -- Appointments Table
+    public class UserHourTrainer : BaseEntity, IEntity  //Randevular Tablosu -- Appointments Table
     {
         [Key]
         public int AppointmentId { get; set; }     //Appointment = Randevu

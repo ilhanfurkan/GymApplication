@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete 
 { 
-    public class UserCategoryTrainer : IEntity //Kayıtlar Tablosu -- Registration Table
+    public class UserCategoryTrainer : BaseEntity, IEntity //Kayıtlar Tablosu -- Registration Table
     {
         [Key]
         public int RegistrationId { get; set; }

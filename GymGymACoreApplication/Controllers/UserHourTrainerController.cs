@@ -1,9 +1,11 @@
 ﻿using Business.Concrete;
 using Business.Validations;
+using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using FluentValidation;
 using GymGymACoreApplication.Models;
+using GymGymACoreApplication.PagedList;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -14,10 +16,32 @@ namespace GymGymACoreApplication.Controllers
         HourTrainerManager ht = new HourTrainerManager(new EfHourTrainerRepository());
         UserManager um = new UserManager(new EfUserRepository());   
         UserHourTrainerManager uhtm = new UserHourTrainerManager(new EfUserHourTrainerRepository());
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index(int page = 1,string searchText="")
         {
-            var userHour = uhtm.UserHourTrainerList().ToPagedList(page,pageSize);
-            return View(userHour);
+            //var userHour = uhtm.UserHourTrainerList().ToPagedList(page,pageSize);
+            //return View(userHour);
+            int pageSize = 5;
+            Context c = new Context();
+            Pager pager;
+            List<UserHourTrainer> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Appointments.Where(usr => usr.User.FirstName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Appointments.Where(usr => usr.User.FirstName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Appointments.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Appointments.ToList().Count;
+            }
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "Index";
+            ViewBag.contrName = "UserHourTrainer";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
         public IActionResult Delete(int id)
         {

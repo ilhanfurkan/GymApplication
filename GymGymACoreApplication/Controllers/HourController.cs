@@ -1,8 +1,10 @@
 ﻿using Business.Concrete;
 using Business.Validations;
+using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Entities.Concrete;
+using GymGymACoreApplication.PagedList;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -12,10 +14,32 @@ namespace GymGymACoreApplication.Controllers
     {
 
         HourManager hm = new HourManager(new EfHourRepository());
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index(int page = 1,string searchText="")
         {
-            var hour = hm.HourList().ToPagedList(page, pageSize);
-            return View(hour);
+            //var hour = hm.HourList().ToPagedList(page, pageSize);
+            //return View(hour);
+            int pageSize = 5;
+            Context c = new Context();
+            Pager pager;
+            List<Hour> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Hours.Where(usr => usr.Hours.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Hours.Where(usr => usr.Hours.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Hours.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Hours.ToList().Count;
+            }
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "Index";
+            ViewBag.contrName = "Hour";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
 
         [HttpGet]

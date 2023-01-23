@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Hour : IEntity
+    public class Hour : BaseEntity, IEntity
     {
         [Key]
         public int HourId { get; set; }

@@ -1,9 +1,11 @@
 ﻿@using Entities.Concrete;
-@using X.PagedList;
-@model PagedList<UserHourTrainer>;
+@using GymGymACoreApplication.PagedList
+@model List<UserHourTrainer>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
 }
 @section search{
     <div class="search-field d-none d-xl-block">
@@ -18,7 +20,7 @@
     </div>
 }
 <h3></h3>
-<h3 class="ms-3 mt-5">All Appointments </h3>
+<h3 class="ms-3 mt-5">All Appointments</h3>
 <div style="overflow: auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
 <table class="table table-hover">
     <thead>
@@ -81,7 +83,7 @@
 </div>
 <div style="position:relative;">
 <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-    <partial name="PagingPartialView" model="@Model" />
+    <partial name="PagingPartialCustom" model="@pager" />
 </div>
 </div>
 

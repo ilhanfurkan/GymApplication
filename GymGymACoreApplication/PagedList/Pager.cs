@@ -7,46 +7,46 @@ namespace GymGymACoreApplication.PagedList
     public class Pager
     {
         //Pagerda görünen son sayfa sayisi
-        public int bitisSayfasi { get; set; }
+        public int EndPage { get; set; }
 
         //Pagerda göünen ilk sayfa sayisi
-        public int baslangicSayfasi { get; set; }
+        public int StartPage { get; set; }
 
         //Toplam sayfa sayısı
-        public int sayfaSayisi { get; set; }
+        public int TotalPage { get; set; }
 
-        //sayfa da gösterilecek kayıt sayısı
-        public int goruntulenenKayitSayisi { get; set; }
+        //sayfa da gösterilecek kayıt sayısı (pageSize)
+        public int ViewedRecords { get; set; }
 
-        //Databasede ki toplam kayıt sayısı
-        public int toplamKayitSayisi { get; set; }
+        //Databasede ki toplam kayıt sayısı (itemCounts)
+        public int TotalRecords { get; set; }
 
-        //Tıklanan sayfa
-        public int aktifSayfa { get; set; }
+        //Tıklanan sayfa  (page)
+        public int ActivePage { get; set; }
 
         public Pager(int pageSize, int itemCounts, int page)
         {
-            this.aktifSayfa = page;
-            this.goruntulenenKayitSayisi = pageSize;
-            this.toplamKayitSayisi=itemCounts;
+            this.ActivePage = page;
+            this.ViewedRecords = pageSize;
+            this.TotalRecords = itemCounts;
 
 
-            sayfaSayisi =(int)Math.Ceiling((decimal)toplamKayitSayisi / (decimal)goruntulenenKayitSayisi);
+            TotalPage =(int)Math.Ceiling((decimal)TotalRecords / (decimal)ViewedRecords);
 
-            baslangicSayfasi = aktifSayfa - 5;
-            bitisSayfasi = aktifSayfa + 4;
+            StartPage = ActivePage - 5;
+            EndPage = ActivePage + 4;
 
-            if (baslangicSayfasi<1)
+            if (StartPage<1)
             {
-                bitisSayfasi = bitisSayfasi - (baslangicSayfasi - 1);
-                baslangicSayfasi=1;
+                EndPage = EndPage - (StartPage - 1);
+                StartPage=1;
             }
-            if (bitisSayfasi>sayfaSayisi)
+            if (EndPage>TotalPage)
             {
-                bitisSayfasi = sayfaSayisi;
-                if (bitisSayfasi>10)
+                EndPage = TotalPage;
+                if (EndPage>10)
                 {
-                    baslangicSayfasi = bitisSayfasi - 9;
+                    StartPage = EndPage - 9;
                 }
             }
             

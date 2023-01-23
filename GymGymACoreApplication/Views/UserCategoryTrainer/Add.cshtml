@@ -17,9 +17,10 @@
         @Html.Label("Payment")
         <select class="form-control" name="PaymentType">
             <option disabled selected>--Choose Payment Type--</option>
-            <option>Cash</option>
-            <option>Credit Card</option>
+                <option value="True">Cash</option>
+                    <option value="False">Credit Card</option>
         </select>
+            
        @Html.ValidationMessage("PaymentType","",new { @class ="text-danger" })
 
         <br />
@@ -43,7 +44,7 @@
                                                          <option value="-1" disabled selected>--Choose Packet--</option>
             @foreach (var item in @Model.CategoryTrainers)
             {
-                    <option value="@item.PacketId">@item.PacketName</option>
+                            <option value="@item.PacketId">@item.PacketName || @item.Trainer.TrainerFirstName @item.Trainer.TrainerLastName</option>
             }
         </select>
 @*        @Html.DropDownListFor(m => m.UserCategoryTrainer.PacketId, new SelectList(Model.CategoryTrainers, "PacketId", "PacketName"), "--Choose Packet--", new { @class = "form-control" })

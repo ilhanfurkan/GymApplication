@@ -1,9 +1,11 @@
 ﻿@using Entities.Concrete;
-@using X.PagedList
-@model PagedList<CategoryTrainer>;
+@using GymGymACoreApplication.PagedList
+@model List<CategoryTrainer>;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+   var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
 }
 @section search{
     <div class="search-field d-none d-xl-block">
@@ -86,7 +88,7 @@
 
 <div style="position:relative;">
 <div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-    <partial name="PagingPartialView" model="@Model" />
+    <partial name="PagingPartialCustom" model="@pager" />
 </div>
 </div>
 <script>

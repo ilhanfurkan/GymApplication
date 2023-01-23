@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class HourTrainer : IEntity // Seanslar Tablosu -- Seances Table
+    public class HourTrainer : BaseEntity, IEntity // Seanslar Tablosu -- Seances Table
     {
         [Key]
         public int SeanceId { get; set; }

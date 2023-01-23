@@ -1,9 +1,11 @@
 ﻿using Business.Concrete;
 using Business.Validations;
+using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Entities.Concrete;
 using GymGymACoreApplication.Models;
+using GymGymACoreApplication.PagedList;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -15,10 +17,32 @@ namespace GymGymACoreApplication.Controllers
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         TrainerManager tm = new TrainerManager(new EfTrainerRepository());
 
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public IActionResult Index(int page = 1, string searchText="")
         {
-            var categoryTrainer = ctm.CategoryTrainerList().ToPagedList(page,pageSize);
-            return View(categoryTrainer);
+            //var categoryTrainer = ctm.CategoryTrainerList().ToPagedList(page,pageSize);
+            //return View(categoryTrainer);
+            int pageSize = 5;
+            Context c = new Context();
+            Pager pager;
+            List<CategoryTrainer> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Packets.Where(usr => usr.PacketName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Packets.Where(usr => usr.PacketName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Packets.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Packets.ToList().Count;
+            }
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "Index";
+            ViewBag.contrName = "CategoryTrainer";
+            ViewBag.searchText = searchText;
+            return View(data);
         }
 
         [HttpGet]

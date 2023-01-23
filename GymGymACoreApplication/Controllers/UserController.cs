@@ -1,8 +1,10 @@
 ﻿using Business.Concrete;
 using Business.Validations;
+using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Entities.Concrete;
+using GymGymACoreApplication.PagedList;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -12,10 +14,33 @@ namespace GymGymACoreApplication.Controllers
     {
         UserManager um = new UserManager(new EfUserRepository());
 
-        public IActionResult Index(int page = 1 , int pageSize =5)
+        public IActionResult Index(int page = 1 ,string searchText="")
         {
-            var users = um.UserList().ToPagedList(page,pageSize);
-            return View(users);
+            //var users = um.UserList().ToPagedList(page,pageSize);
+            //return View(users);
+            int pageSize = 5;
+            Context c = new Context();
+            Pager pager;
+            List<User> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Users.Where(usr => usr.FirstName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Users.Where(usr => usr.FirstName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Users.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Users.ToList().Count;
+            }
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "Index";
+            ViewBag.contrName = "User";
+            ViewBag.searchText = searchText;
+            return View(data);
+
         }
         public IActionResult Delete(int id)
         {

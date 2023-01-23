@@ -1,0 +1,36 @@
+﻿@using GymGymACoreApplication.PagedList
+@model Pager
+@{
+    var action_name = ViewBag.actionName;
+    var contr_name = ViewBag.contrName;
+    var searchText = ViewBag.searchText;
+}
+<style>
+    .text{
+        color:#33c92d !important;
+    }
+</style>
+<nav aria-label="Page navigation example">
+    @if (@Model != null && @Model.TotalPage > 0)
+    {
+            <ul class="pagination justify-content-end">
+                <li class="page-item @(Model.ActivePage>1?"":"disabled")">
+                    <a class="page-link" asp-controller="@contr_name" asp-action="@action_name" asp-route-page="1" asp-route-searchText="@searchText">First</a>
+                </li>
+                    <li class="page-item @(Model.ActivePage>1?"":"disabled")">
+                            <a class="page-link" asp-controller="@contr_name" asp-action="@action_name" asp-route-page="@(Model.ActivePage-1)" asp-route-searchText="@searchText">Previous</a>
+                </li>
+            @for (var i = Model.StartPage; i <= Model.EndPage; i++)
+            {
+                                <li class="page-item @(Model.ActivePage==@i?"active text":"")"><a class="page-link" asp-controller="@contr_name" asp-action="@action_name" asp-route-page="@i" asp-route-searchText="@searchText">@i</a></li>
+            }
+
+                        <li class="page-item @(Model.ActivePage<Model.TotalPage?"":"disabled")">
+                        <a class="page-link" asp-controller="@contr_name" asp-action="@action_name" asp-route-page="@(Model.ActivePage+1)" asp-route-searchText="@searchText">Next</a>
+                </li>
+                        <li class="page-item @(Model.ActivePage<Model.TotalPage?"":"invisible")">
+                        <a class="page-link" asp-controller="@contr_name" asp-action="@action_name" asp-route-page="@(Model.TotalPage)" asp-route-searchText="@searchText">Last</a>
+                </li>
+            </ul>
+    }
+</nav>

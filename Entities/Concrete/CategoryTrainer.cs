@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class CategoryTrainer : IEntity // Paketler Tablosu -- Packets Table
+    public class CategoryTrainer : BaseEntity, IEntity // Paketler Tablosu -- Packets Table
     {
         [Key]
         public int PacketId { get; set; }

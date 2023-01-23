@@ -34,7 +34,6 @@
         @Html.TextBox("Price",Model.UserCategoryTrainer.Price,new{@class="form-control"})
         @Html.ValidationMessage("Price",new { @class ="text-danger" })
             <br />
-          <label>User</label>
             <label>User</label>
             <select class="form-control" name="UserId">
             @foreach (var item in @Model.Users)
@@ -48,7 +47,7 @@
             <select class="form-control" name="PacketId">
             @foreach (var item in @Model.CategoryTrainers)
             {
-                            <option value="@item.PacketId">@item.PacketName</option>
+                                    <option value="@item.PacketId">@item.PacketName || @item.Trainer.TrainerFirstName @item.Trainer.TrainerLastName</option>
             }
             </select>
       @Html.ValidationMessage("PacketId","",new { @class ="text-danger" })

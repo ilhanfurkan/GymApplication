@@ -1,8 +1,10 @@
 ﻿using Business.Concrete;
 using Business.Validations;
+using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using GymGymACoreApplication.Models;
+using GymGymACoreApplication.PagedList;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using X.PagedList;
@@ -14,11 +16,33 @@ namespace GymGymACoreApplication.Controllers
 		HourManager hm = new HourManager(new EfHourRepository());
 		TrainerManager tm = new TrainerManager(new EfTrainerRepository());
         HourTrainerManager htm = new HourTrainerManager(new EfHourTrainerRepository());
-		public IActionResult Index(int page = 1, int pageSize = 1)
+		public IActionResult Index(int page = 1,string searchText="")
 		{
-			var hourTrainer = htm.HourTrainerList().ToPagedList(page, pageSize);
-			return View(hourTrainer);
-		}
+            //var hourTrainer = htm.HourTrainerList().ToPagedList(page, pageSize);
+            //return View(hourTrainer);
+            int pageSize = 5;
+            Context c = new Context();
+            Pager pager;
+            List<HourTrainer> data;
+            var itemCounts = 0;
+            if (searchText != "" && searchText != null)
+            {
+                data = c.Seances.Where(usr => usr.trainer.TrainerFirstName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Seances.Where(usr => usr.trainer.TrainerFirstName.Contains(searchText)).ToList().Count;
+            }
+            else
+            {
+                data = c.Seances.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                itemCounts = c.Seances.ToList().Count;
+            }
+            pager = new Pager(pageSize, itemCounts, page);
+
+            ViewBag.pager = pager;
+            ViewBag.actionName = "Index";
+            ViewBag.contrName = "HourTrainer";
+            ViewBag.searchText = searchText;
+            return View(data);
+        }
 
 		[HttpGet]
 		public IActionResult Add()
