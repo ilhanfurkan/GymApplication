@@ -34,7 +34,7 @@ namespace Business.Concrete
 
         public List<Menu> MenuList()
         {
-            throw new NotImplementedException();
+            return menuDal.Listing();
         }
 
         public void MenuUpdate(Menu menu)

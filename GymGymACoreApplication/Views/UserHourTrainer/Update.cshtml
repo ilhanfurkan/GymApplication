@@ -26,7 +26,7 @@
         <br />
 
         <label>Seance</label>
-        <select class="form-control" name="seanceId">
+        <select class="form-control" name="SeanceId">
 
 
             @foreach (var item in @Model.HourTrainers)
@@ -43,7 +43,6 @@
                 }
             }
         </select>
-        @Html.ValidationMessage("SeanceId", "", new { @class = "text-danger" })
         <br />
 
 
@@ -65,7 +64,6 @@
                 }
             }
         </select>
-        @Html.ValidationMessage("UserId", "", new { @class = "text-danger" })
         <br />
 
 

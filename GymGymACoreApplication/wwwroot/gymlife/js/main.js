@@ -172,3 +172,16 @@
     });
 
 })(jQuery);
+
+//yeni js kodları
+
+$("#main-nav > ul > li").each(function () {
+    var maxHeight = 0;
+    var myUl = $("ul", $(this));
+
+    myUl.each(function () {
+        maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+    });
+
+    myUl.height(maxHeight);
+});

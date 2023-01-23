@@ -1,4 +1,6 @@
-﻿using GymGymACoreApplication.Models;
+﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
+using GymGymACoreApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +9,18 @@ namespace GymGymACoreApplication.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+   
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+           
         }
 
         public IActionResult Index()
         {
-            return View();
+            MenuManager manager = new MenuManager(new EfMenuRepository());
+            var menuList = manager.MenuList();
+            return View(menuList);
         }
 
         public IActionResult Privacy()

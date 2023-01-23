@@ -31,15 +31,17 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
         //}
         // GET: HomePageController
 
-        public HomePageController()
-        {
-            MenuManager manager = new MenuManager(new EfMenuRepository());
-            var menuList= manager.MenuList();
-            ViewData["menu"] = menuList;
-        }
+        //public HomePageController()
+        //{
+        //    MenuManager manager = new MenuManager(new EfMenuRepository());
+        //    var menuList = manager.MenuList();
+        //    ViewData["menu"] = menuList;
+        //}
         public ActionResult Index()
         {
-            return View();
+            MenuManager manager = new MenuManager(new EfMenuRepository());
+            var menuList = manager.MenuList();
+            return View(menuList);
         }
 
         // GET: HomePageController/Details/5

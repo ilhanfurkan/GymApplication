@@ -1,4 +1,5 @@
 ﻿@using Entities.Concrete
+@model List<Menu>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -27,10 +28,10 @@
 </head>
 
 <body>
-    @{
+@*    @{
         var menuList = (List<Menu>)ViewData["menu"];
        
-    }
+    }*@
     <!-- Page Preloder -->
     
     <div id="preloder">
@@ -70,49 +71,72 @@
                         </a>
                     </div>
                 </div>
+
+
                 <div class="col-lg-6">
                     <nav class="nav-menu">
                         <ul>
-                            
-                            @for(var i = 0; i < menuList.Count; i++)
-                            {
-                                if (i == 0)
+                            @{
+                                void subMenuAdd(List<Menu> submenu,bool first)
                                 {
-                                  
-                                    if (@menuList.ElementAt(i).Children.Count>0)
-                                    {
-                                          <li class="active">
-                                    <a href=@menuList.ElementAt(0).SeoUrl>@menuList.ElementAt(0).MenuName</a>
-                                            @{
-                                                /*subMenuAdd(@menuList.ElementAt(i).children)*/
+                                     var mclass = "";
+            if (first)
+            {
+                mclass = "arrow-top";
+            }
+
+                                    <ul class="dropdown">
+                                        @foreach (var item in submenu)
+                                        {
+                                            if (item.Children.Count > 0)
+                                            {
+                                                <li class="has-children">
+                                                    <a href="#" class="nav-link">@item.MenuName</a>
+                                                    @{
+                                                        subMenuAdd(item.Children.ToList(),false);
+                                                    }
+                                                </li>
                                             }
-                                   
-                                    </li>
-                                     }
-
-                                 }  
-                                else
-                               {
-                                    if (@menuList.ElementAt(i).Children.Count>0)
-                                    {
-                                  <li><a href=@menuList.ElementAt(i).SeoUrl> @menuList.ElementAt(i).MenuName</a>
-                                @{
-                                    /*subMenuAdd(@menuList.ElementAt(i).children)*/
+                                            else
+                                            {
+                                                <li><a href="#" class="nav-link">@item.MenuName</a></li>
+                                            }
+                                        }
+                                    </ul>
                                 }
-                                      </li>
-                                    }
-                                    else{
-                            <li>
-                            <a href=@menuList.ElementAt(i).SeoUrl> @menuList.ElementAt(i).MenuName</a>
-                             </li>
-                                    }
-                               }
-
-                                
                             }
-
                            
-                            <li><a href="./class-details.html">Classes</a></li>
+                                   
+
+                          
+                                        @foreach (var item in Model)
+                                        {
+
+                                            if (item.ParentId == null)
+                                            {
+                                                if (item.Children.Count > 0)
+                                                {
+                                                    <li class="has-children">
+                                                        <a href="#home-section" class="nav-link" style="padding:0px 20px;">@item.MenuName</a>
+                                                        @{
+                                                            subMenuAdd(item.Children.ToList(),true);
+                                                        }
+                                                    </li>
+                                     
+
+                                                }
+                                                else
+                                                {
+                                            <li><a href="#home-section" class="nav-link" style="padding:0px 20px;">@item.MenuName</a></li>
+                                                }
+
+                                            }
+                                     
+                                        }
+                                  
+                                
+                            
+                         @*   <li><a href="./class-details.html">Classes</a></li>
                             <li><a href="./services.html">Services</a></li>
                             <li><a href="./team.html">Our Team</a></li>
                             <li>
@@ -127,7 +151,7 @@
                                     <li><a href="./404.html">404</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            <li><a href="./contact.html">Contact</a></li>*@
                         </ul>
                     </nav>
                 </div>
