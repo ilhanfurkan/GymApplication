@@ -10,10 +10,10 @@
 
     @using (Html.BeginForm("Update", "userCategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(uct=>uct.UserCategoryTrainer.RegistrationId,"",new{@class="form-control", @type="hidden"})
-        @Html.Label("Date Of Registration ")
-        @Html.TextBoxFor(uct=>uct.UserCategoryTrainer.DateOfRegistration,"",new{@class="form-control"})
-        @Html.ValidationMessage("DateOfRegistration","",new { @class ="text-danger" })
+        @Html.TextBox("RegistrationId",Model.UserCategoryTrainer.RegistrationId,new { @class = "form-control" ,@type="hidden"})
+        @Html.Label("Date Of Registration")
+        @Html.TextBox("DateOfRegistration",Model.UserCategoryTrainer.DateOfRegistration,new{@class="form-control"})
+        @Html.ValidationMessage("DateOfRegistration",new { @class ="text-danger" })
         <br />
       @Html.Label("Payment")
         <select class="form-control" name="PaymentType">
@@ -28,20 +28,30 @@
                 <option value="False" selected>Credit Card</option>
             }
             </select>
-        @Html.ValidationMessage("PaymentType","",new { @class ="text-danger" })
 
         <br />
         @Html.Label("Price")
-        @Html.TextBoxFor(uct=>uct.UserCategoryTrainer.Price,"",new{@class="form-control"})
-        @Html.ValidationMessage("Price","",new { @class ="text-danger" })
+        @Html.TextBox("Price",Model.UserCategoryTrainer.Price,new{@class="form-control"})
+        @Html.ValidationMessage("Price",new { @class ="text-danger" })
             <br />
           <label>User</label>
-        @Html.DropDownListFor(m => m.UserCategoryTrainer.UserId, new SelectList(Model.Users, "UserId", "FirstName"), "--Update User--", new { @class = "form-control" })
+            <label>User</label>
+            <select class="form-control" name="UserId">
+            @foreach (var item in @Model.Users)
+            {
+                            <option value="@item.UserId">@item.FirstName.ToUpper()  @item.LastName.ToUpper()</option>
+            }
+            </select>
         @Html.ValidationMessage("UserId","",new { @class ="text-danger" })
         <br />
             <label>Packet</label>
-        @Html.DropDownListFor(m => m.UserCategoryTrainer.PacketId, new SelectList(Model.CategoryTrainers, "PacketId", "PacketName"), "--Update Packet--", new { @class = "form-control" })
-        @Html.ValidationMessage("PacketId","",new { @class ="text-danger" })
+            <select class="form-control" name="PacketId">
+            @foreach (var item in @Model.CategoryTrainers)
+            {
+                            <option value="@item.PacketId">@item.PacketName</option>
+            }
+            </select>
+      @Html.ValidationMessage("PacketId","",new { @class ="text-danger" })
         <br />
        @Html.Label("Case")
         <select class="form-control" name="Deleted">
@@ -56,7 +66,6 @@
                 <option value="False" selected>--</option>
             }
         </select>
-        @Html.ValidationMessage("Deleted","",new { @class ="text-danger" })
         <br />
         <input class="button-change form-control btn btn-success" type="submit" value="Update Registration" />
     }

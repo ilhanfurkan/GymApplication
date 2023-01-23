@@ -16,7 +16,6 @@ namespace Business.Validations
             RuleFor(userCategoryTrainer => userCategoryTrainer.DateOfRegistration).NotEmpty().WithMessage("Cannot be Empty");
 
             //UserHourTrainer Price
-            RuleFor(userCategoryTrainer => userCategoryTrainer.PaymentType).NotEmpty().WithMessage("Cannot be Empty");
             RuleFor(userCategoryTrainer => userCategoryTrainer.Price).NotEmpty().WithMessage("Cannot be Empty");
             RuleFor(userCategoryTrainer => userCategoryTrainer.Price).GreaterThan(0.00).WithMessage("You must enter a higher price!");
 
