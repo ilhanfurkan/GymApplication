@@ -15,6 +15,14 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
     [AllowAnonymous]
     public class HomePageController : Controller
     {
+        private List<Menu> menuList;
+        private TrainerManager tm;
+        public HomePageController()
+        {
+            MenuManager manager = new MenuManager(new EfMenuRepository());
+             tm = new TrainerManager(new EfTrainerRepository());
+             menuList = manager.MenuList();
+        }
 
         //public string Layout { get; }
 
@@ -39,11 +47,23 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
         //}
         public ActionResult Index()
         {
-            MenuManager manager = new MenuManager(new EfMenuRepository());
-            var menuList = manager.MenuList();
-            return View(menuList);
+          
+            ViewBag.menu = menuList;
+            return View();
         }
 
+        public ActionResult TrainerPage()
+        {
+            ViewBag.menu = menuList;
+            var listTrainer = tm.TrainerList();
+            return View(listTrainer);
+        }
+        public ActionResult AboutPage()
+        {
+            ViewBag.menu = menuList;
+            return View();
+        }
+      
         // GET: HomePageController/Details/5
         public ActionResult Details(int id)
         {
