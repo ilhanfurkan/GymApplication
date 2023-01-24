@@ -69,19 +69,26 @@ public class Program
 
         
 
-        app.MapControllerRoute(
-            name: "default",
-            pattern: "{controller=User}/{action=Index}/{id?}");
-
         app.UseEndpoints(endpoints =>  
         {
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=User}/{action=Index}/{id?}");
 
-            endpoints.MapControllerRoute(name: "denemegstrdt",
-            pattern: "/User/Index",
+            endpoints.MapControllerRoute(
+                name: "user",
+            pattern: "/user",
             defaults: new { controller = "User", action = "Index" });
+
+            endpoints.MapControllerRoute(
+                name: "TrainerPage",
+             pattern: "/HomePage/gym-trainer",
+            defaults: new { controller = "HomePage", action = "TrainerPage" });
+            endpoints.MapControllerRoute(
+               name: "TrainerPage",
+            pattern: "/HomePage/gym-about",
+           defaults: new { controller = "HomePage", action = "AboutPage" });
+
         });
 
         app.Run();
