@@ -28,7 +28,7 @@
         @Html.ValidationMessage("TrainerId",new { @class ="text-danger" })
         <br />
         @Html.Label("Active")
-        <select class="form-control" name="ActivePassive">
+        @*<select class="form-control" name="ActivePassive">
             @if (Model.HourTrainer.ActivePassive)
             {
                 <option value="True" selected>Active</option>
@@ -39,11 +39,12 @@
                 <option value="True">Active</option>
                 <option value="False" selected>Passive</option>
             }
-        </select>
+        </select>*@
+        @Html.DropDownListFor(model => model.HourTrainer.ActivePassive, new SelectList(new[] { "Active", "Passive" }, Model.HourTrainer.ActivePassive ? "True" : "False"), new { @class = "form-control", name = "ActivePassive" })
         @Html.ValidationMessage("ActivePassive",new { @class ="text-danger" })
         <br />
         @Html.Label("Case")
-        <select class="form-control" name="Deleted">
+       @* <select class="form-control" name="Deleted">
             @if (Model.HourTrainer.Deleted)
             {
                 <option value="True" selected>Deleted</option>
@@ -54,7 +55,8 @@
                 <option value="True">Deleted</option>
                 <option value="False" selected>--</option>
             }
-        </select>
+        </select>*@
+        @Html.DropDownListFor(model => model.HourTrainer.Deleted, new SelectList(new[] { "Deleted", "--" }, Model.HourTrainer.Deleted ? "True" : "False"), new { @class = "form-control", name = "Deleted" })
         @Html.ValidationMessage("Deleted",new { @class ="text-danger" })
         <br />
         <input class="button-change form-control btn btn-success" type="submit" value="Update Seance" />
