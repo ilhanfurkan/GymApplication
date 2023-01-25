@@ -25,8 +25,26 @@ namespace GymGymACoreApplication.Controllers
             var itemCounts = 0;
             if (searchText != "" && searchText != null)
             {
-                data = c.Users.Where(usr => usr.FirstName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-                itemCounts = c.Users.Where(usr => usr.FirstName.Contains(searchText)).ToList().Count;
+                data = c.Users.Where(usr => usr.FirstName.Contains(searchText) ||
+                usr.LastName.Contains(searchText) ||
+                usr.UserLogin.Contains(searchText) ||
+                usr.RemainingRight.ToString().Contains(searchText) ||
+                usr.NationalId.Contains(searchText) ||
+                usr.Height.ToString().Contains(searchText) ||
+                usr.Weight.ToString().Contains(searchText) ||
+                usr.PhoneNo.Contains(searchText) ||
+                usr.Mail.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+
+                itemCounts = c.Users.Where(usr => usr.FirstName.Contains(searchText) ||
+                usr.LastName.Contains(searchText) ||
+                usr.UserLogin.Contains(searchText) ||
+                usr.RemainingRight.ToString().Contains(searchText) ||
+                usr.NationalId.Contains(searchText) ||
+                usr.Height.ToString().Contains(searchText) ||
+                usr.Weight.ToString().Contains(searchText) ||
+                usr.PhoneNo.Contains(searchText) ||
+                usr.Mail.Contains(searchText)).ToList().Count;
             }
             else
             {

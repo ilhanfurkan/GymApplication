@@ -29,8 +29,19 @@ namespace GymGymACoreApplication.Controllers
             var itemCounts = 0;
             if (searchText != "" && searchText != null)
             {
-                data = c.Trainers.Where(usr => usr.TrainerFirstName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-                itemCounts = c.Trainers.Where(usr => usr.TrainerFirstName.Contains(searchText)).ToList().Count;
+                data = c.Trainers.Where(usr => usr.TrainerFirstName.Contains(searchText) ||
+                usr.TrainerLastName.Contains(searchText) ||
+                usr.TrainerLogin.Contains(searchText) ||
+                usr.TrainerNationalId.Contains(searchText) ||
+                usr.TrainerPhoneNo.Contains(searchText) ||
+                usr.TrainerMail.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                itemCounts = c.Trainers.Where(usr => usr.TrainerFirstName.Contains(searchText) ||
+                usr.TrainerLastName.Contains(searchText) ||
+                usr.TrainerLogin.Contains(searchText) ||
+                usr.TrainerNationalId.Contains(searchText) ||
+                usr.TrainerPhoneNo.Contains(searchText) ||
+                usr.TrainerMail.Contains(searchText)).ToList().Count;
             }
             else
             {
