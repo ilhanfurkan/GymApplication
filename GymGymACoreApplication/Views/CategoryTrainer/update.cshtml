@@ -8,32 +8,65 @@
     <h3 style="text-align:center;">Update Packet</h3>
     @using (Html.BeginForm("update", "CategoryTrainer", FormMethod.Post, new { @class = "form-group" }))
     {
-            @Html.TextBoxFor(m=>m.CategoryTrainer.PacketId,"",new {@class="form-control",@type="hidden"})
+        @Html.TextBox("PacketId",Model.CategoryTrainer.PacketId,new {@class="form-control",@type="hidden"})
+
         @Html.Label("Packet Name")
-            @*<input class="form-control" type="text" name="PacketName" value="@Model.CategoryTrainer.PacketName" />*@
-        @Html.TextBoxFor(m=>m.CategoryTrainer.PacketName,"",new { @class = "form-control" })
-        @Html.ValidationMessage("PacketName",new { @class ="text-danger" })
-        <br />
-         @Html.Label("Packet Detail")
-        @Html.TextBoxFor(m=>m.CategoryTrainer.PacketDetail,"",new { @class = "form-control" })
-        @Html.ValidationMessage("PacketDetail",new { @class ="text-danger" })
-        <br />
-         @Html.Label("Packet Price")
-        @Html.TextBoxFor(m=>m.CategoryTrainer.PacketPrice,"",new { @class = "form-control" })
-        @Html.ValidationMessage("PacketPrice",new { @class ="text-danger" })
-        <br />
-         @Html.Label("Right")
-        @Html.TextBoxFor(m=>m.CategoryTrainer.Right,"",new { @class = "form-control" })
-        @Html.ValidationMessage("Right",new { @class ="text-danger" })
+        @Html.TextBox("PacketName",Model.CategoryTrainer.PacketName,new { @class = "form-control"})
+        @Html.ValidationMessage("PacketName","",new { @class ="text-danger"})
+                <br />
+        @Html.Label("Packet Detail")
+        @Html.TextBox("PacketDetail",Model.CategoryTrainer.PacketDetail,new { @class = "form-control"})
+        @Html.ValidationMessage("PacketDetail","",new { @class ="text-danger"})
+                <br />
+        @Html.Label("Packet Price")
+        @Html.TextBox("PacketPrice",Model.CategoryTrainer.PacketPrice,new { @class = "form-control"})
+        @Html.ValidationMessage("PacketPrice","",new { @class ="text-danger"})
+                <br />
+        @Html.Label("Right")
+        @Html.TextBox("Right",Model.CategoryTrainer.Right,new { @class = "form-control"})
+        @Html.ValidationMessage("Right","",new { @class ="text-danger" })
         <br />
         <label>Categories</label>
-        @Html.DropDownListFor(m => m.CategoryTrainer.CategoryId, new SelectList(Model.Categories, "CategoryId", "CategoryName"), "--Update Category--", new { @class = "form-control" })
+             <select class="form-control" name="CategoryId">
+
+
+            @foreach (var item in @Model.Categories)
+            {
+
+
+                if (item.CategoryId == @Model.CategoryTrainer.CategoryId)
+                {
+                                                        <option value="@item.CategoryId" selected>@item.CategoryName</option>
+                }
+                else
+                {
+                                                        <option value="@item.CategoryId">@item.CategoryName</option>
+                }
+            }
+                    </select> 
         @Html.ValidationMessage("CategoryId",new { @class ="text-danger" })
         
         <br />
             <label>Trainers</label>
-        @Html.DropDownListFor(m => m.CategoryTrainer.TrainerId, new SelectList(Model.Trainers, "TrainerId", "TrainerFirstName" ,"TrainerLastName"), "--Update Trainer--", new { @class = "form-control" })
-        @Html.ValidationMessage("TrainerId",new { @class ="text-danger" })
+                <select class="form-control" name="TrainerId">
+
+
+            @foreach (var item in @Model.Trainers)
+            {
+
+
+                if (item.TrainerId == @Model.CategoryTrainer.TrainerId)
+                {
+                            <option value="@item.TrainerId" selected>@item.TrainerFirstName.ToUpper() @item.TrainerLastName.ToUpper()</option>
+                }
+                else
+                {
+                            <option value="@item.TrainerId">@item.TrainerFirstName.ToUpper() @item.TrainerLastName.ToUpper()</option>
+                }
+            }
+                        </select>
+@*        @Html.DropDownListFor(m => m.CategoryTrainer.TrainerId, new SelectList(Model.Trainers, "TrainerId", "TrainerFirstName" ,"TrainerLastName"), "--Update Trainer--", new { @class = "form-control" })
+*@        @Html.ValidationMessage("TrainerId",new { @class ="text-danger" })
         <br />
                 @Html.Label("Active")
         <select class="form-control" name="ActivePassive">
