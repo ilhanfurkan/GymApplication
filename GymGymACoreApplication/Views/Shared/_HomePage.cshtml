@@ -1,7 +1,7 @@
 ﻿@using Entities.Concrete
 @{
     var list = (List<Menu>)ViewBag.menu;
-
+    var mdropdown = "dropdown";
 }
 
 
@@ -35,10 +35,56 @@
 </head>
 
 <body>
-    @*    @{
-    var menuList = (List<Menu>)ViewData["menu"];
+    @{
+        void subMenuAdd(List<Menu> submenu)
+        {
 
-    }*@
+            <ul class=@mdropdown>
+                @foreach (var item in submenu)
+                {
+                    if (item.Children.Count > 0)
+                    {
+                        <li>
+                            <a href=@item.SeoUrl>@item.MenuName</a>
+                            @{
+                                subMenuAdd(item.Children.ToList());
+                            }
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href=@item.SeoUrl >@item.MenuName</a></li>
+                    }
+                }
+            </ul>
+        }
+    }
+    @{
+        void subMenuAddMobil(List<Menu> submenu)
+        {
+
+
+            <ul>
+                @foreach (var item in submenu)
+                {
+                    if (item.Children.Count > 0)
+                    {
+                        <li>
+                            <a href="./index.html">@item.MenuName</a>
+                            @{
+                                subMenuAddMobil(item.Children.ToList());
+                            }
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="#" class="nav-link">@item.MenuName</a></li>
+                    }
+                }
+            </ul>
+        }
+    }
+
     <!-- Page Preloder -->
 
     <div id="preloder">
@@ -57,31 +103,7 @@
         </div>*@
         @*mobile menu*@
         <nav class="canvas-menu mobile-menu">
-            @{
-                void subMenuAddMobil(List<Menu> submenu)
-                {
-
-
-                    <ul>
-                        @foreach (var item in submenu)
-                        {
-                            if (item.Children.Count > 0)
-                            {
-                                <li>
-                                    <a href="./index.html">@item.MenuName</a>
-                                    @{
-                                        subMenuAddMobil(item.Children.ToList());
-                                    }
-                                </li>
-                            }
-                            else
-                            {
-                                <li><a href="#" class="nav-link">@item.MenuName</a></li>
-                            }
-                        }
-                    </ul>
-                }
-            }
+         
 
             <ul class="dropdown">
 
@@ -98,7 +120,6 @@
                                     subMenuAddMobil(item.Children.ToList());
                                 }
                             </li>
-
 
                         }
                         else
@@ -136,49 +157,23 @@
 
                 <div class="col-lg-6">
                     <nav class="nav-menu">
-                        <ul>
-                            @{
-                                void subMenuAdd(List<Menu> submenu)
-                                {
-
-                                    <ul class="dropdown">
-                                        @foreach (var item in submenu)
-                                        {
-                                            if (item.Children.Count > 0)
-                                            {
-                                                <li class="has-children">
-                                                    <a href=@item.SeoUrl class="nav-link">@item.MenuName</a>
-                                                    @{
-                                                        subMenuAdd(item.Children.ToList());
-                                                    }
-                                                </li>
-                                            }
-                                            else
-                                            {
-                                                <li><a href=@item.SeoUrl class="nav-link">@item.MenuName</a></li>
-                                            }
-                                        }
-                                    </ul>
-                                }
-                            }
-
-
-
-
+                        <ul>                
                             @foreach (var item in list)
                             {
 
                                 if (item.ParentId == null)
                                 {
+                                    
                                     if (item.Children.Count > 0)
                                     {
-                                        <li class="active has-children">
+                                        <li>
                                             <a href=@item.SeoUrl>
 
                                                 @item.MenuName
 
                                             </a>
                                             @{
+                                                
                                                 subMenuAdd(item.Children.ToList());
                                             }
                                         </li>
@@ -195,12 +190,13 @@
                                             </a>
                                         </li>
                                     }
+                                    
 
                                 }
 
                             }
 
-
+                        
 
                             @*   <li><a href="./class-details.html">Classes</a></li>
                             <li><a href="./services.html">Services</a></li>
@@ -218,7 +214,7 @@
                             </ul>
                             </li>
                             <li><a href="./contact.html">Contact</a></li>*@
-                        </ul>
+                </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
