@@ -44,6 +44,10 @@
         @Html.TextBoxFor(trainer=>trainer.TrainerDateOfBirth ,new {@type = "Date", @class = "form-control" })
         @Html.ValidationMessageFor(trainer=>trainer.TrainerDateOfBirth  ,"",new { @class ="text-danger" })
         <br />
+        @Html.Label("Image Url")
+        @Html.TextBoxFor(trainer=>trainer.TrainerImgUrl ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerImgUrl,"",new { @class ="text-danger" })
+        <br />
         @Html.Label("Gender")
         <select class="form-control" name="TrainerGender">
             <option value="True">Man</option>

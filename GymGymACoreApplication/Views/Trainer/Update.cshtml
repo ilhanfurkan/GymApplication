@@ -45,6 +45,10 @@
                <input class="form-control" type="text" name="TrainerDateOfBirth" value="@Model.TrainerDateOfBirth.ToString().Split(" ")[0]" />
         @Html.ValidationMessageFor(trainer=>trainer.TrainerDateOfBirth  ,"",new { @class ="text-danger" })
         <br />
+        @Html.Label("Image Url")
+        @Html.TextBoxFor(trainer=>trainer.TrainerImgUrl ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(trainer=>trainer.TrainerImgUrl,"",new { @class ="text-danger" })
+        <br />
           @Html.Label("Gender")
         <select class="form-control" name="TrainerGender">
             @if (Model.TrainerGender)
