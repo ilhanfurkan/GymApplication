@@ -28,8 +28,17 @@ namespace GymGymACoreApplication.Controllers
             var itemCounts = 0;
             if (searchText != "" && searchText != null)
             {
-                data = c.Packets.Where(usr => usr.PacketName.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-                itemCounts = c.Packets.Where(usr => usr.PacketName.Contains(searchText)).ToList().Count;
+                data = c.Packets.Where(usr => usr.PacketName.Contains(searchText) ||
+                usr.PacketDetail.Contains(searchText) ||
+                usr.PacketPrice.Contains(searchText) ||
+                usr.Trainer.TrainerFirstName.Contains(searchText) ||
+                usr.ActivePassive.ToString().Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+                itemCounts = c.Packets.Where(usr => usr.PacketName.Contains(searchText) ||
+                usr.PacketDetail.Contains(searchText) ||
+                usr.PacketPrice.Contains(searchText) ||
+                usr.Trainer.TrainerFirstName.Contains(searchText) ||
+                usr.ActivePassive.ToString().Contains(searchText)).ToList().Count;
             }
             else
             {

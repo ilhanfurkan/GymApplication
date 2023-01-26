@@ -10,39 +10,34 @@
 	@using (Html.BeginForm("Add", "HourTrainer", FormMethod.Post, new { @class = "form-group" }))
 	{
 			<label>Quota</label>
-			@Html.TextBox("HourTrainer.Quota","", new {@class="form-control"})
-			@Html.ValidationMessageFor(ht=>ht.HourTrainer.Quota,"", new {@class="text-danger"})
+			@Html.TextBox("Quota","", new {@class="form-control", @placeholder="Enter Quota"})
+			@Html.ValidationMessage("Quota","", new {@class="text-danger"})
 			<br />
 
 			<label>Date</label>
-			@Html.TextBoxFor(ht=>ht.HourTrainer.Date,"", new {@class="form-control", @type="date"})
-			@Html.ValidationMessageFor(ht=>ht.HourTrainer.Date,"", new {@class="text-danger"})
+			@Html.TextBox("Date","", new {@class="form-control", @type="date"})
+			@Html.ValidationMessage("Date","", new {@class="text-danger"})
 			<br />
 
 			<label>Hour</label>
-			@Html.DropDownListFor(ht => ht.HourTrainer.HourId, new SelectList(Model.Hours, "HourId", "Hours"), "--Choose Hour--", new { @class = "form-control" })
 
-			@*<select class="form-control" name="HourId">
-					<option value="-1">--Choose Hour--</option>
+			<select class="form-control" name="HourId">
+					<option value="-1" disabled selected>--Choose Hour--</option>
 			@foreach (var item in Model.Hours)
 			{
 						<option value="@item.HourId">@item.Hours </option>
 			}
-			</select>*@
-			@Html.ValidationMessageFor(ht=>ht.HourTrainer.HourId,"", new {@class="text-danger"})
+			</select>
 			<br />
 
-
 			<label>Trainer</label>
-			@Html.DropDownListFor(ht => ht.HourTrainer.TrainerId, new SelectList(Model.Trainers, "TrainerId", "TrainerFirstName", "TrainerLastName"), "--Choose Trainer--", new { @class = "form-control" })
-			@*<select class="form-control" name="TrainerId">
-				<option value="-1">--Choose Trainer--</option>
+			<select class="form-control" name="TrainerId">
+				<option value="-1" disabled selected>--Choose Trainer--</option>
 			@foreach (var item in Model.Trainers)
 			{
 							<option value="@item.TrainerId">@item.TrainerFirstName.ToUpper()  @item.TrainerLastName.ToUpper()</option>
 			}
-			</select>*@
-			@Html.ValidationMessageFor(ht=>ht.HourTrainer.TrainerId,"", new {@class="text-danger"})
+			</select>
 			<br />
 			@Html.Label("Active")
 			<select class="form-control " name="ActivePassive">

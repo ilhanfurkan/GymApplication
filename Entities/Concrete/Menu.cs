@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class Menu : BaseEntity, IEntity
+    public class Menu
     {
         
             [Key]
