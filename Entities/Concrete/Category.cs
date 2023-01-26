@@ -14,6 +14,9 @@ namespace Entities.Concrete
         public int CategoryId { get; set; }
         [StringLength(50)]
         public string CategoryName { get; set; }
+        public string? CategoryDetail { get; set; }
+        public string? SeoUrl { get; set; }
+        public string? ImageUrl { get; set; }
         public bool Deleted { get; set; }
 
         //CategoryTrainer da Id'si olacak.

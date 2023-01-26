@@ -13,6 +13,14 @@
         @Html.TextBoxFor(category=>category.CategoryName,new { @class = "form-control" })
         @Html.ValidationMessageFor(category=>category.CategoryName,"",new { @class ="text-danger" })
         <br />
+        @Html.Label("Category Detail")
+        @Html.TextBoxFor(category=>category.CategoryDetail,new { @class = "form-control" })
+        @Html.ValidationMessageFor(category=>category.CategoryDetail,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("İmage Url")
+        @Html.TextBoxFor(category=>category.ImageUrl,new { @class = "form-control" })
+        @Html.ValidationMessageFor(category=>category.ImageUrl,"",new { @class ="text-danger" })
+        <br />
         <select class="form-control invisible" name="Deleted">
             <option value="False"></option>
             <option value="True">Deleted</option>
