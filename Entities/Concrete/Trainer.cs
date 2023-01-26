@@ -28,6 +28,7 @@ namespace Entities.Concrete
         public string TrainerMail { get; set; }
         public bool TrainerGender { get; set; }
         public DateTime TrainerDateOfBirth { get; set; }
+        public string TrainerImgUrl { get; set; }
         public bool Deleted { get; set; }
 
 

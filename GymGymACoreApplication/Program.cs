@@ -96,6 +96,10 @@ public class Program
             pattern: "/HomePage/gym-about",
            defaults: new { controller = "HomePage", action = "AboutPage" });
 
+            endpoints.MapControllerRoute(
+            name: "BlogPage",
+          pattern: "/HomePage/gym-blog",
+            defaults: new { controller = "HomePage", action = "BlogPage" });
         });
 
         app.Run();

@@ -295,55 +295,25 @@
         </div>
         <div class="row">
             <div class="ts-slider owl-carousel">
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="/gymlife/img/team/team-1.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="ts-item set-bg">
+                            <img src="~/gymlife/img/team/@item.TrainerImgUrl" />
+                            <div class="ts_text">
+                                <h4>@item.TrainerFirstName @item.TrainerLastName</h4>
+                                <span>Gym Trainer</span>
+                                <div class="tt_social">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                    <a href="#"><i class="fa  fa-envelope-o"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="/gymlife/img/team/team-2.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="/gymlife/img/team/team-3.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="/gymlife/img/team/team-4.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="/gymlife/img/team/team-5.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="/gymlife/img/team/team-6.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                }
         </div>
     </div>
 </section>
