@@ -49,7 +49,8 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
         {
           
             ViewBag.menu = menuList;
-            return View();
+            var listTrainer = tm.TrainerList();
+            return View(listTrainer);
         }
 
         public ActionResult TrainerPage()
@@ -61,7 +62,8 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
         public ActionResult AboutPage()
         {
             ViewBag.menu = menuList;
-            return View();
+            var listTrainer = tm.TrainerList();
+            return View(listTrainer);
         }
         public ActionResult BlogPage()
         {
