@@ -80,12 +80,19 @@ public class Program
             pattern: "/user",
             defaults: new { controller = "User", action = "Index" });
 
+            //HomePage dosya yolları
+            endpoints.MapControllerRoute(
+                name: "Index",
+             pattern: "/HomePage/gym-home",
+            defaults: new { controller = "HomePage", action = "Index" });
+
             endpoints.MapControllerRoute(
                 name: "TrainerPage",
              pattern: "/HomePage/gym-trainer",
             defaults: new { controller = "HomePage", action = "TrainerPage" });
+
             endpoints.MapControllerRoute(
-               name: "TrainerPage",
+              name: "AboutPage",
             pattern: "/HomePage/gym-about",
            defaults: new { controller = "HomePage", action = "AboutPage" });
 

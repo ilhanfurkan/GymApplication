@@ -63,7 +63,18 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
             ViewBag.menu = menuList;
             return View();
         }
-      
+        public ActionResult BlogPage()
+        {
+            ViewBag.menu = menuList;
+            return View();
+        }
+        public ActionResult ContactPage()
+        {
+            ViewBag.menu = menuList;
+            return View();
+        }
+
+
         // GET: HomePageController/Details/5
         public ActionResult Details(int id)
         {
