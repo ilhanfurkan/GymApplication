@@ -6,7 +6,11 @@
 }
 
 <div class="p-2">
+    <br />
+    <br />
     <h3 style="text-align:center;">Add Category</h3>
+    <br />
+    
     @using (Html.BeginForm("add", "Category", FormMethod.Post, new { @class = "form-group" }))
     {
         @Html.Label("Category Name")
@@ -20,6 +24,10 @@
         @Html.Label("İmage Url")
         @Html.TextBoxFor(category=>category.ImageUrl,new { @class = "form-control" })
         @Html.ValidationMessageFor(category=>category.ImageUrl,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Seo Url")
+        @Html.TextBoxFor(category=>category.SeoUrl,new { @class = "form-control" })
+        @Html.ValidationMessageFor(category=>category.SeoUrl,"",new { @class ="text-danger" })
         <br />
         <select class="form-control invisible" name="Deleted">
             <option value="False"></option>

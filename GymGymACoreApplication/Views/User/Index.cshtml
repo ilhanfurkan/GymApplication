@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var pager = (Pager)ViewBag.pager;
     var searchText = ViewBag.searchText;
+    var i = 0;
 }
 @section search{
 <div class="search-field d-none d-xl-block">
@@ -45,6 +46,7 @@
     <tbody>
         @foreach (var item in Model)
         {
+           
             var deletedCase=@item.Deleted==true?"Deleted":"--";
                 var UserGender = item.Gender == true ? "Man" : "Woman";
                 <tr>
@@ -71,14 +73,13 @@
                 </td>
                 </tr>
         }
-
+        
     </tbody>
 </table>
 </div>
 <div class="text-center d-flex justify-content-start p-2">
     <a href="/User/Add" class="mdi mdi-account-multiple-plus btn btn-inverse-primary btn-fw"> Add New User</a>
 </div>
-
 
 <!-- Modal -->
 @*#decisionPopup Model*@

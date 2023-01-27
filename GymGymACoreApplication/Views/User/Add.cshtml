@@ -6,11 +6,12 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="p-2">
+    <br />
+    <br />
     <h3 style="text-align:center;">Add User</h3>
-
+    <br />
     @using (Html.BeginForm("Add", "User", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.TextBoxFor(user=>user.UserId,new { @class = "form-control",@name="UserId",@value="@Model.UserId",@type="hidden"})
         @Html.Label("User Login*")
         @Html.TextBoxFor(user=>user.UserLogin,new { @class = "form-control" })
         @Html.ValidationMessageFor(user=>user.UserLogin,"",new { @class ="text-danger" })

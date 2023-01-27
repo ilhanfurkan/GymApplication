@@ -24,4 +24,9 @@
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\packet-images\" />
+    <Folder Include="wwwroot\images\user-images\" />
+  </ItemGroup>
+
 </Project>

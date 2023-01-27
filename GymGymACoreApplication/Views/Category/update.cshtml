@@ -21,7 +21,10 @@
         @Html.TextBoxFor(category=>category.ImageUrl,new { @class = "form-control" })
         @Html.ValidationMessageFor(category=>category.ImageUrl,"",new { @class ="text-danger" })
             <br />
-       
+        @Html.Label("Seo Url")
+        @Html.TextBoxFor(category=>category.SeoUrl,new { @class = "form-control" })
+        @Html.ValidationMessageFor(category=>category.SeoUrl,"",new { @class ="text-danger" })
+            <br />
         @Html.Label("Case")
         <select class="form-control" name="deleted">
             @if (Model.Deleted)
