@@ -6,7 +6,7 @@
 	$(function() {
 		if ($(".dashboard-progress-1").length) {
 			$('.dashboard-progress-1').circleProgress({
-				value: 0.70,
+				value: 0.20,
 				size: 125,
 				thickness: 7,
 				startAngle: 80,
