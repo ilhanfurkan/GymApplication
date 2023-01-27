@@ -1,0 +1,31 @@
+﻿@using Entities.Concrete;
+@model ChoseUs;
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="p-2">
+    <br />
+    <br />
+    <h3 style="text-align:center;">Add Reason</h3>
+        <br />
+
+    @using (Html.BeginForm("Add", "ChoseUs", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Reason Title*")
+        @Html.TextBoxFor(cu=>cu.ReasonTitle,new { @class = "form-control" })
+        @Html.ValidationMessageFor(cu=>cu.ReasonTitle,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Reason Detail*")
+        @Html.TextBoxFor(cu=>cu.ReasonDetail ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(cu=>cu.ReasonDetail,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Icon Url*")
+        @Html.TextBoxFor(cu=>cu.ChoseUsIcon ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(cu=>cu.ChoseUsIcon,"",new { @class ="text-danger" })
+                <br />
+        
+                <input class="button-change form-control btn btn-primary" type="submit" value="Add Reason" />
+    }
+</div>
