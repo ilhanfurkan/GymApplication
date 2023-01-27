@@ -1,10 +1,11 @@
 ﻿@{
 	ViewData["Title"] = "Index";
 	Layout = "~/Views/Shared/_HomePage.cshtml";
+
 }
 <section class="hero-section">
 	<div class="hs-slider owl-carousel">
-		<div class="hs-item set-bg" data-setbg="/gymlife/img/hero/hero-1.jpg">
+		<div class="hs-item set-bg" data-setbg="/images/homepage-images/hero-1.jpg">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 offset-lg-6">
@@ -17,7 +18,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="hs-item set-bg" data-setbg="/gymlife/img/hero/hero-2.jpg">
+		<div class="hs-item set-bg" data-setbg="/images/homepage-images/hero-2.jpg">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 offset-lg-6">
@@ -100,57 +101,22 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-4 col-md-6">
-				<div class="class-item">
-					<div class="ci-pic">
-						<img src="/gymlife/img/classes/class-4.jpg" alt="">
-					</div>
-					<div class="ci-text">
-						<span>STRENGTH</span>
-						<h5>Fitness</h5>
-						<a href="#"><i class="fa fa-angle-right"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="class-item">
-					<div class="ci-pic">
-						<img src="/gymlife/img/classes/class-5.jpg" alt="">
-					</div>
-					<div class="ci-text">
-						<span>Training</span>
-						<h5>Boxing</h5>
-						<a href="#"><i class="fa fa-angle-right"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="class-item">
-					<div class="ci-pic">
-						<img src="/gymlife/img/classes/class-3.jpg" alt="">
-					</div>
-					<div class="ci-text">
-						<span>Cardio</span>
-						<h5>Pilates</h5>
-						<a href="#"><i class="fa fa-angle-right"></i></a>
-					</div>
-				</div>
-			</div>
-
-
-		</div>
+		
+			
+			
+		@await Component.InvokeAsync("CategoryListComponent")
+		
 	</div>
 </section>
 <!-- ChoseUs Section End -->
 <!-- Banner Section Begin -->
-<section class="banner-section set-bg" data-setbg="/gymlife/img/banner-bg.jpg">
+<section class="banner-section set-bg" data-setbg="/images/homepage-images/banner-bg.jpg">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<div class="bs-text">
 					<h2>registration now to get more deals</h2>
-					<div class="bt-tips">Where health, beauty and fitness meet.</div>
+					
 					<a href="#" class="primary-btn  btn-normal">Appointment</a>
 				</div>
 			</div>
@@ -169,34 +135,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-
-			<div class="ts-slider owl-carousel">
-				<div class="row justify-content-center">
-
-
-					<div class="col-lg-11 mt-3">
-						<div class="ps-item">
-							<h3>6 Month unlimited</h3>
-							<div class="pi-price">
-								<h2>$ 59.0</h2>
-								<span>SINGLE CLASS</span>
-							</div>
-							<ul>
-								<li>Free riding</li>
-								<li>Unlimited equipments</li>
-								<li>Personal trainer</li>
-								<li>Weight losing classes</li>
-								<li>Month to mouth</li>
-								<li>No time restriction</li>
-							</ul>
-							<a href="#" class="primary-btn pricing-btn">Enroll now</a>
-							<a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		@await Component.InvokeAsync("PacketListComponent")
 
 </section>
 <!-- Pricing Section End -->
@@ -204,23 +143,23 @@
 <div class="gallery-section">
 	<div class="gallery">
 		<div class="grid-sizer"></div>
-		<div class="gs-item grid-wide set-bg" data-setbg="/gymlife/img/gallery/gallery-1.jpg">
-			<a href="/gymlife/img/gallery/gallery-1.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+		<div class="gs-item grid-wide set-bg" data-setbg="/images/homepage-images/gallery-1.jpg">
+			<a href="/images/homepage-images/gallery-1.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
 		</div>
-		<div class="gs-item set-bg" data-setbg="/gymlife/img/gallery/gallery-2.jpg">
-			<a href="/gymlife/img/gallery/gallery-2.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+		<div class="gs-item set-bg" data-setbg="/images/homepage-images/gallery-2.jpg">
+			<a href="/images/homepage-images/gallery-2.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
 		</div>
-		<div class="gs-item set-bg" data-setbg="/gymlife/img/gallery/gallery-3.jpg">
-			<a href="/gymlife/img/gallery/gallery-3.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+		<div class="gs-item set-bg" data-setbg="/images/homepage-images/gallery-3.jpg">
+			<a href="/images/homepage-images/gallery-3.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
 		</div>
-		<div class="gs-item set-bg" data-setbg="/gymlife/img/gallery/gallery-4.jpg">
-			<a href="/gymlife/img/gallery/gallery-4.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+		<div class="gs-item set-bg" data-setbg="/images/homepage-images/gallery-4.jpg">
+			<a href="/images/homepage-images/gallery-4.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
 		</div>
-		<div class="gs-item set-bg" data-setbg="/gymlife/img/gallery/gallery-5.jpg">
-			<a href="/gymlife/img/gallery/gallery-5.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+		<div class="gs-item set-bg" data-setbg="/images/homepage-images/gallery-5.jpg">
+			<a href="/images/homepage-images/gallery-5.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
 		</div>
-		<div class="gs-item grid-wide set-bg" data-setbg="/gymlife/img/gallery/gallery-6.jpg">
-			<a href="/gymlife/img/gallery/gallery-6.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
+		<div class="gs-item grid-wide set-bg" data-setbg="/images/homepage-images/gallery-6.jpg">
+			<a href="/images/homepage-images/gallery-6.jpg" class="thumb-icon image-popup"><i class="fa fa-picture-o"></i></a>
 		</div>
 	</div>
 </div>
@@ -239,29 +178,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="ts-slider owl-carousel">
-				@foreach (var item in Model)
-				{
-					<div class="col-lg-4 col-sm-6">
-						<div class="ts-item set-bg">
-							<img src="~/gymlife/img/team/@item.TrainerImgUrl" />
-							<div class="ts_text">
-								<h4>@item.TrainerFirstName @item.TrainerLastName</h4>
-								<span>Gym Trainer</span>
-								<div class="tt_social">
-									<a href="#"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-									<a href="#"><i class="fa fa-youtube-play"></i></a>
-									<a href="#"><i class="fa fa-instagram"></i></a>
-									<a href="#"><i class="fa  fa-envelope-o"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				}
-			</div>
-		</div>
+		@await Component.InvokeAsync("TrainerListComponent")
 </section>
 <!-- Team Section End -->
 <!-- Get In Touch Section Begin -->

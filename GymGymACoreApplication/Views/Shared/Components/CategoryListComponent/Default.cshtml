@@ -1,0 +1,23 @@
+﻿@using Entities.Concrete;
+@model IEnumerable<Category>
+
+
+	<div class="row">
+	@foreach (var item in Model)
+	{
+
+
+				<div class="col-lg-4 col-md-6">
+					<div class="class-item">
+						<div class="ci-pic">
+							<img src="/images/category-images/@item.ImageUrl" alt=@item.CategoryName>
+						</div>
+						<div class="ci-text">
+							<span>@item.CategoryDetail</span>
+							<h5>@item.CategoryName</h5>
+							<a href=@item.SeoUrl><i class="fa fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+	}
+	</div>
