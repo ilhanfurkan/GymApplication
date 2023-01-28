@@ -19,6 +19,8 @@ namespace Entities.Concrete
         public string PacketDetail { get; set; }
         [StringLength(10)]
         public string PacketPrice { get; set; }
+        [StringLength(10)]
+        public string OldPrice { get; set; }
         public int Right { get; set; }     // Hak = Right
         public bool ActivePassive { get; set; }
         public bool Deleted { get; set; }

@@ -22,6 +22,11 @@
         @Html.TextBox("PacketPrice",Model.CategoryTrainer.PacketPrice,new { @class = "form-control"})
         @Html.ValidationMessage("PacketPrice","",new { @class ="text-danger"})
                 <br />
+                @Html.Label("Packet Price Without Discount")
+		@Html.TextBox("OldPrice",Model.CategoryTrainer.OldPrice,new { @class = "form-control", @placeholder="Please Enter Packet Price Without Discount" })
+        @Html.ValidationMessage("OldPrice","",new { @class ="text-danger"})
+
+			<br />
         @Html.Label("Right")
         @Html.TextBox("Right",Model.CategoryTrainer.Right,new { @class = "form-control"})
         @Html.ValidationMessage("Right","",new { @class ="text-danger" })

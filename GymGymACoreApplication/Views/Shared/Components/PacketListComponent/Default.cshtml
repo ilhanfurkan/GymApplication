@@ -8,12 +8,14 @@
 		@foreach (var item in Model)
 		{
 							<div class="col-lg-4 col-sm-2 ">
-									<div class="ts-item set-bg pt-3" style="height:500px;">
+									<div class="ts-item set-bg pt-3" style="height:550px;">
 
 								<div class="ps-item">
 										<h3>@item.Right Workouts</h3>
 									<div class="pi-price">
+										<span style="text-decoration:line-through !important;">@item.OldPrice TL</span><br/>
 										<h2>@item.PacketPrice TL</h2>
+										<br />
 										<span>@item.Category.CategoryName</span><br/>
 											<span>@item.Trainer.TrainerFirstName @item.Trainer.TrainerLastName</span>
 									</div>
@@ -22,7 +24,6 @@
 
 									</ul>
 
-										<br />
 											<br />
 									<a href="#" class="primary-btn pricing-btn">Enroll now</a>
 						@*<a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>*@
