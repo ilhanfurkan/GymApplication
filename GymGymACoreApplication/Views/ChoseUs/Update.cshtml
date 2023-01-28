@@ -1,29 +1,30 @@
 ﻿@using Entities.Concrete;
 @model ChoseUs;
-
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="p-2">
-    <br />
-    <br />
-    <h3 style="text-align:center;">Add Reason</h3>
+            <br />
         <br />
 
-    @using (Html.BeginForm("Add", "ChoseUs", FormMethod.Post, new { @class = "form-group" }))
+    <h3 style="text-align:center;">Update Reason</h3>
+        <br />
+
+    @using (Html.BeginForm("Update", "ChoseUs", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.Label("Reason Title*")
-        @Html.TextBoxFor(cu=>cu.ReasonTitle,new { @class = "form-control" })
-        @Html.ValidationMessageFor(cu=>cu.ReasonTitle,"",new { @class ="text-danger" })
-                <br />
-        @Html.Label("Reason Detail*")
-        @Html.TextBoxFor(cu=>cu.ReasonDetail ,new { @class = "form-control" })
+        @Html.TextBoxFor(cu=>cu.ChoseUsId,new { @class = "form-control",@type="hidden"})
+        @Html.Label("Reason Title")
+        @Html.TextBoxFor(cu=>cu.ReasonTitle ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(cu=>cu.ReasonTitle  ,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Reason Detail")
+        @Html.TextBoxFor(cu=>cu.ReasonDetail,new { @class = "form-control" })
         @Html.ValidationMessageFor(cu=>cu.ReasonDetail,"",new { @class ="text-danger" })
-                <br />
-        @Html.Label("Icon Url*")
-        <select class="form-control" name="ChoseUsIcon">
-									<option disabled selected>--Choose Icon--</option>
+            <br />
+        @Html.Label("Icon")
+         <select class="form-control" name="ChoseUsIcon">
+                                        <option selected>@Model.ChoseUsIcon</option>
 									<option>flaticon-001-mattress</option>
                                     <option>flaticon-002-dumbell</option>
                                     <option>flaticon-003-weight</option>
@@ -76,8 +77,8 @@
                                     <option>flaticon-050-no-fast-food</option>
 		</select>
         @Html.ValidationMessageFor(cu=>cu.ChoseUsIcon,"",new { @class ="text-danger" })
-                <br />
-        
-                <input class="button-change form-control btn btn-primary" type="submit" value="Add Reason" />
+            
+        <br />
+            <input class="button-change form-control btn btn-success" type="submit" value="Update Reason" />
     }
 </div>

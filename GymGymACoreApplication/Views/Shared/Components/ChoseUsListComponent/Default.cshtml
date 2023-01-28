@@ -1,0 +1,17 @@
+﻿@using Entities.Concrete;
+@model IEnumerable<ChoseUs>
+
+@foreach (var item in Model)
+{
+	
+
+<div class="col-lg-3 col-sm-6">
+				<div class="cs-item">
+					<span class=@item.ChoseUsIcon></span>
+					<h4>@item.ReasonTitle</h4>
+					<p>
+						@item.ReasonDetail
+					</p>
+				</div>
+			</div>
+}
