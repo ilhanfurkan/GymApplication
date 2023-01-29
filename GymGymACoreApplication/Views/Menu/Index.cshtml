@@ -1,0 +1,110 @@
+﻿@using Entities.Concrete;
+@using GymGymACoreApplication.PagedList;
+@model List<Menu>;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
+}
+@section search{
+        <div class="search-field d-none d-xl-block">
+                <form asp-controller="Menu" asp-action="Index" class="d-flex align-items-center h-100">
+                <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                        <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                    </div>
+                                <input type="text" class="form-control bg-transparent border-0" name="searchText" value="@searchText" placeholder="Search">
+                </div>
+            </form>
+        </div>
+
+}
+        <h3></h3>
+        <h3 class="ms-3 mt-5">All Menu Title</h3>
+        <div style="overflow: auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Menu Name</th>
+                    <th>Seo Url</th>
+                    <th>Parent Menu Name</th>
+                    <th>Case</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+                <tbody>
+            @foreach (var item in Model)
+            {
+                var deletedCase = @item.Deleted == true ? "Deleted" : "--";
+                <tr>
+                    <td>@item.MenuName</td>
+                    <td>@item.SeoUrl</td>
+                        @if (@item.ParentId == null)
+                        {
+                            <td>First Parent</td>
+                        }
+                        else
+                        {
+
+                            <td>@item.Parent.MenuName</td>
+                        }
+                        
+                    <td>@deletedCase</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                            <button type="button" class="btn btn-inverse-danger btn-fw text-center" data-bs-whatever="@item.MenuId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete</button>
+                    </td>
+                        <td><a href="/Menu/Update/@item.MenuId" type="button" class="btn btn-inverse-success btn-fw">Update</a></td>
+                </tr>
+            }
+
+    </tbody>
+</table>
+</div>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/Menu/Add" class="btn btn-inverse-primary btn-fw">Add New Menu Title</a>
+</div>
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Warning</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-danger">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="position:relative;">
+<div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+    <partial name="PagingPartialCustom" model="@pager" />
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var MenuId = button.attr('data-bs-whatever');
+            var a = document.querySelector("#delete-btn");
+            a.href = "/Menu/Delete/" + MenuId;
+        });
+    });
+</script>

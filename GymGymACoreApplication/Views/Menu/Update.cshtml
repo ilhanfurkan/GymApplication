@@ -1,0 +1,61 @@
+﻿@using Entities.Concrete;
+@model MenuParentModel;
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="p-2">
+    <br />
+    <br />
+    <h3 style="text-align:center;">Update Menu Title</h3>
+    <br />
+    @using (Html.BeginForm("Update", "Menu", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.TextBox("MenuId",Model.Menu.MenuId,new { @class = "form-control",@type="hidden"})
+        @Html.Label("Menu Name")
+        @Html.TextBox("MenuName",Model.Menu.MenuName,new { @class = "form-control" })
+        @Html.ValidationMessage("MenuName",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Seo Url")
+        @Html.TextBox("SeoUrl",Model.Menu.SeoUrl,new { @class = "form-control" })
+        @Html.ValidationMessage("SeoUrl",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Parent")
+
+        <select name="ParentId" class="form-control">
+            <option value="Null">Kendisi</option>
+            @foreach (var item in Model.Menus)
+            {
+                if (item.MenuId != Model.Menu.MenuId)
+                {
+                    @if (item.MenuId == Model.Menu.ParentId)
+                    {
+                                    <option value="@item.MenuId" selected>@item.MenuName</option>
+                    }
+                    else
+                    {
+                                    <option value="@item.MenuId">@item.MenuName</option>
+                    }
+
+                }
+            }
+        </select>
+        <br />
+        @Html.Label("Case")
+            <select class="form-control" name="Deleted">
+            @if (Model.Menu.Deleted)
+            {
+                        <option value="True" selected>Deleted</option>
+                        <option value="False">--</option>
+            }
+            else
+            {
+                        <option value="True">Deleted</option>
+                        <option value="False" selected>--</option>
+
+            }
+            </select>
+            <br />
+            <input class="button-change form-control btn btn-success" type="submit" value="Update Menu Title" />
+    }
+</div>

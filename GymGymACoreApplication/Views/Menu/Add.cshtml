@@ -1,0 +1,41 @@
+﻿@using Entities.Concrete;
+@model MenuParentModel ;
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="p-2">
+    <br />
+    <br />
+    <h3 style="text-align:center;">Add Menu Title</h3>
+    <br />
+    @using (Html.BeginForm("Add", "Menu", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Menu Name")
+        @Html.TextBox("MenuName","",new { @class = "form-control " })
+        @Html.ValidationMessage("MenuName","",new { @class =" text-danger" })
+            <br />
+        @Html.Label("Seo Url")
+        @Html.TextBox("SeoUrl","",new { @class = "form-control" })
+        @Html.ValidationMessage("SeoUrl","",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Parent")
+      <select name="ParentId" class="form-control">
+            <option value="Null">First Parent</option>
+
+            @foreach (var item in Model.Menus)
+            {
+                    <option value="@item.MenuId">@item.MenuName</option>
+            }
+        </select>
+        <br />
+            <select class="form-control invisible" name="Deleted">
+                <option value="False"></option>
+                <option value="True">Deleted</option>
+            </select>
+            <input class="button-change form-control btn btn-primary" type="submit" value="Add Menu Title" />
+    }
+</div>
+
+

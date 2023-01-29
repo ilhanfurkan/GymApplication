@@ -14,5 +14,6 @@ namespace Business.Abstract
         void MenuUpdate(Menu menu);
         Menu MenuGetById(int id);
         Menu MenuGetBySeoUrl(String seoUrl);
+        void MenuRemove(Menu menu);
     }
 }

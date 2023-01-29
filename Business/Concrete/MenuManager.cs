@@ -19,17 +19,17 @@ namespace Business.Concrete
 
         public void MenuAdd(Menu menu)
         {
-            throw new NotImplementedException();
+            menuDal.Insert(menu);
         }
 
         public Menu MenuGetById(int id)
         {
-            throw new NotImplementedException();
+            return menuDal.Get(x=>x.MenuId == id);
         }
 
         public Menu MenuGetBySeoUrl(string seoUrl)
         {
-            throw new NotImplementedException();
+            return menuDal.Get(x => x.SeoUrl == seoUrl);
         }
 
         public List<Menu> MenuList()
@@ -37,9 +37,14 @@ namespace Business.Concrete
             return menuDal.Listing();
         }
 
+        public void MenuRemove(Menu menu)
+        {
+            menuDal.Delete(menu);
+        }
+
         public void MenuUpdate(Menu menu)
         {
-            throw new NotImplementedException();
+            menuDal.Update(menu);
         }
     }
 }
