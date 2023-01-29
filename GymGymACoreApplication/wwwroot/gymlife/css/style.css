@@ -370,12 +370,13 @@ ol {
 	display: block;
 }
 
-.nav-menu ul li .dropdown li a {
-	display: block;
-	text-transform: none;
-	padding: 13px 0 13px 30px;
-	font-weight: 400;
-}
+	.nav-menu ul li .dropdown li a {
+		display: block;
+		text-transform: none;
+		padding: 13px 0 13px 30px;
+		font-weight: 400;
+		border-top: 1px dotted black;
+	}
 
 .nav-menu ul li .dropdown li a:after {
 	display: none;
@@ -411,7 +412,7 @@ ol {
 	.nav-menu ul li:hover > .has-children {
 		left:182px;
 		top:0px;
-		height:100%;
+		
 	}
 		
 .nav-menu ul li a {
