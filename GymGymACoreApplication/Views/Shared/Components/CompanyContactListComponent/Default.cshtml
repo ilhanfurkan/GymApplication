@@ -1,0 +1,12 @@
+﻿@using Entities.Concrete
+@model IEnumerable<CompanyContact>
+@foreach (var item in Model)
+{
+	
+	<div class="col-md-4">
+				<div class="gt-text">
+					<i class="@item.CompanyContactIcon"></i>
+					<p>@item.CompanyContactDetail</p>
+				</div>
+			</div>
+}

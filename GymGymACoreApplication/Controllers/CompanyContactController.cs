@@ -22,12 +22,10 @@ namespace GymGymACoreApplication.Controllers
 			var itemCounts = 0;
 			if (searchText != "" && searchText != null)
 			{
-				data = c.CompanyContacts.Where(usr => usr.CompanyContactAddress.Contains(searchText) ||
-				usr.CompanyContactcMail.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+				data = c.CompanyContacts.Where(usr => usr.CompanyContactDetail.Contains(searchText)).Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
 
-				itemCounts = c.CompanyContacts.Where(usr => usr.CompanyContactAddress.Contains(searchText) ||
-				usr.CompanyContactcMail.Contains(searchText)).ToList().Count;
+				itemCounts = c.CompanyContacts.Where(usr => usr.CompanyContactDetail.Contains(searchText)).ToList().Count;
 			}
 			else
 			{
