@@ -4,21 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entities.Concrete;
+using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 
 namespace GymGymACoreApplication.ViewComponents
 {
     public class PacketListComponent : ViewComponent
     {
-        public readonly Context _context;
-
-        public PacketListComponent()
-        {
-            _context = new Context();
-        }
+        CategoryTrainerManager ctm = new CategoryTrainerManager(new EfCategoryTrainerRepository());
 
         public IViewComponentResult Invoke()
         {
-            var packets = _context.Packets.ToList();
+            var packets = ctm.CategoryTrainerList();
             return View(packets);
         }
 
