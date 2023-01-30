@@ -13,18 +13,18 @@
 
     @using (Html.BeginForm("Add", "CompanyContact", FormMethod.Post, new { @class = "form-group" }))
     {
-        @Html.Label("Company Contact Address*")
-        @Html.TextBoxFor(cc=>cc.CompanyContactAddress,new { @class = "form-control" })
-        @Html.ValidationMessageFor(cc=>cc.CompanyContactAddress,"",new { @class ="text-danger" })
+        @Html.Label("Company Contact Detail*")
+        @Html.TextBoxFor(cc=>cc.CompanyContactDetail,new { @class = "form-control" })
+        @Html.ValidationMessageFor(cc=>cc.CompanyContactDetail,"",new { @class ="text-danger" })
         <br />
-        @Html.Label("Company Contact Phone*")
-        @Html.TextBoxFor(cc=>cc.CompanyContactPhoneNo ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(cc=>cc.CompanyContactPhoneNo,"",new { @class ="text-danger" })
-        <br />
-         @Html.Label("Company Contact Mail*")
-        @Html.TextBoxFor(cc=>cc.CompanyContactcMail ,new { @class = "form-control" })
-        @Html.ValidationMessageFor(cc=>cc.CompanyContactcMail,"",new { @class ="text-danger" })
-        
+        @Html.Label("Which Contact*")
+        <select class="form-control" name="CompanyContactIcon">
+            <option disabled selected>--Choose Contact Information--</option>
+            <option value="fa fa-map-marker">Adress</option>
+            <option value="fa fa-mobile">Phone</option>
+            <option value="fa fa-envelope">Mail</option>          
+        </select>
+        @Html.ValidationMessageFor(cc=>cc.CompanyContactIcon,"",new { @class ="text-danger" })
         <br />
 
         <input class="button-change form-control btn btn-primary" type="submit" value="Add Company Contact" />

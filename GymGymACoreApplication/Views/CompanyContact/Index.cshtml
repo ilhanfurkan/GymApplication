@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var pager = (Pager)ViewBag.pager;
     var searchText = ViewBag.searchText;
+    var detaill = "";
 }
 @section search{
     <div class="search-field d-none d-xl-block">
@@ -26,9 +27,9 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Company Address</th>
-                <th>Company Phone No</th>
-                <th>Company Mail</th>
+                <th>Company Detail</th>
+                <th>Which Contact</th>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -40,13 +41,25 @@
             </tr>
         </thead>
         <tbody>
+           
             @foreach (var item in Model)
             {
+                    @if (@item.CompanyContactIcon == "fa fa-map-marker")
+        {
+            detaill = "Adress";
+        }
+        else if (@item.CompanyContactIcon == "fa fa-mobile")
+        {
+            detaill = "Phone";
+        }
+        else
+        {
+            detaill = "Mail";
+        }
 
                 <tr>
-                    <td>@item.CompanyContactAddress</td>
-                    <td>@item.CompanyContactPhoneNo</td>
-                    <td>@item.CompanyContactcMail</td>
+                    <td>@item.CompanyContactDetail</td>
+                    <td>@detaill</td>
                     <td></td>
                     <td></td>
                     <td></td>

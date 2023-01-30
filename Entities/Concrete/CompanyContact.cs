@@ -13,11 +13,10 @@ namespace Entities.Concrete
         [Key]
         public int CompanyContactId { get; set; }
         [StringLength(150)]
-        public string CompanyContactAddress { get; set; }
-        [StringLength(11)]
-        public string CompanyContactPhoneNo { get; set; }
+        public string CompanyContactDetail { get; set; }
         [StringLength(50)]
-        public string CompanyContactcMail { get; set; }
+        public string CompanyContactIcon { get; set; }
+      
 
     }
 }
