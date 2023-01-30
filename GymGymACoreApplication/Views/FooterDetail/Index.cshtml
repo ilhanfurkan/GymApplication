@@ -1,0 +1,109 @@
+﻿@using Entities.Concrete;
+@using GymGymACoreApplication.PagedList
+@model List<FooterDetail>;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var pager = (Pager)ViewBag.pager;
+    var searchText = ViewBag.searchText;
+    var i = 0;
+}
+@section search{
+    <div class="search-field d-none d-xl-block">
+        <form asp-controller="FooterDetail" asp-action="Index" class="d-flex align-items-center h-100">
+            <div class="input-group">
+                <div class="input-group-prepend bg-transparent">
+                    <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                </div>
+                    <input type="text" class="form-control bg-transparent border-0" name="searchText" value="@searchText" placeholder="Search User">
+            </div>
+        </form>
+    </div>
+}
+    <h3></h3>
+     <h3 class="ms-3 mt-5">All Footer Detail</h3>
+     <div style="overflow: auto;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="col-12 grid-margin stretch-card">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Company Logo</th>
+                <th>Facebook Url</th>
+                <th>Instagram Url</th>
+                <th>Twitter Url</th>
+                <th>Youtube Url</th>
+                <th>Email Url</th>
+                <th>Tips Title</th>
+                <th>Tips Detail</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+
+                    <tr>
+                        <td>@item.LogoUrl</td>
+                        <td>@item.FbUrl</td>
+                        <td>@item.IgUrl</td>
+                        <td>@item.TwtUrl</td>
+                        <td>@item.YtUrl</td>
+                        <td>@item.EmUrl</td>
+                        <td>@item.TipsTitle</td>
+                        <td>@item.TipsDetail</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-inverse-danger btn-fw  text-center" data-bs-whatever="@item.FooterId" data-bs-toggle="modal" data-bs-target="#decisionPopup">Delete </button>
+                    </td>
+                    <td>
+                           <a href="/FooterDetail/Update/@item.FooterId" type="button" class="btn btn-inverse-success btn-fw">Update</a>    
+                    </td>
+                    </tr>
+            }
+
+    </tbody>
+</table>
+</div>
+<div class="text-center d-flex justify-content-start p-2">
+    <a href="/FooterDetail/Add" class="mdi mdi-account-multiple-plus btn btn-inverse-primary btn-fw"> Add New FooterDetail</a>
+</div>
+
+<!-- Modal -->
+@*#decisionPopup Model*@
+<div class="modal fade" id="decisionPopup" tabindex="=-1" aria-labelledby="silLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="silLabel">Warning</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <a id="delete-btn" href="" class="btn btn-danger">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="position:relative;">
+<div id="Index-Page" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+        @*<partial name="PagingPartialView" model="@Model" />*@
+    <partial name="PagingPartialCustom" model="@pager" />
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#decisionPopup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var FooterId = button.attr('data-bs-whatever');
+            var a = document.querySelector("#delete-btn");
+            a.href = "/FooterDetail/Delete/" + FooterId
+        });
+    });
+</script>

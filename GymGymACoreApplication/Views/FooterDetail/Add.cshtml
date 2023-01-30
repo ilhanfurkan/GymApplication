@@ -1,0 +1,54 @@
+﻿@using Entities.Concrete;
+@model FooterDetail
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="p-2">
+    <br />
+    <br />
+    <h3 style="text-align:center;">Add Footer Detail</h3>
+    <br />
+    @using (Html.BeginForm("Add", "FooterDetail", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Company Logo")
+        @Html.TextBoxFor(fd=>fd.LogoUrl,new { @class = "form-control" })
+        @Html.ValidationMessageFor(fd=>fd.LogoUrl,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Facebook Url")
+        @Html.TextBoxFor(fd=>fd.FbUrl,new { @class = "form-control" })
+        @Html.ValidationMessageFor(fd=>fd.FbUrl,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Instagram Url")
+        @Html.TextBoxFor(fd=>fd.IgUrl,new { @class = "form-control" })
+        @Html.ValidationMessageFor(fd=>fd.IgUrl,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Twitter Url")
+        @Html.TextBoxFor(fd=>fd.TwtUrl,new { @class = "form-control" })
+        @Html.ValidationMessageFor(fd=>fd.TwtUrl,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Youtube Url")
+        @Html.TextBoxFor(fd=>fd.YtUrl,new { @class = "form-control" })
+        @Html.ValidationMessageFor(fd=>fd.YtUrl,"",new { @class ="text-danger" })
+            <br />
+        @Html.Label("Email Url")
+        @Html.TextBoxFor(fd=>fd.EmUrl,new {@class = "form-control" })
+        @Html.ValidationMessageFor(fd=>fd.EmUrl,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Tips Title*")
+        @Html.TextBoxFor(fd=>fd.TipsTitle,new { @class = "form-control" })
+        @Html.ValidationMessageFor(fd=>fd.TipsTitle,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Tips Detail")
+        @Html.TextBoxFor(fd=>fd.TipsDetail ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(fd=>fd.TipsDetail,"",new { @class ="text-danger" })
+          <br />
+
+                <input class="button-change form-control btn btn-primary" type="submit" value="Add Footer Detail" />
+    }
+</div>
+
+
+
+

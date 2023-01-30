@@ -1,0 +1,39 @@
+﻿@using Entities.Concrete
+@model IEnumerable<FooterDetail>
+
+	@foreach (var item in Model)
+	{
+		
+	
+	<div class="row">
+			<div class="col-lg-4">
+				<div class="fs-about">
+					<div class="fa-logo">
+						<a href="#"><img src="/gymlife/img/@item.LogoUrl" alt=""></a>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-lg-5 col-md-3 col-sm-6 fs-about fa-logo mt-3">
+				<div class="fa-social">
+
+					<a href="@item.FbUrl"><i class="fa fa-facebook ml-5"></i></a>
+					<a href="@item.TwtUrl"><i class="fa fa-twitter ml-5"></i></a>
+					<a href="@item.YtUrl"><i class="fa fa-youtube-play ml-5"></i></a>
+					<a href="@item.IgUrl"><i class="fa fa-instagram ml-5"></i></a>
+					<a href="@item.EmUrl"><i class="fa  fa-envelope-o ml-5"></i></a>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-5">
+				<div class="fs-widget">
+					<h4>@item.TipsTitle</h4>
+
+					<div class="fw-recent">
+						<h6><a href="#">@item.TipsDetail</a></h6>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		}

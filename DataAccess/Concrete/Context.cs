@@ -13,14 +13,14 @@ namespace DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-             optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=402-02 ; database=GymGym-A ;Encrypt=False; User ID=sa;Password=1234");
+            //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=402-02 ; database=GymGym-A ;Encrypt=False; User ID=sa;Password=1234");
 
             //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=DESKTOP-5F5SU1M\\SQLEXPRESS ;Initial Catalog=GymGym-A;Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
 
-            //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server=Murki;Initial Catalog=GymGym-A;" +
-            //   "Persist Security Info=False;Trusted_Connection=True;" +
-            //   "MultipleActiveResultSets=False;Encrypt=False;" +
-            //   "TrustServerCertificate=False;Connection Timeout=30;");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server=Murki;Initial Catalog=GymGym-A;" +
+               "Persist Security Info=False;Trusted_Connection=True;" +
+               "MultipleActiveResultSets=False;Encrypt=False;" +
+               "TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -33,6 +33,8 @@ namespace DataAccess.Concrete
         public DbSet<UserHourTrainer> Appointments { get; set; }  // Randevular demek
         public DbSet<Admin> Admins { get; set; }  // Admin 
         public DbSet<Menu> Menus { get; set; } //menu
-        public DbSet<ChoseUs> ChoseUs { get; set; } //menu
+        public DbSet<ChoseUs> ChoseUs { get; set; } //Bizi neden seçtin kısmı
+        public DbSet<CompanyContact> CompanyContacts { get; set; } //Firma iletişim bilgileri
+        public DbSet<FooterDetail> FooterDetails { get; set; } //Sayfa sonu
     }
 }
