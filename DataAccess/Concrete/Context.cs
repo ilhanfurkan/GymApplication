@@ -13,7 +13,7 @@ namespace DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=402-02 ; database=GymGym-A ;Encrypt=False; User ID=sa;Password=1234");
+             optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=402-02 ; database=GymGym-A ;Encrypt=False; User ID=sa;Password=1234");
 
             //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=DESKTOP-5F5SU1M\\SQLEXPRESS ;Initial Catalog=GymGym-A;Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
 
@@ -34,7 +34,5 @@ namespace DataAccess.Concrete
         public DbSet<Admin> Admins { get; set; }  // Admin 
         public DbSet<Menu> Menus { get; set; } //menu
         public DbSet<ChoseUs> ChoseUs { get; set; } //menu
-        public DbSet<CompanyContact> CompanyContacts { get; set; } //menu
-
     }
 }
