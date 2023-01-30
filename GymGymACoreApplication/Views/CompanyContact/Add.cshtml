@@ -1,0 +1,32 @@
+﻿@using Entities.Concrete;
+@model CompanyContact;
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="p-2">
+    <br />
+    <br />
+    <h3 style="text-align:center;">Add Company Contact</h3>
+    <br />
+
+    @using (Html.BeginForm("Add", "CompanyContact", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Company Contact Address*")
+        @Html.TextBoxFor(cc=>cc.CompanyContactAddress,new { @class = "form-control" })
+        @Html.ValidationMessageFor(cc=>cc.CompanyContactAddress,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Company Contact Phone*")
+        @Html.TextBoxFor(cc=>cc.CompanyContactPhoneNo ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(cc=>cc.CompanyContactPhoneNo,"",new { @class ="text-danger" })
+        <br />
+         @Html.Label("Company Contact Mail*")
+        @Html.TextBoxFor(cc=>cc.CompanyContactcMail ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(cc=>cc.CompanyContactcMail,"",new { @class ="text-danger" })
+        
+        <br />
+
+        <input class="button-change form-control btn btn-primary" type="submit" value="Add Company Contact" />
+    }
+</div>
