@@ -15,12 +15,12 @@ namespace DataAccess.Concrete
         {
             //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=402-02 ; database=GymGym-A ;Encrypt=False; User ID=sa;Password=1234");
 
-            //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=DESKTOP-5F5SU1M\\SQLEXPRESS ;Initial Catalog=GymGym-A;Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("server=DESKTOP-5F5SU1M\\SQLEXPRESS ;Initial Catalog=GymGym-A;Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
 
-            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server=Murki;Initial Catalog=GymGym-A;" +
-               "Persist Security Info=False;Trusted_Connection=True;" +
-               "MultipleActiveResultSets=False;Encrypt=False;" +
-               "TrustServerCertificate=False;Connection Timeout=30;");
+            //optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server=Murki;Initial Catalog=GymGym-A;" +
+            //   "Persist Security Info=False;Trusted_Connection=True;" +
+            //   "MultipleActiveResultSets=False;Encrypt=False;" +
+            //   "TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         public DbSet<Category> Categories { get; set; }

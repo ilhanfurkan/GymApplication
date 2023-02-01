@@ -8,13 +8,16 @@ using XAct;
 using X.PagedList;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using DataAccess.Concrete;
+using Context = DataAccess.Concrete.Context;
 
 namespace GymGymACoreApplication.Controllers.İnterfaceController
 {
-   
     [AllowAnonymous]
     public class HomePageController : Controller
     {
+        Context c = new Context();
+        UserManager um = new UserManager(new EfUserRepository());
         private List<Menu> menuList;
         private TrainerManager tm;
         public HomePageController()
@@ -75,75 +78,20 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
             ViewBag.menu = menuList;
             return View();
         }
-
-
-        // GET: HomePageController/Details/5
-        public ActionResult Details(int id)
+        //[HttpGet]
+        //public ActionResult Register()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        public ActionResult Register(User user)
         {
+            ViewBag.menu = menuList;
+            um.UserAdd(user);
             return View();
         }
 
-        // GET: HomePageController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: HomePageController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HomePageController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: HomePageController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HomePageController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: HomePageController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+   
     }
 }

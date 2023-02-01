@@ -62,24 +62,24 @@
                 {
 
 
-                                                        <ul>
-                                                            @foreach (var item in submenu)
+                                                                <ul>
+                                                                    @foreach (var item in submenu)
                         {
                             if (item.Children.Count > 0)
                             {
-                                                                    <li>
-                                                                        <a href="./index.html">@item.MenuName</a>
-                                                                        @{
+                                                                            <li>
+                                                                                <a href="./index.html">@item.MenuName</a>
+                                                                                @{
                                         subMenuAddMobil(item.Children.ToList());
-                                                                        }
-                                                                    </li>
+                                                                                }
+                                                                            </li>
                             }
                             else
                             {
-                                                                    <li><a href="#" class="nav-link">@item.MenuName</a></li>
+                                                                            <li><a href="#" class="nav-link">@item.MenuName</a></li>
                             }
                         }
-                                                        </ul>
+                                                                </ul>
                 }
             }
 
@@ -141,24 +141,24 @@
                                 void subMenuAdd(List<Menu> submenu)
                                 {
                                     
-                                                               <ul class="dropdown @mdropdown">
-                                               @foreach (var item in submenu)
+                                                                       <ul class="dropdown @mdropdown">
+                                                       @foreach (var item in submenu)
                                         {
                                             if (item.Children.Count > 0)
                                             {
                                                 mdropdown = "has-children";
-                                                        <li>
-                                                        <a href=@item.SeoUrl class="nav-link">@item.MenuName <span style="opacity:0.5; margin-left:50%;">></span></a>
-                                                          @{ subMenuAdd(item.Children.ToList());}                                                                                                                             
-                                                        </li>                                                
+                                                                <li>
+                                                                <a href=@item.SeoUrl class="nav-link">@item.MenuName <span style="opacity:0.5; margin-left:50%;">></span></a>
+                                                                  @{ subMenuAdd(item.Children.ToList());}                                                                                                                             
+                                                                </li>                                                
                                             }
                                            
                                             else
                                             {
-                                                             <li><a href=@item.SeoUrl class="nav-link">@item.MenuName</a></li>
+                                                                     <li><a href=@item.SeoUrl class="nav-link">@item.MenuName</a></li>
                                             }
                                         }
-                                                    </ul>
+                                                            </ul>
                                 }
                             }
 
@@ -207,6 +207,7 @@
            
         </div>
         
+        <button><a href="/HomePage/Register/" style="width:100px; height:50px;">Bize Katılın</a></button>
     </header>
     <!-- Header End -->
     <!-- Hero Section Begin -->

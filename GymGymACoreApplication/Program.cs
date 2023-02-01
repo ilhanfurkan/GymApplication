@@ -100,6 +100,11 @@ public class Program
             name: "BlogPage",
           pattern: "/HomePage/gym-blog",
             defaults: new { controller = "HomePage", action = "BlogPage" });
+
+           endpoints.MapControllerRoute(
+             name: "ContactPage",
+          pattern: "/HomePage/gym-contact",
+         defaults: new { controller = "HomePage", action = "ContactPage" });
         });
 
         app.Run();
