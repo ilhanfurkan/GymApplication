@@ -1,0 +1,31 @@
+﻿@using Entities.Concrete;
+@model Slider;
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="p-2">
+    <br />
+    <br />
+    <h3 style="text-align:center;">Add Slider</h3>
+    <br />
+
+    @using (Html.BeginForm("Add", "Slider", FormMethod.Post, new { @class = "form-group" }))
+    {
+        @Html.Label("Slider Title")
+        @Html.TextBoxFor(s=>s.SliderTitle,new { @class = "form-control" })
+        @Html.ValidationMessageFor(s=>s.SliderTitle,"",new { @class ="text-danger" })
+        <br />
+        @Html.Label("Slider Img*")
+        @Html.TextBoxFor(s=>s.SliderImage,new { @class = "form-control" })
+        @Html.ValidationMessageFor(s=>s.SliderImage,"",new { @class ="text-danger" })
+                <br />
+        @Html.Label("Slider Detail")
+        @Html.TextBoxFor(s=>s.SliderDetail ,new { @class = "form-control" })
+        @Html.ValidationMessageFor(s=>s.SliderDetail,"",new { @class ="text-danger" })
+                <br />
+
+        <input class="button-change form-control btn btn-primary" type="submit" value="Add Slider" />
+    }
+</div>
