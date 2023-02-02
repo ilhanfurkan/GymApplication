@@ -794,7 +794,7 @@ function validatePassword() {
 
 /*Password komtrol*/
 var myInput = document.getElementById("passwordFirst");
-var myInput = document.getElementById("passwordSecond");
+var myInput1 = document.getElementById("passwordSecond");
 var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
 var number = document.getElementById("number");

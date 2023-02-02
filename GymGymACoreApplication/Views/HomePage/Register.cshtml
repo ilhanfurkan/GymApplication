@@ -1,5 +1,5 @@
 ﻿@using Entities.Concrete;
-@model List<User>
+@model User
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_HomePage.cshtml";
@@ -53,7 +53,7 @@
                   First name
                   <span data-required="true" aria-hidden="true"></span>
                 </label>
-                        <input id="first-name" type="text" name="first-name" autocomplete="given-name"  required >
+                        <input id="FirstName" type="text" name="FirstName" autocomplete="given-name" value="@Model.FirstName"  required >
                     </div>
 
                     <div class="mt-3 sm:mt-0 form__field">

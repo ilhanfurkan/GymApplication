@@ -84,11 +84,11 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
         //    return View();
         //}
         //[HttpPost]
-        public ActionResult Register(User user)
+        public ActionResult Register()
         {
             ViewBag.menu = menuList;
-            um.UserAdd(user);
-            return View();
+            var user = new User();
+            return View(user);
         }
 
 
