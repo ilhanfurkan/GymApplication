@@ -78,17 +78,19 @@ namespace GymGymACoreApplication.Controllers.İnterfaceController
             ViewBag.menu = menuList;
             return View();
         }
-        //[HttpGet]
-        //public ActionResult Register()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
+        [HttpGet]
         public ActionResult Register()
         {
             ViewBag.menu = menuList;
             var user = new User();
             return View(user);
+        }
+        [HttpPost]
+        public ActionResult Register(User user)
+        {
+            ViewBag.menu = menuList;
+            um.UserAdd(user);
+            return RedirectToAction("Index");
         }
 
 

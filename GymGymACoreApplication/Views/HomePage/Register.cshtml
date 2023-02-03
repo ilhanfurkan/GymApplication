@@ -14,19 +14,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/gymlife/css/index.css">
-    <title>Document</title>
+    <title>Register</title>
 </head>
 
-<body>
-    <div >
-    <img src="~/images/homepage-images/hero-1.jpg"/>    
+<body style=background:#0a0a08;>
+    <section class="breadcrumb-section set-bg" style="margin-top:-250px;height:620px;">
+     <img src="~/gymlife/img/breadcrumb-bg.jpg" style="overflow:hidden;">
+    <div class="container" style="margin-top:-200px;">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb-text">
+                    <h2>Register</h2>
+                    <div class="bt-option">
+                        <a href="./index.html">Home</a>
+                        <span>Join Us</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
  
 
-    <div class="mx-auto container">
+    <div class="mx-auto container" style="background:#464646;">
 
         <!-- Progress Form -->
-        <form id="progress-form" class="p-4 progress-form" method="post" lang="en" novalidate>
+        <form id="progress-form" class="p-4 progress-form forms-sample" action="/HomePage/Register" method="post" enctype="multipart/form-data" style="background:#464646;" novalidate>
 
             <!-- Step Navigation -->
             <div class="d-flex align-items-start mb-3 sm:mb-5 progress-form__tabs" role="tablist">
@@ -38,18 +51,15 @@
               <span class="d-block step" aria-hidden="true">Step 2 <span class="sm:d-none">of 3</span></span>
               Shipping
             </button>
-                <button id="progress-form__tab-3" class="flex-1 px-0 pt-2 progress-form__tabs-item" type="button" role="tab" aria-controls="progress-form__panel-3" aria-selected="false" tabindex="-1" aria-disabled="true">
-              <span class="d-block step" aria-hidden="true">Step 3 <span class="sm:d-none">of 3</span></span>
-              Survey
-            </button>
+                
             </div>
             <!-- / End Step Navigation -->
 
             <!-- Step 1 -->
-            <section id="progress-form__panel-1" role="tabpanel" aria-labelledby="progress-form__tab-1" tabindex="0">
-                <div class="sm:d-grid sm:grid-col-2 sm:mt-3">
+            <section id="progress-form__panel-1" role="tabpanel" aria-labelledby="progress-form__tab-1" tabindex="0" >
+            <div class="sm:d-grid sm:grid-col-2 sm:mt-3">
                     <div class="mt-3 sm:mt-0 form__field">
-                        <label for="first-name">
+                        <label for="FirstName">
                   First name
                   <span data-required="true" aria-hidden="true"></span>
                 </label>
@@ -61,7 +71,7 @@
                   Last name
                   <span data-required="true" aria-hidden="true"></span>
                 </label>
-                        <input id="last-name" type="text" name="last-name" autocomplete="family-name"  required>
+                        <input id="last-name" type="text" name="LastName" autocomplete="family-name" value="@Model.LastName"  required>
                     </div>
                 </div>
 
@@ -72,7 +82,7 @@
                   Nick Name
                   <span data-required="true" aria-hidden="true"></span>
                 </label>
-                        <input id="first-name" type="text" name="first-name" autocomplete="given-name" required>
+                        <input id="first-name" type="text" name="UserLogin" autocomplete="given-name"  value="@Model.UserLogin" required>
                     </div>
 
 
@@ -81,11 +91,11 @@
                   Gender
                   <span data-required="true" aria-hidden="true"></span>
                 </label>
-                        <select id="address-state" name="address-state" autocomplete="shipping address-level1" required style="height: 48px; ">
+                        <select id="address-state" name="Gender" autocomplete="shipping address-level1" required style="height: 48px; ">
 
-                        <option value="" disabled selected>Please select</option>
-                        <option >Women</option>
-                        <option >Man</option>
+                        <option value="Null" disabled selected>Please select</option>
+                        <option value="true">Man</option>
+                        <option value="false">Women</option>
                         </select>
                     </div>
                 </div>
@@ -97,7 +107,7 @@
                   Password
                   <span data-required="true" aria-hidden="true"></span>
                 </label>
-                        <input id="passwordFirst" type="password" name="passwordFirst" required>
+                        <input id="passwordFirst" type="password" name="UserPassWord" value="@Model.UserPassword" required>
                     </div>
 
                     <div class="mt-3 sm:mt-0 form__field">
@@ -121,7 +131,7 @@
                 Email address
                 <span data-required="true" aria-hidden="true"></span>
               </label>
-                    <input id="email-address" type="email" name="email-address" autocomplete="email" inputmode="email" required>
+                    <input id="email-address" type="email" name="Mail" autocomplete="email" inputmode="email"  value="@Model.Mail" required>
                 </div>
 
                 <div class="mt-1 form__field">
@@ -135,35 +145,7 @@
                     <label for="phone-number">
                 Phone number (optional)
               </label>
-                    <input id="phone-number" type="tel" name="phone-number" autocomplete="tel" inputmode="tel">
-                </div>
-
-                <div class="mt-3 form__field">
-                    <label for="address">
-              Address
-              <span data-required="true" aria-hidden="true"></span>
-            </label>
-                    <input id="address" type="text" name="address" autocomplete="shipping address-line1" required>
-                </div>
-
-
-                <div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
-
-                    <button id="utto1" type="button" data-action="next">
-                Continue
-              </button>
-                </div>
-            </section>
-            <!-- / End Step 1 -->
-
-            <!-- Step 2 -->
-            <section id="progress-form__panel-2" role="tabpanel" aria-labelledby="progress-form__tab-2" tabindex="0" hidden>
-                <div class="mt-3 form__field">
-                    <label for="address">
-                Address
-                <span data-required="true" aria-hidden="true"></span>
-              </label>
-                    <input id="address" type="text" name="address" autocomplete="shipping address-line1" required>
+                    <input id="phone-number" type="tel" name="PhoneNo" autocomplete="tel" inputmode="tel"  value="@Model.PhoneNo">
                 </div>
 
                 <div class="mt-3 form__field">
@@ -171,7 +153,7 @@
               National
               <span data-required="true" aria-hidden="true"></span>
             </label>
-                    <input id="address" type="text" name="address" autocomplete="shipping address-line1" pattern="[0-9]" required>
+                    <input id="address" type="text" name="NationalId" autocomplete="shipping address-line1" maxlength="11"  value="@Model.NationalId" required>
                 </div>
 
 
@@ -182,7 +164,7 @@
               Height
               <span data-required="true" aria-hidden="true"></span>
             </label>
-                        <input id="height-name" type="text" name="height-name" autocomplete="given-name" maxlength="3" pattern="[0-9]" required>
+                        <input id="height-name" type="text" name="Height" autocomplete="given-name" maxlength="3"  value="@Model.Height" required>
                     </div>
 
                     <div class="mt-3 sm:mt-0 form__field">
@@ -190,7 +172,7 @@
               Weight
               <span data-required="true" aria-hidden="true"></span>
             </label>
-                        <input id="last-name" type="text" name="last-name" autocomplete="family-name" maxlength="3" pattern="\d*" required>
+                        <input id="last-name" type="text" name="Weight" autocomplete="family-name" maxlength="3"  value="@Model.Weight" required>
                     </div>
                 </div>
 
@@ -201,7 +183,8 @@
             Date Of Birth
             <span data-required="true" aria-hidden="true"></span>
           </label>
-                        <input id="first-name" type="date" name="first-name" autocomplete="given-name" required>
+                        <input id="first-name" type="date" name="DateOfBirth" autocomplete="given-name" value="@Model.DateOfBirth" required>
+                        
                     </div>
 
                     <div class="mt-3 sm:mt-0 form__field">
@@ -209,94 +192,46 @@
             Remaining Right
             <span data-required="true" aria-hidden="true"></span>
           </label>
-                        <input id="last-name" type="text" name="last-name" autocomplete="family-name" required>
+                        <input id="last-name" type="text" name="RemainingRight" autocomplete="family-name" value="@Model.RemainingRight" required>
                     </div>
                 </div>
 
-                <div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
+
+                
+               
+              @* <div class="d-flex align-items-center justify-center sm:justify-end mt-4 sm:mt-5">*@
+                    <div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
                     <button type="button" class="mt-1 sm:mt-0 button--simple" data-action="prev">
                 Back
               </button>
 
-                    <button type="button" data-action="next">
+
+              
+                   <button type="button" data-action="next">
                 Continue
               </button>
                 </div>
             </section>
+            <!-- / End Step 1 -->
+
+            <!-- Step 2 -->
+            <section id="progress-form__panel-2" role="tabpanel" aria-labelledby="progress-form__tab-2" tabindex="0" hidden>
+                @await Component.InvokeAsync("PacketListComponent")
+               
+            </section>
             <!-- / End Step 2 -->
 
             <!-- Step 3 -->
-            <section id="progress-form__panel-3" role="tabpanel" aria-labelledby="progress-form__tab-3" tabindex="0" hidden>
-                <div class="mt-3 form__field">
-                    <label for="product-satisfaction">
-                How would you rate your level of satisfaction with the service you received?
-                <span data-required="true" aria-hidden="true"></span>
-              </label>
-                    <select id="product-satisfaction" name="product-satisfaction" required>
-                <option value="" disabled selected>Please select</option>
-                <option value="Highly satisfied">Highly satisfied</option>
-                <option value="Very satisfied">Very satisfied</option>
-                <option value="Satisfied">Satisfied</option>
-                <option value="Very dissatisfied">Very dissatisfied</option>
-                <option value="Highly dissatisfied">Highly dissatisfied</option>
-              </select>
-                </div>
-                <div class="mt-3 form__field">
-                    <label for="product-recommendation">
-                How likely are you to recommend our products to friends or family?
-                <span data-required="true" aria-hidden="true"></span>
-              </label>
-                    <select id="product-recommendation" name="product-recommendation" required>
-                <option value="" disabled selected>Please select</option>
-                <option value="Highly likely">Highly likely</option>
-                <option value="Very likely">Very likely</option>
-                <option value="Likely">Satisfied</option>
-                <option value="Very unlikely">Very unlikely</option>
-                <option value="Highly unlikely">Highly unlikely</option>
-              </select>
-                </div>
-
-                <fieldset id="product-purchase" class="mt-3 form__field">
-                    <legend>
-                        Which of the following products have you purchased in the past 6 months? Please check all that apply.
-                    </legend>
-                    <label class="form__choice-wrapper">
-                <input type="checkbox" name="product-purchase" value="A">
-                <span>Product A</span>
-              </label>
-                    <label class="form__choice-wrapper">
-                <input type="checkbox" name="product-purchase" value="B">
-                <span>Product B</span>
-              </label>
-                    <label class="form__choice-wrapper">
-                <input type="checkbox" name="product-purchase" value="C">
-                <span>Product C</span>
-              </label>
-                </fieldset>
-
-                <div class="mt-3 form__field">
-                    <label for="product-feedback">
-                Do you have any additional feedback or comments about our products?
-              </label>
-                    <textarea id="product-feedback" name="product-feedback" rows="5"></textarea>
-                </div>
-
-                <div class="d-flex flex-column-reverse sm:flex-row align-items-center justify-center sm:justify-end mt-4 sm:mt-5">
-                    <button type="button" class="mt-1 sm:mt-0 button--simple" data-action="prev">
-                Back
-              </button>
-                    <button type="submit">
-                Submit
-              </button>
-                </div>
-            </section>
+           
+                    
+              
             <!-- / End Step 3 -->
 
             <!-- Thank You -->
-            <section id="progress-form__thank-you" hidden>
+            @*<section id="progress-form__thank-you" hidden>
                 <p>Thank you for your submission!</p>
                 <p>We appreciate you contacting us. One of our team members will get back to you very&nbsp;soon.</p>
-            </section>
+            </section>*@
             <!-- / End Thank You -->
 
         </form>
